@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/payments",
+            "lambdaFunction": "mightydamegatsbyStripeFunction",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/payments"
+        }
+    ],
+    "resourceName": "mightydamegatsbyStripeApi",
+    "apiName": "mightydamegatsbyStripeApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "mightydamegatsbyStripeFunction"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-mightydamegatsby-dev-143702-authRole",
+        "unAuthRoleName": "amplify-mightydamegatsby-dev-143702-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "mightydamegatsbyStripeFunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

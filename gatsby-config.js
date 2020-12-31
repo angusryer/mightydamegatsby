@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby JAMstack ECommerce Professional`,
-    description: `Get up and running with your next E Commerce Website.`,
-    author: `@dabit3`,
+    title: `Mighty Dame Fitness`,
+    description: `Time to be Mighty You.`,
+    author: `@angusryer`,
   },
   plugins: [
     {
@@ -11,9 +11,6 @@ module.exports = {
         component: require.resolve(`./src/layouts/baseLayout.js`),
       },
     },
-    `gatsby-plugin-stripe`,
-    `gatsby-plugin-postcss`,
-    `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
@@ -30,9 +27,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -45,8 +39,11 @@ module.exports = {
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
-  ],
+    `gatsby-plugin-offline`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-stripe`,
+    `gatsby-plugin-postcss`,
+    `gatsby-plugin-react-helmet`
+  ]
 }

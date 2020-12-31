@@ -5,7 +5,7 @@ import { DENOMINATION } from "../../providers/inventoryProvider"
 import { FaLongArrowAltLeft } from "react-icons/fa"
 import { Link } from "gatsby"
 import Image from "../components/Image"
-import uuid from "uuid/v4"
+import { v4 as uuid } from "uuid"
 
 import {
   CardElement,
@@ -23,7 +23,7 @@ function CheckoutWithContext(props) {
   return (
     <ContextProviderComponent>
       <SiteContext.Consumer>
-        {context => (
+        {(context) => (
           <Elements stripe={stripePromise}>
             <Checkout {...props} context={context} />
           </Elements>
@@ -63,12 +63,12 @@ const Checkout = ({ context }) => {
   const stripe = useStripe()
   const elements = useElements()
 
-  const onChange = e => {
+  const onChange = (e) => {
     setErrorMessage(null)
     setInput({ ...input, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const { name, email, street, city, postal_code, state } = input
     const { total, clearCart } = context

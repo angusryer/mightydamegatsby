@@ -1,46 +1,51 @@
 {
-  "name": "gatsby-ecommerce-professional",
+  "name": "mightydamegatsby",
   "private": true,
-  "description": "An E Commerce starter for Gatsby",
-  "version": "0.1.0",
-  "author": "Nader Dabit <dabit3@gmail.com>",
+  "description": "Mighty Dame Fitness e-commerce products and services website",
+  "version": "1.0.0",
+  "author": "Angus Ryer <angus@ryer.ca>",
   "dependencies": {
-    "@stripe/react-stripe-js": "^1.0.0-beta.6",
-    "@stripe/stripe-js": "^1.0.0-beta.8",
-    "axios": "^0.19.2",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.11.0",
+    "autoprefixer": "^10.1.0",
+    "aws-amplify": "^3.3.13",
+    "axios": "^0.21.1",
     "esm": "^3.2.25",
-    "fs": "^0.0.1-security",
-    "gatsby": "^2.19.7",
-    "gatsby-image": "^2.2.39",
-    "gatsby-plugin-layout": "^1.1.22",
-    "gatsby-plugin-manifest": "^2.2.39",
-    "gatsby-plugin-offline": "^2.2.10",
-    "gatsby-plugin-postcss": "^2.1.19",
-    "gatsby-plugin-react-helmet": "^3.1.21",
-    "gatsby-plugin-sharp": "^2.4.3",
-    "gatsby-plugin-stripe": "^1.2.3",
+    "fs": "0.0.1-security",
+    "gatsby": "^2.29.3",
+    "gatsby-image": "^2.8.0",
+    "gatsby-plugin-layout": "^1.7.0",
+    "gatsby-plugin-manifest": "^2.9.1",
+    "gatsby-plugin-offline": "^3.7.1",
+    "gatsby-plugin-postcss": "^3.4.0",
+    "gatsby-plugin-react-helmet": "^3.7.0",
+    "gatsby-plugin-sharp": "^2.11.2",
+    "gatsby-plugin-stripe": "^1.2.4",
     "gatsby-plugin-web-font-loader": "^1.0.4",
-    "gatsby-source-filesystem": "^2.1.46",
-    "gatsby-transformer-sharp": "^2.3.13",
-    "graphql": "^14.6.0",
-    "graphql-tag": "^2.10.3",
+    "gatsby-source-filesystem": "^2.8.1",
+    "gatsby-transformer-sharp": "^2.9.0",
+    "graphql": "^14.7.0",
+    "graphql-tag": "^2.11.0",
     "path": "^0.12.7",
+    "postcss": "^8.2.2",
     "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-country-region-selector": "^1.4.7",
-    "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1",
-    "react-icons": "^3.9.0",
-    "react-toastify": "^5.5.0",
-    "reactjs-popup": "^1.5.0",
-    "tailwindcss": "^1.1.4",
-    "uuid": "^3.4.0"
+    "react": "^17.0.1",
+    "react-country-region-selector": "^3.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.1.0",
+    "react-toastify": "^6.2.0",
+    "reactjs-popup": "^2.0.4",
+    "tailwindcss": "^2.0.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "prettier": "^2.2.1"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "fitness",
+    "health"
   ],
   "license": "MIT",
   "scripts": {
@@ -54,9 +59,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dabit3/gatsby-ecommerce-professional"
+    "url": "https://github.com/thenco/mightydamegatsby"
   },
   "bugs": {
-    "url": "https://github.com/dabit3/gatsby-ecommerce-professional/issues"
+    "url": "https://github.com/thenco/mightydamegatsby/issues"
   }
 }

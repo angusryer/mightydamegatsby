@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AmplifyAppId": "d1yqt45w5sq9tb",
+      "StackName": "amplify-mightydamegatsby-dev-143702",
+      "StackId": "arn:aws:cloudformation:ca-central-1:378986558342:stack/amplify-mightydamegatsby-dev-143702/64312050-4ad6-11eb-ba0a-0a70372b0c72",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-mightydamegatsby-dev-143702-deployment",
+      "AuthRoleName": "amplify-mightydamegatsby-dev-143702-authRole",
+      "AuthRoleArn": "arn:aws:iam::378986558342:role/amplify-mightydamegatsby-dev-143702-authRole",
+      "UnauthRoleName": "amplify-mightydamegatsby-dev-143702-unauthRole",
+      "UnauthRoleArn": "arn:aws:iam::378986558342:role/amplify-mightydamegatsby-dev-143702-unauthRole"
+    },
+    "categories": {
+      "function": {
+        "mightydamegatsbyd8ed1464PostConfirmation": {
+          "GROUP": "Admin"
+        }
+      },
+      "auth": {
+        "mightydamegatsbyd8ed1464": {}
+      }
+    }
+  }
+}
