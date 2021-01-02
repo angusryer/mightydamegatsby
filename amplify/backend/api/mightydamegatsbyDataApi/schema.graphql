@@ -22,12 +22,7 @@
 type User
   @model
   @auth(rules: [{ allow: groups, groups: ["Admin"] }])
-  @key(name: "ByType", fields: ["userType"], queryField: "ByType")
-  @key(
-    name: "BySubscriptionStatus"
-    fields: ["subscriber"]
-    queryField: "BySubscriptionStatus"
-  ) {
+  @key(name: "ByType", fields: ["userType"], queryField: "ByType") {
   id: ID!
   firstName: String
   lastName: String
