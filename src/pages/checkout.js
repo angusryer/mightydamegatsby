@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { SiteContext, ContextProviderComponent } from "../context/mainContext"
+import { SiteContext, ContextProvider } from "../context/mainContext"
 import { DENOMINATION } from "../../providers/inventoryProvider"
 import { FaLongArrowAltLeft } from "react-icons/fa"
 import { Link } from "gatsby"
@@ -21,7 +21,7 @@ const stripePromise = loadStripe("pk_test_DvXwcKnVaaZUpWJIbh9cjgZr00IjIAjZAA")
 
 function CheckoutWithContext(props) {
   return (
-    <ContextProviderComponent>
+    <ContextProvider>
       <SiteContext.Consumer>
         {(context) => (
           <Elements stripe={stripePromise}>
@@ -29,7 +29,7 @@ function CheckoutWithContext(props) {
           </Elements>
         )}
       </SiteContext.Consumer>
-    </ContextProviderComponent>
+    </ContextProvider>
   )
 }
 

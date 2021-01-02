@@ -26,7 +26,7 @@ let programs = [
         instructors: ["Emily Engel"]
     },
     {
-        title: "Fitness 201",
+        title: "Miss Independent",
         image: "../images/programs/program3.jpg",
         description: "If you're new to us and you're note sure what program fits you best, then start here.",
         numberOfSessions: 1,

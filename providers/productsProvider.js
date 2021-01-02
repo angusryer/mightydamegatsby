@@ -5,10 +5,10 @@ products must adhere to the following schema:
 
 type Product {
   id: ID!
-  price: Float!
   title: String!
   image: String!
   description: String!
+  price: Float!
   inStock: Boolean!
   categories: [String]!
   brand: String!

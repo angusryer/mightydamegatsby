@@ -1,4 +1,4 @@
-function slugify(string) {
+function makeSlug(string) {
   const a = 'àáäâãåăæąçćčđďèéěėëêęğǵḧìíïîįłḿǹńňñòóöôœøṕŕřßşśšșťțùúüûǘůűūųẃẍÿýźžż·/_,:;'
   const b = 'aaaaaaaaacccddeeeeeeegghiiiiilmnnnnooooooprrsssssttuuuuuuuuuwxyyzzz------'
   const p = new RegExp(a.split('').join('|'), 'g')
@@ -13,7 +13,7 @@ function slugify(string) {
     .replace(/-+$/, '') // Trim - from end of text
 }
 
-function titleIfy(slug) {
+function makeTitle(slug) {
   var words = slug.split('-');
   for (var i = 0; i < words.length; i++) {
     var word = words[i];
@@ -31,5 +31,5 @@ function getTrimmedString(string, length = 8) {
 }
 
 export {
-  slugify, titleIfy, getTrimmedString
+  makeSlug, makeTitle, getTrimmedString
 }

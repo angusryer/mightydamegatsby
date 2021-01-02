@@ -5,7 +5,7 @@ import getInventory, { DENOMINATION } from '../../providers/inventoryProvider'
 import { updateProduct, deleteProduct } from '../graphql/mutations'
 import Image from '../components/Image'
 import { Link } from 'gatsby'
-import { slugify } from '../../utils/helpers'
+import { makeSlug } from '../../utils/helpers'
 import { FaTimes } from 'react-icons/fa'
 
 class ViewInventory extends React.Component {
@@ -20,7 +20,7 @@ class ViewInventory extends React.Component {
   fetchInventory = async() => {
     const inventoryData = await API.graphql(graphqlOperation(listProducts))
     const { items } = inventoryData.data.listProducts
-    console.log("inventory items: ", items)
+    // console.log("inventory items: ", items)
     this.setState({ inventory: items })
   }
   editItem = (item, index) => {
@@ -50,7 +50,7 @@ class ViewInventory extends React.Component {
   }
   render() {
     const { inventory, currentItem, editingIndex } = this.state
-    console.log('currentItem: ', currentItem)
+    // console.log('currentItem: ', currentItem)
     return (
       <div>
         <h2>Inventory</h2>
@@ -61,7 +61,7 @@ class ViewInventory extends React.Component {
               return (
                 <div className="border-b py-10" key={item.id}>
                   <div className="flex items-center">
-                    <Link to={slugify(item.name)}>
+                    <Link to={makeSlug(item.name)}>
                       <Image className="w-32 m-0" src={item.image} alt={item.name} />
                     </Link>
                     <input
@@ -98,10 +98,10 @@ class ViewInventory extends React.Component {
             return (
               <div className="border-b py-10" key={item.id}>
                 <div className="flex items-center">
-                  <Link to={slugify(item.name)}>
+                  <Link to={makeSlug(item.name)}>
                     <Image className="w-32 m-0" src={item.image} alt={item.name} />
                   </Link>
-                  <Link to={slugify(item.name)}>
+                  <Link to={makeSlug(item.name)}>
                     <p className="m-0 pl-10 text-gray-600 text-sm">
                       {item.name}
                     </p>

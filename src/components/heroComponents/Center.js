@@ -22,4 +22,3 @@ export default function Center({ price, title, link }) {
   )
 }
 
-export default Center

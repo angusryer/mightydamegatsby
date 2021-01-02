@@ -15,7 +15,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         custom: {
-          families: ["Eina, Eina-SemiBold"],
+          families: ["Fredericka the Great"],
           urls: ["/fonts/fonts.css"],
         },
       },
@@ -30,13 +30,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `mighty-dame-fitness-site`,
+        short_name: `mdf-site`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/mightyDameLogo.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-offline`,
@@ -44,6 +44,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-stripe`,
     `gatsby-plugin-postcss`,
-    `gatsby-plugin-react-helmet`
-  ]
+    `gatsby-plugin-react-helmet`,
+  ],
 }

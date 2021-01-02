@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { SiteContext, ContextProviderComponent } from '../context/mainContext'
+import { SiteContext, ContextProvider } from '../context/mainContext'
 import { DENOMINATION } from '../../providers/inventoryProvider'
 import { FaTimes, FaLongArrowAltRight } from 'react-icons/fa'
 import { Link } from 'gatsby'
 import CartLink from '../components/CartLink'
 import QuantityPicker from '../components/QuantityPicker'
-import { slugify } from '../../utils/helpers'
+import { makeSlug } from '../../utils/helpers'
 import Image from '../components/Image'
 
 const Cart = ({ context }) => {
@@ -51,10 +51,10 @@ const Cart = ({ context }) => {
 
                           { /* Responsive - Desktop */}
                           <div className="flex items-center hidden md:flex">
-                            <Link to={slugify(item.name)}>
+                            <Link to={makeSlug(item.name)}>
                               <Image className="w-32 m-0" src={item.image} alt={item.name} />
                             </Link>
-                            <Link to={slugify(item.name)}>
+                            <Link to={makeSlug(item.name)}>
                               <p className="
                               m-0 pl-10 text-gray-600 text-sm w-56
                               ">
@@ -82,11 +82,11 @@ const Cart = ({ context }) => {
 
                           { /* Responsive - Mobile */}
                           <div className="flex items-center flex md:hidden">
-                            <Link to={slugify(item.name)}>
+                            <Link to={makeSlug(item.name)}>
                               <Image className="w-32 m-0" src={item.image} alt={item.name} />
                             </Link>
                             <div>
-                              <Link to={slugify(item.name)}>
+                              <Link to={makeSlug(item.name)}>
                                 <p className="
                                 m-0 pl-6 text-gray-600 text-base
                                 ">
@@ -141,13 +141,13 @@ const Cart = ({ context }) => {
 
 function CartWithContext(props) {
   return (
-    <ContextProviderComponent>
+    <ContextProvider>
       <SiteContext.Consumer>
         {
           context => <Cart {...props} context={context} />
         }
       </SiteContext.Consumer>
-    </ContextProviderComponent>
+    </ContextProvider>
   )
 }
 

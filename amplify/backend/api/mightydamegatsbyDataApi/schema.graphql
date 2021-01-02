@@ -19,17 +19,71 @@
 #   content: String!
 # }
 
-type Product @model
-  @auth(rules: [
-    { allow: public, operations: [read] },
-    { allow: groups, groups: ["Admin"] }
-  ]) {
+type User
+  @model
+  @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+  @key(name: "ByType", fields: ["userType"], queryField: "ByType")
+  @key(
+    name: "BySubscriptionStatus"
+    fields: ["subscriber"]
+    queryField: "BySubscriptionStatus"
+  ) {
   id: ID!
+  firstName: String
+  lastName: String
+  displayName: String
+  email: String!
+  dateRegistered: Int
+  userType: UserType!
+  streetAddressOne: String
+  streetAddressTwo: String
+  city: String
+  provinceState: String
+  country: String
+  postalZip: String
+  phone: String
+  subscriber: Boolean!
+  dateSubscribed: Int
+}
+
+type Offer
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  )
+  @key(name: "ByOfferType", fields: ["offerType"], queryField: "ByOfferType") {
+  id: ID!
+  offerType: OfferType!
+  title: String!
+  shortDescription: String!
+  longDescription: String!
+  keywords: [String]!
   categories: [String]!
   price: Float!
-  name: String!
-  image: String!
-  description: String!
-  currentInventory: Int!
+  salePrice: Float!
+  mainImageUrl: String!
+  otherImageUrls: [String]!
+  available: Boolean!
   brand: String
+}
+
+type Review @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  title: String!
+  comment: String
+  rating: Int!
+}
+
+enum UserType {
+  ADMIN
+  MEMBER
+  PUBLIC
+}
+
+enum OfferType {
+  PRODUCT
+  SERVICE
 }

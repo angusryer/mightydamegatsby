@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Popup from 'reactjs-popup'
 
-import { SiteContext, ContextProviderComponent } from '../context/mainContext'
+import { SiteContext, ContextProvider } from '../context/mainContext'
 import CartLink from '../components/CartLink'
 import Button from '../components/Button'
 import Image from '../components/Image'
@@ -66,13 +66,13 @@ const ItemView = (props) => {
 
 function ItemViewWithContext(props) {
   return (
-    <ContextProviderComponent>
+    <ContextProvider>
       <SiteContext.Consumer>
         {
           context =>  <ItemView {...props} context={context} />
         }
       </SiteContext.Consumer>
-    </ContextProviderComponent>
+    </ContextProvider>
   )
 }
 

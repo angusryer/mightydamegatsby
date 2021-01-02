@@ -7,11 +7,13 @@
 
 import React from "react"
 import { Link } from "gatsby"
-import { SiteContext, ContextProviderComponent } from "../context/mainContext"
-import { titleIfy, slugify } from "../../utils/helpers"
+import { SiteContext, ContextProvider } from "../context/mainContext"
+import { makeTitle, makeSlug } from "../../utils/helpers"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"
 import { colors } from "../theme"
+
+const logo = require("../images/mightyDameLogo.png")
 
 toast.configure({
   progressStyle: {
@@ -19,17 +21,14 @@ toast.configure({
   },
 })
 
-const logo = require("../images/logo.png")
-
 class Layout extends React.Component {
   render() {
     const { children } = this.props
 
     return (
-      <ContextProviderComponent>
+      <ContextProvider>
         <SiteContext.Consumer>
           {(context) => {
-            console.log("baselayout rerendering...")
             let {
               navItems: {
                 navInfo: { data: links },
@@ -37,8 +36,8 @@ class Layout extends React.Component {
             } = context
 
             links = links.map((link) => ({
-              name: titleIfy(link),
-              link: slugify(link),
+              name: makeTitle(link),
+              link: makeSlug(link),
             }))
             links.unshift({
               name: "Home",
@@ -90,13 +89,15 @@ class Layout extends React.Component {
                     </div>
                   </div>
                 </nav>
+
                 <div className="mobile:px-10 px-4 pb-10 flex justify-center">
                   <main className="w-fw">{children}</main>
                 </div>
+
                 <footer className="flex justify-center">
                   <div className="flex w-fw px-8 desktop:px-0 border-solid border-t border-gray-300 items-center">
                     <span className="block text-gray-700 pt-4 pb-8 mt-2 text-xs">
-                      Copyright © 2020 JAMstack Ecommerce. All rights reserved.
+                      © 2020 Mighty Dame Fitness. All rights reserved.
                     </span>
                     <div className="flex flex-1 justify-end">
                       <Link to="/admin">
@@ -109,7 +110,7 @@ class Layout extends React.Component {
             )
           }}
         </SiteContext.Consumer>
-      </ContextProviderComponent>
+      </ContextProvider>
     )
   }
 }
