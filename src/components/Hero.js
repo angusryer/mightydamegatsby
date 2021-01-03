@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 // import { API, Auth } from "aws-amplify";
 import Subscribe from "./Subscribe";
 import Review from "./Review";
@@ -39,8 +38,9 @@ export default function Hero() {
 	}, []);
 
 	return (
-		<HeroContainer bgImage={heroImage}>
-			<CopyContainer>
+		<section>
+			HERO {/* bgImage={heroImage}> */}
+			{/* <CopyContainer>
 				<MainTag>
 					Learn the science and get the results 42 seconds at a time.
 				</MainTag>
@@ -57,33 +57,33 @@ export default function Hero() {
 							/>
 						))}
 				</ReviewBlock>
-			</CopyContainer>
-		</HeroContainer>
+			</CopyContainer> */}
+		</section>
 	);
 }
 
-const HeroContainer = styled.section`
-	display: flex;
-	background-image: url(${(props) => props.bgImage});
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100%;
-`;
+// const HeroContainer = styled.section`
+// 	display: flex;
+// 	background-image: url(${(props) => props.bgImage});
+// 	background-repeat: no-repeat;
+// 	background-size: cover;
+// 	height: 100%;
+// `;
 
-const CopyContainer = styled.div`
-	display: flex;
-	flex-flow: column nowrap;
-	margin: 100px 0 0 100px;
-	max-width: 700px;
-	z-index: 1;
-`;
+// const CopyContainer = styled.div`
+// 	display: flex;
+// 	flex-flow: column nowrap;
+// 	margin: 100px 0 0 100px;
+// 	max-width: 700px;
+// 	z-index: 1;
+// `;
 
-const MainTag = styled.h2`
-	color: whitesmoke;
-	font-size: 42px;
-`;
+// const MainTag = styled.h2`
+// 	color: whitesmoke;
+// 	font-size: 42px;
+// `;
 
-const ReviewBlock = styled.div`
-	display: flex;
-	width: 100%;
-`;
+// const ReviewBlock = styled.div`
+// 	display: flex;
+// 	width: 100%;
+// `;

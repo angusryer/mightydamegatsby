@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 // import axios from "axios";
-import styled from "styled-components";
 // import fs from "browserify-fs";
 // import subscriberData from '../seed/subscribers.json'
 import emailjs, { init } from "emailjs-com";
@@ -67,46 +66,46 @@ const subscribe = (e, setSubscribeSuccess) => {
 export default function Subscribe() {
 	const [subscribeSuccess, setSubscribeSuccess] = useState(false);
 	return (
-		<StyledForm onSubmit={(e) => subscribe(e, setSubscribeSuccess)}>
-			<StyledInput type='email' name='email-input' id='email-input' />
-			<StyledButton type='submit'>Start Growing</StyledButton>
+		<form onSubmit={(e) => subscribe(e, setSubscribeSuccess)}>
+			<input type='email' name='email-input' id='email-input' />
+			<button type='submit'>Start Growing</button>
 			{subscribeSuccess && <span>Subscribed!</span>}
-		</StyledForm>
+		</form>
 	);
 }
 
-const StyledForm = styled.form`
-	display: flex;
-	align-content: center;
-	justify-content: center;
-	height: 30px;
-	width: 95vw;
-	max-width: 500px;
-	padding: 5px;
-`;
+// const StyledForm = styled.form`
+// 	display: flex;
+// 	align-content: center;
+// 	justify-content: center;
+// 	height: 30px;
+// 	width: 95vw;
+// 	max-width: 500px;
+// 	padding: 5px;
+// `;
 
-const StyledInput = styled.input`
-	width: 100%;
-	margin-right: 20px;
-	border: none;
-	border-radius: 5px;
-	outline: none;
-	:hover {
-		background-color: whitesmoke;
-	}
-`;
+// const StyledInput = styled.input`
+// 	width: 100%;
+// 	margin-right: 20px;
+// 	border: none;
+// 	border-radius: 5px;
+// 	outline: none;
+// 	:hover {
+// 		background-color: whitesmoke;
+// 	}
+// `;
 
-const StyledButton = styled.button`
-	border: none;
-	background: #ff6347;
-	color: black;
-	width: 175px;
-	border-radius: 5px;
-	font-weight: 600;
-	font-family: "Fredericka the Great";
-	padding: auto 0;
-	outline: none;
-	:hover {
-		background-color: #ff4322;
-	}
-`;
+// const StyledButton = styled.button`
+// 	border: none;
+// 	background: #ff6347;
+// 	color: black;
+// 	width: 175px;
+// 	border-radius: 5px;
+// 	font-weight: 600;
+// 	font-family: "Fredericka the Great";
+// 	padding: auto 0;
+// 	outline: none;
+// 	:hover {
+// 		background-color: #ff4322;
+// 	}
+// `;

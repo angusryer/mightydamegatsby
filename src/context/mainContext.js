@@ -2,20 +2,17 @@ import React, { createContext, Component } from "react"
 import { StaticQuery, graphql } from "gatsby"
 import { toast } from "react-toastify"
 
+
+console.log("==== 55555 ====")
+
+
 const mainQuery = graphql`
   query {
-    site {
-      siteMetadata {
-        description
-      }
+    navInfo {
+      data
     }
   }
 `
-
-// navInfo {
-//   data
-// }
-// }
 
 // Use local storage to maintain initial state and set up our context provider
 
@@ -25,7 +22,7 @@ const initialState = {
   cart: [],
   numberOfItemsInCart: 0,
   total: 0,
-  currentUser: {}
+  currentUser: {},
 }
 
 const SiteContext = createContext()
@@ -126,10 +123,12 @@ class ContextProvider extends Component {
       }
     }
 
+console.log("==== 66666 ====")
+
+
     return (
       <StaticQuery query={mainQuery}>
         {(queryData) => {
-          console.log(mainQuery)
           return (
             <SiteContext.Provider
               value={{

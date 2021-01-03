@@ -1,7 +1,7 @@
 import React from 'react'
 import { API, graphqlOperation } from 'aws-amplify'
 import { listProducts } from '../graphql/queries'
-import getInventory, { DENOMINATION } from '../../providers/inventoryProvider'
+import { getProducts, DENOMINATION } from '../../providers/dataProvider'
 import { updateProduct, deleteProduct } from '../graphql/mutations'
 import Image from '../components/Image'
 import { Link } from 'gatsby'

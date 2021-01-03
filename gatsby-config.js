@@ -8,7 +8,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/layouts/baseLayout.js`),
+        component: require.resolve(`./src/layouts/layout.js`),
       },
     },
     {

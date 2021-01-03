@@ -3,15 +3,13 @@ import Amplify, { Storage } from "aws-amplify"
 import tag from "graphql-tag"
 import fs from "fs"
 
-import getInventory from "./providers/inventoryProvider.js"
 import getReviews from "./providers/reviewsProvider.js"
 import getProducts from "./providers/productsProvider.js"
 import getPrograms from "./providers/programsProvider.js"
-import getSubscribers from "./providers/subscribersProvider.js"
 import { makeSlug } from "./utils/helpers"
-import config from "./src/aws-exports"
 import downloadImage from "./utils/downloadImage"
 
+import config from "./src/aws-exports"
 Amplify.configure(config)
 
 const graphql = require("graphql")
@@ -20,11 +18,188 @@ const { print } = graphql
 const ItemView = require.resolve("./src/templates/ItemView")
 const CategoryView = require.resolve("./src/templates/CategoryView")
 
+
+
+
+//
+// Create top-level data nodes for Gatsby to construct GraphQL queries around ???
+//
+
+exports.sourceNodes = async ({
+  actions,
+  createNodeId,
+  createContentDigest,
+}) => {
+
+  console.log("==== 11111 ====")
+
+  const { createNode } = actions
+  // const inventory = await fetchInventory()
+  // const products = await fetchProducts()
+  const products = await getProducts()
+  // const programs = await fetchPrograms()
+  const programs = await getPrograms()
+  // const reviews = await fetchReviews()
+  // const subscribers = await fetchSubscribers()
+
+  // create nav info for categories TODO review; some other permutation of this maybe, but not this
+  // const categoryNames = products.reduce((acc, next) => {
+  //   next.categories.forEach((c) => {
+  //     if (!acc.includes(c)) acc.push(c)
+  //   })
+  //   return acc
+  // }, [])
+  
+
+  const navData = {
+    key: "navInfo",
+    data: ["Programs", "Products"]
+  }
+
+  const navNodeContent = JSON.stringify(navData)
+  const navNodeMeta = {
+    id: createNodeId(`mdf_${navData.key}`),
+    parent: null,
+    children: [],
+    internal: {
+      type: `NavInfo`,
+      mediaType: `json`,
+      content: navNodeContent,
+      contentDigest: createContentDigest(navData),
+    },
+  }
+
+  const navNode = Object.assign({}, navData, navNodeMeta)
+  createNode(navNode)
+
+
+
+  // create products node
+  const productsData = {
+    key: "productsInfo",
+    data: products
+  }
+
+  const productsNodeContent = JSON.stringify(productsData)
+  const productsNodeMeta = {
+    id: createNodeId(`mdf_${productsData.key}`),
+    parent: null,
+    children: [],
+    internal: {
+      type: `ProductsInfo`,
+      mediaType: `json`,
+      content: productsNodeContent,
+      contentDigest: createContentDigest(productsData),
+    },
+  }
+
+  const productsNode = Object.assign({}, productsData, productsNodeMeta)
+  createNode(productsNode)
+  
+
+
+
+  // create programs node
+  const programsData = {
+    key: "programsInfo",
+    data: programs
+  }
+
+  const programsNodeContent = JSON.stringify(programsData)
+  const programsNodeMeta = {
+    id: createNodeId(`mdf_${programsData.key}`),
+    parent: null,
+    children: [],
+    internal: {
+      type: `ProgramsInfo`,
+      mediaType: `json`,
+      content: programsNodeContent,
+      contentDigest: createContentDigest(programsData),
+    },
+  }
+
+  const programsNode = Object.assign({}, programsData, programsNodeMeta)
+  createNode(programsNode)
+
+
+
+  // create category info for home page
+  // const productsByCategory = products.reduce((acc, next) => {
+  //   const categories = next.categories
+
+  //   categories.forEach((c) => {
+  //     const index = acc.findIndex((item) => item.name === c)
+  //     if (index !== -1) {
+  //       const item = acc[index]
+  //       item.itemCount = item.itemCount + 1
+  //       acc[index] = item
+  //     } else {
+  //       const item = {
+  //         name: c,
+  //         image: next.image,
+  //         itemCount: 1,
+  //       }
+  //       acc.push(item)
+  //     }
+  //   })
+  //   return acc
+  // }, [])
+
+  // //
+  // const catData = {
+  //   key: "category-info",
+  //   data: productsByCategory,
+  // }
+
+  // const catNodeContent = JSON.stringify(catData)
+  // const catNodeMeta = {
+  //   id: createNodeId(`my-data-${catData.key}`),
+  //   parent: null,
+  //   children: [],
+  //   internal: {
+  //     type: `CategoryInfo`,
+  //     mediaType: `json`,
+  //     content: catNodeContent,
+  //     contentDigest: createContentDigest(catData),
+  //   },
+  // }
+
+  // const catNode = Object.assign({}, catData, catNodeMeta)
+  // createNode(catNode)
+
+  // /* all products */
+  // const productsData = {
+  //   key: "all-products",
+  //   data: products,
+  // }
+
+  // const productsNodeContent = JSON.stringify(productsData)
+  // const productsNodeMeta = {
+  //   id: createNodeId(`my-data-${productsData.key}`),
+  //   parent: null,
+  //   children: [],
+  //   internal: {
+  //     type: `InventoryInfo`, // TODO change to ProductsInfo? Or is this set in a schema elsewhere?
+  //     mediaType: `json`,
+  //     content: productsNodeContent,
+  //     contentDigest: createContentDigest(productsData),
+  //   },
+  // }
+
+  // const productsNode = Object.assign({}, productsData, productsNodeMeta)
+  // createNode(productsNode)
+} // end of exports.sourceNodes
+
+
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const products = await getProducts()
   const programs = await getPrograms()
+
   // implement the creation of pages from products and programs
+
+  console.log("==== 33333 ====")
 
   createPage({
     path: "all-product-categories",
@@ -105,121 +280,11 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 
-//
-// Create top-level data nodes for Gatsby to construct GraphQL queries around ???
-//
-
-exports.sourceNodes = async ({
-  actions,
-  createNodeId,
-  createContentDigest,
-}) => {
-  const { createNode } = actions
-  // const inventory = await fetchInventory()
-  const products = await fetchProducts()
-  // const programs = await fetchPrograms()
-  // const reviews = await fetchReviews()
-  // const subscribers = await fetchSubscribers()
-
-  // create nav info for categories TODO review; some other permutation of this maybe, but not this
-  const categoryNames = products.reduce((acc, next) => {
-    next.categories.forEach((c) => {
-      if (!acc.includes(c)) acc.push(c)
-    })
-    return acc
-  }, [])
-
-  //
-  const navData = {
-    key: "nav-info",
-    data: categoryNames, // used to be ["Programs", "Products"]
-  }
-
-  const navNodeContent = JSON.stringify(navData)
-  const navNodeMeta = {
-    id: createNodeId(`my-data-${navData.key}`),
-    parent: null,
-    children: [],
-    internal: {
-      type: `NavInfo`,
-      mediaType: `json`,
-      content: navNodeContent,
-      contentDigest: createContentDigest(navData),
-    },
-  }
-
-  const navNode = Object.assign({}, navData, navNodeMeta)
-  createNode(navNode)
-
-  // create category info for home page
-  const productsByCategory = products.reduce((acc, next) => {
-    const categories = next.categories
-
-    categories.forEach((c) => {
-      const index = acc.findIndex((item) => item.name === c)
-      if (index !== -1) {
-        const item = acc[index]
-        item.itemCount = item.itemCount + 1
-        acc[index] = item
-      } else {
-        const item = {
-          name: c,
-          image: next.image,
-          itemCount: 1,
-        }
-        acc.push(item)
-      }
-    })
-    return acc
-  }, [])
-
-  //
-  const catData = {
-    key: "category-info",
-    data: productsByCategory,
-  }
-
-  const catNodeContent = JSON.stringify(catData)
-  const catNodeMeta = {
-    id: createNodeId(`my-data-${catData.key}`),
-    parent: null,
-    children: [],
-    internal: {
-      type: `CategoryInfo`,
-      mediaType: `json`,
-      content: catNodeContent,
-      contentDigest: createContentDigest(catData),
-    },
-  }
-
-  const catNode = Object.assign({}, catData, catNodeMeta)
-  createNode(catNode)
-
-  /* all products */
-  const productsData = {
-    key: "all-products",
-    data: products,
-  }
-
-  const productsNodeContent = JSON.stringify(productsData)
-  const productsNodeMeta = {
-    id: createNodeId(`my-data-${productsData.key}`),
-    parent: null,
-    children: [],
-    internal: {
-      type: `InventoryInfo`, // TODO change to ProductsInfo? Or is this set in a schema elsewhere?
-      mediaType: `json`,
-      content: productsNodeContent,
-      contentDigest: createContentDigest(productsData),
-    },
-  }
-
-  const productsNode = Object.assign({}, productsData, productsNodeMeta)
-  createNode(productsNode)
-} // end of exports.sourceNodes
 
 // FETCH PRODUCTS
 async function fetchProducts() {
+
+
   const listProductsQuery = tag(`
   query listProducts {
     listProducts(limit: 500) {
