@@ -1,23 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
-// import {
-//   Center,
-//   Footer,
-//   Tag,
-//   Showcase,
-//   DisplaySmall,
-//   DisplayMedium,
-// } from "../components"
 import CartLink from "../components/CartLink"
-// import { makeTitle, makeSlug } from "../../utils/helpers"
+import Review from '../components/Review'
 
-export default function Home() {
-  // console.log(data) ^^^^^^^ it used to be Home({ data: gqlData })
-  // const { productsInfo, categoryInfo } = gqlData
-  // const categories = categoryInfo.data.slice(0, 2)
-  // const products = productsInfo.data.slice(0, 4)
-
+export default function Home({ data }) {
   return (
     <>
       <CartLink />
@@ -30,25 +17,24 @@ export default function Home() {
         flex lg:flex-row flex-col"
         >
           <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">
-            {/* <Tag year="2021" category="SOFAS" />
-            <Center
-              price="200"
-              title={products[2].name}
-              link={makeSlug(products[2].name)}
-            />
-            <Footer designer="Jason Bourne" /> */}
+            Hero text
           </div>
+          {/* Subscribe here */}
           <div className="flex flex-1 justify-center items-center relative">
-            {/* <Showcase imageSrc={products[2].image} /> */}
-            <div
-              className="absolute
-              w-48 h-48 sm:w-72 sm:h-72 xl:w-88 xl:h-88
-              bg-white z-0 rounded-full"
-            />
+            {data.reviewsInfo.data.map(review => {
+              return (
+                <Review key={review.id} value={review.rating} quote={review.quote} reviewer={review.reviewerName} image={review.reviewerAvatar} />
+              )
+            })}
           </div>
         </div>
+        <div className="flex flex-1 justify-center items-center relative">
+          Hero Image
+        </div>
       </div>
+      {/* Clarifying newsletter section---small---in its own div */}
       <div className="my-4 lg:my-8 flex flex-col lg:flex-row justify-between">
+        {/* We focus on section */}
         {/* <DisplayMedium
           imageSrc={categories[0].image}
           subtitle={`${categories[0].itemCount} items`}
@@ -102,26 +88,16 @@ export default function Home() {
   )
 }
 
-// export const pageQuery = graphql`
-//   query {
-//     navInfo {
-//       data
-//     }
-//      # categoryInfo {
-//      #   data {
-//      #     title
-//      #     image
-//      #     itemCount
-//      #   }
-//      # }
-//      # productsInfo {
-//      #   data {
-//      #     image
-//      #     title
-//      #     categories
-//      #     description
-//      #     id
-//      #   }
-//      # }
-//   }
-// `
+export const reviewsQuery = graphql`
+  query {
+    reviewsInfo {
+      data {
+        id
+        reviewerName
+        reviewerAvatar
+        rating
+        quote
+      }
+    }
+  }
+`

@@ -16,7 +16,7 @@ const mainQuery = graphql`
 
 // Use local storage to maintain initial state and set up our context provider
 
-const STORAGE_KEY = "MDF_" //'GATSBY_ECOMMERCE_STARTER_' TODO delete
+const STORAGE_KEY = "MDF_"
 
 const initialState = {
   cart: [],

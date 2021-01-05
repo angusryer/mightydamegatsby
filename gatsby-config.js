@@ -15,7 +15,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         custom: {
-          families: ["Fredericka the Great"],
+          families: ["Fredericka the Great", 'Libre Franklin', '-apple-system', 'Helvetica Neue', 'sans-serif'],
           urls: ["/fonts/fonts.css"],
         },
       },
