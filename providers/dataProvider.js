@@ -90,7 +90,7 @@ export default function fetchData(dataType) {
             query: print(listAllReviewsQuery),
           },
         })
-        
+        console.log(gqlReviewsData.data)
         resolve(gqlReviewsData.data.data.listReviews.items)
         break
 
@@ -107,13 +107,13 @@ const listAllReviewsQuery = tag(`
   query getAllReviews {
     listReviews {
       items {
-        comment
-        createdAt
         id
-        owner
+        comment
         rating
         title
-        updatedAt
+        user {
+          displayName
+        }
       }
     }
   }

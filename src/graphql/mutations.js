@@ -25,6 +25,81 @@ export const createUser = /* GraphQL */ `
       dateSubscribed
       createdAt
       updatedAt
+      offers {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        users {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -52,6 +127,81 @@ export const updateUser = /* GraphQL */ `
       dateSubscribed
       createdAt
       updatedAt
+      offers {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        users {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -79,6 +229,81 @@ export const deleteUser = /* GraphQL */ `
       dateSubscribed
       createdAt
       updatedAt
+      offers {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        users {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -101,8 +326,83 @@ export const createOffer = /* GraphQL */ `
       otherImageUrls
       available
       brand
+      users {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
       createdAt
       updatedAt
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -125,8 +425,83 @@ export const updateOffer = /* GraphQL */ `
       otherImageUrls
       available
       brand
+      users {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
       createdAt
       updatedAt
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -149,8 +524,83 @@ export const deleteOffer = /* GraphQL */ `
       otherImageUrls
       available
       brand
+      users {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
       createdAt
       updatedAt
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -163,7 +613,54 @@ export const createReview = /* GraphQL */ `
       id
       title
       comment
+      created
       rating
+      user {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
       createdAt
       updatedAt
     }
@@ -178,7 +675,54 @@ export const updateReview = /* GraphQL */ `
       id
       title
       comment
+      created
       rating
+      user {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
       createdAt
       updatedAt
     }
@@ -193,7 +737,54 @@ export const deleteReview = /* GraphQL */ `
       id
       title
       comment
+      created
       rating
+      user {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
       createdAt
       updatedAt
     }

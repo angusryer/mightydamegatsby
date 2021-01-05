@@ -22,6 +22,81 @@ export const getUser = /* GraphQL */ `
       dateSubscribed
       createdAt
       updatedAt
+      offers {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        users {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -51,6 +126,32 @@ export const listUsers = /* GraphQL */ `
         dateSubscribed
         createdAt
         updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
       }
       nextToken
     }
@@ -90,29 +191,34 @@ export const byType = /* GraphQL */ `
         dateSubscribed
         createdAt
         updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
       }
       nextToken
-    }
-  }
-`;
-export const getOffer = /* GraphQL */ `
-  query GetOffer($id: ID!) {
-    getOffer(id: $id) {
-      id
-      offerType
-      title
-      shortDescription
-      longDescription
-      keywords
-      categories
-      price
-      salePrice
-      mainImageUrl
-      otherImageUrls
-      available
-      brand
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -137,10 +243,135 @@ export const listOffers = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        users {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getOffer = /* GraphQL */ `
+  query GetOffer($id: ID!) {
+    getOffer(id: $id) {
+      id
+      offerType
+      title
+      shortDescription
+      longDescription
+      keywords
+      categories
+      price
+      salePrice
+      mainImageUrl
+      otherImageUrls
+      available
+      brand
+      users {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
+      createdAt
+      updatedAt
+      reviews {
+        id
+        title
+        comment
+        created
+        rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
-      nextToken
     }
   }
 `;
@@ -173,22 +404,39 @@ export const byOfferType = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        users {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
       }
       nextToken
-    }
-  }
-`;
-export const getReview = /* GraphQL */ `
-  query GetReview($id: ID!) {
-    getReview(id: $id) {
-      id
-      title
-      comment
-      rating
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -203,11 +451,91 @@ export const listReviews = /* GraphQL */ `
         id
         title
         comment
+        created
         rating
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          subscriber
+          dateSubscribed
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
       nextToken
+    }
+  }
+`;
+export const getReview = /* GraphQL */ `
+  query GetReview($id: ID!) {
+    getReview(id: $id) {
+      id
+      title
+      comment
+      created
+      rating
+      user {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        subscriber
+        dateSubscribed
+        createdAt
+        updatedAt
+        offers {
+          id
+          offerType
+          title
+          shortDescription
+          longDescription
+          keywords
+          categories
+          price
+          salePrice
+          mainImageUrl
+          otherImageUrls
+          available
+          brand
+          createdAt
+          updatedAt
+        }
+        reviews {
+          id
+          title
+          comment
+          created
+          rating
+          createdAt
+          updatedAt
+        }
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
