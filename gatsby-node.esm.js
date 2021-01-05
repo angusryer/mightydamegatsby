@@ -6,8 +6,6 @@ Amplify.configure(config)
 
 const graphql = require("graphql")
 
-// const ItemView = require.resolve("./src/templates/ItemView")
-// const CategoryView = require.resolve("./src/templates/CategoryView")
 
 //
 // Create top-level data nodes for Gatsby to construct GraphQL queries around ???
@@ -18,43 +16,11 @@ exports.sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }) => {
-  console.log("==== 11111 ====")
 
   const { createNode } = actions
-  // const inventory = await fetchInventory()
   const products = await fetchData("PRODUCTS_DATA")
   const programs = await fetchData("PROGRAMS_DATA")
   const reviews = await fetchData("REVIEWS_DATA")
-
-  // create nav info for categories TODO review; some other permutation of this maybe, but not this
-  // const categoryNames = products.reduce((acc, next) => {
-  //   next.categories.forEach((c) => {
-  //     if (!acc.includes(c)) acc.push(c)
-  //   })
-  //   return acc
-  // }, [])
-
-  // const navData = {
-  //   key: "navInfo",
-  //   data: ["Programs", "Products"],
-  // }
-
-  // const navNodeContent = JSON.stringify(navData)
-  // const navNodeMeta = {
-  //   id: createNodeId(`mdf_${navData.key}`),
-  //   parent: null,
-  //   children: [],
-  //   internal: {
-  //     type: `NavInfo`,
-  //     mediaType: `json`,
-  //     content: navNodeContent,
-  //     contentDigest: createContentDigest(navData),
-  //   },
-  // }
-
-  // const navNode = Object.assign({}, navData, navNodeMeta)
-  // createNode(navNode)
-
 
   // create products node
   const productsData = {

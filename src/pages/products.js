@@ -2,8 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import ProductCard from "../components/ProductCard"
-// import productImage from "../images/AllThencoPadsMainImage.png";
-// import axios from "axios";
 
 export default function Products({ data }) {
   return (

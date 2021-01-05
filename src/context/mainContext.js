@@ -34,8 +34,12 @@ class ContextProvider extends Component {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(initialState))
       }
     }
-    const userData = await Auth.currentAuthenticatedUser()
-    if (userData) initialState.currentUser = userData
+    Auth.currentAuthenticatedUser().then(res => {
+      console.log(res)
+      if (res.data) initialState.currentUser = res.data
+    }).catch(err => {
+      console.log("Auth error ===> ", err)
+    })
   }
 
   setItemQuantity = (item) => {

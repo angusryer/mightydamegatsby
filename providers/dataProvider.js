@@ -3,10 +3,7 @@ import Amplify, { Storage } from "aws-amplify"
 import tag from "graphql-tag"
 import fs from "fs"
 import downloadImage from "../utils/downloadImage"
-
 import config from "../src/aws-exports"
-import programs from "./programs"
-import reviews from "./reviews"
 // import products from "./products"
 
 Amplify.configure(config)
@@ -32,14 +29,14 @@ export default function fetchData(dataType) {
         await Promise.all(
           programs.map(async (item, index) => {
             try {
-              const relativeUrl = `../downloads/${item.image}`
+              const relativeUrl = `../downloads/${item.mainImageUrl}`
               if (
-                !fs.existsSync(`${__dirname}/public/downloads/${item.image}`)
+                !fs.existsSync(`${__dirname}/public/downloads/${item.mainImageUrl}`)
               ) {
-                const image = await Storage.get(item.image)
-                await downloadImage(image)
+                const image = await Storage.get(item.mainImageUrl)
+                await downloadImage(mainImageUrl)
               }
-              programs[index].image = relativeUrl
+              programs[index].mainImageUrl = relativeUrl
             } catch (err) {
               console.log("error downloading image: ", err)
             }
@@ -63,17 +60,33 @@ export default function fetchData(dataType) {
         await Promise.all(
           products.map(async (item, index) => {
             try {
-              const relativeUrl = `../downloads/${item.image}`
+              const relativeUrl = `../downloads/${item.mainImageUrl}`
               if (
-                !fs.existsSync(`${__dirname}/public/downloads/${item.image}`)
+                !fs.existsSync(`${__dirname}/public/downloads/${item.mainImageUrl}`)
               ) {
-                const image = await Storage.get(item.image)
+                const image = await Storage.get(item.mainImageUrl)
                 await downloadImage(image)
               }
-              products[index].image = relativeUrl
+              products[index].mainImageUrl = relativeUrl
             } catch (err) {
               console.log("error downloading image: ", err)
             }
+
+            item.otherImageUrls.map((image, index) => {
+              try {
+                const relativeUrl = `../downloads/${image}`
+                if (
+                  !fs.existsSync(`${__dirname}/public/downloads/${image}`)
+                ) {
+                  const otherImage = await Storage.get(image)
+                  await downloadImage(otherImage)
+                }
+                image[index] = relativeUrl
+              } catch (err) {
+                console.log("error downloading image: ", err)
+              }
+            })
+
           })
         )
         resolve(products)

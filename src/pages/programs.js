@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import ProgramCard from "../components/ProgramCard"
-// import programData from "../seed/programs.json"
 
 export default function Programs({ data }) {
   return (

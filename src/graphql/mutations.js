@@ -39,6 +39,9 @@ export const createUser = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         users {
           id
           firstName
@@ -139,6 +142,9 @@ export const updateUser = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         users {
           id
           firstName
@@ -239,6 +245,9 @@ export const deleteUser = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         users {
           id
           firstName
@@ -320,6 +329,9 @@ export const createOffer = /* GraphQL */ `
       otherImageUrls
       available
       brand
+      numberOfSessions
+      lengthOfSessionInHours
+      frequencyOfSessionsPerWeek
       users {
         id
         firstName
@@ -353,6 +365,9 @@ export const createOffer = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -417,6 +432,9 @@ export const updateOffer = /* GraphQL */ `
       otherImageUrls
       available
       brand
+      numberOfSessions
+      lengthOfSessionInHours
+      frequencyOfSessionsPerWeek
       users {
         id
         firstName
@@ -450,6 +468,9 @@ export const updateOffer = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -514,6 +535,9 @@ export const deleteOffer = /* GraphQL */ `
       otherImageUrls
       available
       brand
+      numberOfSessions
+      lengthOfSessionInHours
+      frequencyOfSessionsPerWeek
       users {
         id
         firstName
@@ -547,6 +571,9 @@ export const deleteOffer = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -635,6 +662,9 @@ export const createReview = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -695,6 +725,9 @@ export const updateReview = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -755,6 +788,9 @@ export const deleteReview = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }

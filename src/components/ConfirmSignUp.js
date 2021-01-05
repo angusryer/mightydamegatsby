@@ -19,7 +19,7 @@ class ConfirmSignUp extends React.Component {
                   Username
                 </label>
                 <input
-                onChange={this.onChange} name="username"
+                onChange={this.onChange} name="username" autoComplete="on"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
               </div>
               <div className="mb-6">
@@ -27,21 +27,15 @@ class ConfirmSignUp extends React.Component {
                   Authentication Code
                 </label>
                 <input
-                onChange={this.onChange} name="authcode"
+                onChange={this.onChange} name="authcode" autoComplete="on"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="authcode" type="authcode" />
               </div>
               <div className="flex items-center justify-between">
                 <button onClick={() => this.props.confirmSignUp(this.state)} className="bg-secondary hover:bg-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                   Confirm Sign Up
                 </button>
-                <a className="inline-block align-baseline font-bold text-sm" href="#">
-                  Forgot Password?
-                </a>
               </div>
             </form>
-            <p className="text-center text-gray-500 text-xs">
-              &copy;2020 JAMstack ECommerce. All rights reserved.
-            </p>
           </div>
         </div>
       </div>

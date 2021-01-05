@@ -2,8 +2,8 @@ import React, { useState } from "react";
 // import axios from "axios";
 // import fs from "browserify-fs";
 // import subscriberData from '../seed/subscribers.json'
-import emailjs, { init } from "emailjs-com";
-init("user_1GjKAL68bZKM7Dx2yvNea");
+// import emailjs, { init } from "emailjs-com";
+// init("user_1GjKAL68bZKM7Dx2yvNea");
 
 // This code will only work after the Analytics config has been
 // completed in a higher level component
@@ -73,39 +73,3 @@ export default function Subscribe() {
 		</form>
 	);
 }
-
-// const StyledForm = styled.form`
-// 	display: flex;
-// 	align-content: center;
-// 	justify-content: center;
-// 	height: 30px;
-// 	width: 95vw;
-// 	max-width: 500px;
-// 	padding: 5px;
-// `;
-
-// const StyledInput = styled.input`
-// 	width: 100%;
-// 	margin-right: 20px;
-// 	border: none;
-// 	border-radius: 5px;
-// 	outline: none;
-// 	:hover {
-// 		background-color: whitesmoke;
-// 	}
-// `;
-
-// const StyledButton = styled.button`
-// 	border: none;
-// 	background: #ff6347;
-// 	color: black;
-// 	width: 175px;
-// 	border-radius: 5px;
-// 	font-weight: 600;
-// 	font-family: "Fredericka the Great";
-// 	padding: auto 0;
-// 	outline: none;
-// 	:hover {
-// 		background-color: #ff4322;
-// 	}
-// `;

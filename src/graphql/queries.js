@@ -36,6 +36,9 @@ export const getUser = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         users {
           id
           firstName
@@ -138,6 +141,9 @@ export const listUsers = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -202,6 +208,9 @@ export const byType = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -239,6 +248,9 @@ export const listOffers = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         users {
           id
           firstName
@@ -290,6 +302,9 @@ export const getOffer = /* GraphQL */ `
       otherImageUrls
       available
       brand
+      numberOfSessions
+      lengthOfSessionInHours
+      frequencyOfSessionsPerWeek
       users {
         id
         firstName
@@ -323,6 +338,9 @@ export const getOffer = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
@@ -397,6 +415,9 @@ export const byOfferType = /* GraphQL */ `
         otherImageUrls
         available
         brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         users {
           id
           firstName
@@ -511,6 +532,9 @@ export const getReview = /* GraphQL */ `
           otherImageUrls
           available
           brand
+          numberOfSessions
+          lengthOfSessionInHours
+          frequencyOfSessionsPerWeek
           createdAt
           updatedAt
         }
