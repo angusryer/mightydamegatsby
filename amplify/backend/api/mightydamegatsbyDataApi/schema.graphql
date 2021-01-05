@@ -28,7 +28,7 @@ type User
   lastName: String
   displayName: String
   email: String!
-  dateRegistered: DateTime
+  dateRegistered: AWSDateTime
   userType: UserType!
   streetAddressOne: String
   streetAddressTwo: String
@@ -38,8 +38,9 @@ type User
   postalZip: String
   phone: String
   subscriber: Boolean!
-  dateSubscribed: DateTime
-  reviews: [Review]
+  dateSubscribed: AWSDateTime
+  reviews: Review @connection
+  offers: Offer @connection
 }
 
 type Offer
@@ -64,7 +65,8 @@ type Offer
   otherImageUrls: [String]!
   available: Boolean!
   brand: String
-  reviews: [Review]
+  reviews: Review @connection
+  users: User @connection
 }
 
 type Review
@@ -74,15 +76,13 @@ type Review
       { allow: public, operations: [read] }
       { allow: groups, groups: ["Admin"] }
     ]
-  )
-  @relation(name: "REVIEW") {
-  from: User
-  to: Offer
+  ) {
   id: ID!
   title: String!
   comment: String
-  created: DateTime
+  created: AWSDateTime
   rating: Int!
+  user: User @connection
 }
 
 enum UserType {
