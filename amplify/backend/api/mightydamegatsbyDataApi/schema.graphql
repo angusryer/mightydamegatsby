@@ -65,7 +65,14 @@ type Offer
   brand: String
 }
 
-type Review @model @auth(rules: [{ allow: owner }]) {
+type Review
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
   id: ID!
   title: String!
   comment: String

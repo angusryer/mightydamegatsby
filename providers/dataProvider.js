@@ -15,68 +15,154 @@ const graphql = require("graphql")
 const { print } = graphql
 
 export default function fetchData(dataType) {
-  return new Promise( async (resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     switch (dataType) {
       case "PROGRAMS_DATA":
-        resolve(programs)
-        break
-
-      case "PRODUCTS_DATA":
-        const gqlOffersData = await axios({
+        const gqlProgramsData = await axios({
           url: config.aws_appsync_graphqlEndpoint,
           method: "post",
           headers: {
             "x-api-key": config.aws_appsync_apiKey,
           },
           data: {
-            query: print(listOfferQuery),
+            query: print(listAllServicesQuery),
           },
-        }).then(res => {
-          console.log(res.data.errors)
         })
-      
-// path: null,
-// locations: [ { line: 2, column: 3, sourceName: null } ],
-// message: "Validation error of type FieldUndefined: Field 'listProducts' in type 'Query' is undefined @ 'listProducts'"
-
-        let offers = gqlOffersData.data.data.listOffers.items
-
+        let programs = gqlProgramsData.data.data.ByOfferType.items
         await Promise.all(
-          offers.map(async (item, index) => {
+          programs.map(async (item, index) => {
             try {
               const relativeUrl = `../downloads/${item.image}`
-              if (!fs.existsSync(`${__dirname}/public/downloads/${item.image}`)) {
+              if (
+                !fs.existsSync(`${__dirname}/public/downloads/${item.image}`)
+              ) {
                 const image = await Storage.get(item.image)
                 await downloadImage(image)
               }
-              offers[index].image = relativeUrl
+              programs[index].image = relativeUrl
             } catch (err) {
               console.log("error downloading image: ", err)
             }
           })
         )
+        resolve(programs)
+        break
 
-        resolve(offers)
+      case "PRODUCTS_DATA":
+        const gqlProductsData = await axios({
+          url: config.aws_appsync_graphqlEndpoint,
+          method: "post",
+          headers: {
+            "x-api-key": config.aws_appsync_apiKey,
+          },
+          data: {
+            query: print(listAllProductsQuery),
+          },
+        })
+        let products = gqlProductsData.data.data.ByOfferType.items
+        await Promise.all(
+          products.map(async (item, index) => {
+            try {
+              const relativeUrl = `../downloads/${item.image}`
+              if (
+                !fs.existsSync(`${__dirname}/public/downloads/${item.image}`)
+              ) {
+                const image = await Storage.get(item.image)
+                await downloadImage(image)
+              }
+              products[index].image = relativeUrl
+            } catch (err) {
+              console.log("error downloading image: ", err)
+            }
+          })
+        )
+        resolve(products)
         break
 
       case "REVIEWS_DATA":
-        resolve(reviews)
+        let gqlReviewsData = await axios({
+          url: config.aws_appsync_graphqlEndpoint,
+          method: "post",
+          headers: {
+            "x-api-key": config.aws_appsync_apiKey,
+          },
+          data: {
+            query: print(listAllReviewsQuery),
+          },
+        })
+        
+        resolve(gqlReviewsData.data.data.listReviews.items)
         break
 
       default:
         reject("dataType not found")
         break
-        
     }
   })
 }
 
 export const DENOMINATION = "$"
 
-const listOfferQuery = tag(`
-  query getAllOffers {
-    listOffers {
-      items
+const listAllReviewsQuery = tag(`
+  query getAllReviews {
+    listReviews {
+      items {
+        comment
+        createdAt
+        id
+        owner
+        rating
+        title
+        updatedAt
+      }
+    }
+  }
+  `)
+
+const listAllProductsQuery = tag(`
+  query getAllProducts {
+    ByOfferType(offerType: PRODUCT) {
+      items {
+        available
+        brand
+        categories
+        createdAt
+        id
+        keywords
+        longDescription
+        mainImageUrl
+        offerType
+        otherImageUrls
+        price
+        salePrice
+        shortDescription
+        title
+        updatedAt
+      }
+    }
+  }
+  `)
+
+const listAllServicesQuery = tag(`
+  query getAllServices {
+    ByOfferType(offerType: SERVICE) {
+      items {
+        available
+        brand
+        categories
+        createdAt
+        id
+        keywords
+        longDescription
+        mainImageUrl
+        offerType
+        otherImageUrls
+        price
+        salePrice
+        shortDescription
+        title
+        updatedAt
+      }
     }
   }
   `)
