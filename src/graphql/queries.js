@@ -62,7 +62,6 @@ export const getUser = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -72,7 +71,6 @@ export const getUser = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -147,7 +145,6 @@ export const listUsers = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -212,7 +209,6 @@ export const byType = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -269,7 +265,6 @@ export const listOffers = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -335,7 +330,6 @@ export const getOffer = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -347,7 +341,6 @@ export const getOffer = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -430,7 +423,6 @@ export const byOfferType = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -451,7 +443,6 @@ export const listReviews = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -486,7 +477,6 @@ export const getReview = /* GraphQL */ `
       id
       title
       comment
-      created
       rating
       user {
         id
@@ -528,7 +518,6 @@ export const getReview = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt

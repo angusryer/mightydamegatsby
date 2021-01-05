@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/seo";
+import SEO from "../components/seo"
 import ProductCard from "../components/ProductCard"
 // import productImage from "../images/AllThencoPadsMainImage.png";
 // import axios from "axios";
@@ -8,19 +8,22 @@ import ProductCard from "../components/ProductCard"
 export default function Products({ data }) {
   return (
     <>
-      <SEO title="Products | Mighty Dame Fitness" desription="Mighty Dame Fitness Products" />
+      <SEO
+        title="Products | Mighty Dame Fitness"
+        desription="Mighty Dame Fitness Products"
+      />
       <h1>Our Products</h1>
       <section className="flex flex-row content-center justify-evenly max-w-5xl my-0 mx-auto">
-        {data &&
-          data.map((product) => {
+        {data.ByOfferType.items &&
+          data.ByOfferType.items.map((product) => {
             return (
               <ProductCard
-                key={product.productId}
-                image={product.image}
+                key={product.id}
+                image={product.mainImageUrl}
                 title={product.title}
-                description={product.description}
+                description={product.shortDescription}
                 price={product.price}
-                inStock={product.inStock}
+                inStock={product.available}
               />
             )
           })}
@@ -31,17 +34,21 @@ export default function Products({ data }) {
 
 export const productsQuery = graphql`
   query {
-    productsInfo {
-		data {
-			id
-			title
-			image
-			description
-			price
-			inStock
-			categories
-			brand
-		}
-	}
+    ByOfferType(offerType: PRODUCT) {
+      items {
+        available
+        brand
+        categories
+        id
+        keywords
+        longDescription
+        mainImageUrl
+        otherImageUrls
+        price
+        salePrice
+        shortDescription
+        title
+      }
+    }
   }
 `

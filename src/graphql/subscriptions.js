@@ -62,7 +62,6 @@ export const onCreateUser = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -72,7 +71,6 @@ export const onCreateUser = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -161,7 +159,6 @@ export const onUpdateUser = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -171,7 +168,6 @@ export const onUpdateUser = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -260,7 +256,6 @@ export const onDeleteUser = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -270,7 +265,6 @@ export const onDeleteUser = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -354,7 +348,6 @@ export const onCreateOffer = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -366,7 +359,6 @@ export const onCreateOffer = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -450,7 +442,6 @@ export const onUpdateOffer = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -462,7 +453,6 @@ export const onUpdateOffer = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -546,7 +536,6 @@ export const onDeleteOffer = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -558,7 +547,6 @@ export const onDeleteOffer = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -592,7 +580,6 @@ export const onCreateReview = /* GraphQL */ `
       id
       title
       comment
-      created
       rating
       user {
         id
@@ -634,7 +621,6 @@ export const onCreateReview = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -651,7 +637,6 @@ export const onUpdateReview = /* GraphQL */ `
       id
       title
       comment
-      created
       rating
       user {
         id
@@ -693,7 +678,6 @@ export const onUpdateReview = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -710,7 +694,6 @@ export const onDeleteReview = /* GraphQL */ `
       id
       title
       comment
-      created
       rating
       user {
         id
@@ -752,7 +735,6 @@ export const onDeleteReview = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt

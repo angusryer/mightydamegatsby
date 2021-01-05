@@ -13,14 +13,14 @@ export default function Programs({ data }) {
       />
       <h1>Our Fitness &amp; Nutrition Programs</h1>
       <section className="flex flex-row content-center justify-evenly max-w-5xl my-0 mx-auto">
-        {data.programsInfo.data &&
-          data.programsInfo.data.map((program) => {
+        {data.ByOfferType.items &&
+          data.ByOfferType.items.map((program) => {
             return (
               <ProgramCard
-                key={program.programId}
-                image={program.Image}
+                key={program.id}
+                image={program.mainImageUrl}
                 title={program.title}
-                description={program.description}
+                description={program.longDescription}
                 numberOfSessions={program.numberOfSessions}
                 lengthOfSessionInHours={program.lengthOfSessionInHours}
                 frequencyOfSessionsPerWeek={program.frequencyOfSessionsPerWeek}
@@ -36,19 +36,23 @@ export default function Programs({ data }) {
 
 export const programsQuery = graphql`
   query {
-    programsInfo {
-      data {
+    ByOfferType(offerType: PROGRAMS) {
+      items {
+        available
+        brand
+        categories
         id
+        keywords
+        longDescription
+        mainImageUrl
+        otherImageUrls
+        price
+        salePrice
+        shortDescription
         title
-        image
-        description
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        price
-        available
-        categories
-        instructors
       }
     }
   }

@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import CartLink from "../components/CartLink"
-import Review from '../components/Review'
+import Review from "../components/Review"
 
 export default function Home({ data }) {
   return (
@@ -21,9 +21,14 @@ export default function Home({ data }) {
           </div>
           {/* Subscribe here */}
           <div className="flex flex-1 justify-center items-center relative">
-            {data.reviewsInfo.data.map(review => {
+            {data.listReviews.items.map((review) => {
               return (
-                <Review key={review.id} value={review.rating} quote={review.quote} reviewer={review.reviewerName} image={review.reviewerAvatar} />
+                <Review
+                  key={review.id}
+                  value={review.rating}
+                  quote={review.comment}
+                  reviewer={review.user.displayName}
+                />
               )
             })}
           </div>
@@ -90,13 +95,15 @@ export default function Home({ data }) {
 
 export const reviewsQuery = graphql`
   query {
-    reviewsInfo {
-      data {
+    listReviews {
+      items {
+        comment
         id
-        reviewerName
-        reviewerAvatar
         rating
-        quote
+        title
+        user {
+          displayName
+        }
       }
     }
   }

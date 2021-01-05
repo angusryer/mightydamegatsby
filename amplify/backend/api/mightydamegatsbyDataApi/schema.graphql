@@ -44,6 +44,9 @@ type Offer
   otherImageUrls: [String]!
   available: Boolean!
   brand: String
+  numberOfSessions: Int
+  lengthOfSessionInHours: Float
+  frequencyOfSessionsPerWeek: Float
   reviews: Review @connection
   users: User @connection
 }

@@ -1,18 +1,8 @@
 import React, { createContext, Component } from "react"
-import { StaticQuery, graphql } from "gatsby"
 import { toast } from "react-toastify"
-
+import { Auth } from "aws-amplify"
 
 console.log("==== 55555 ====")
-
-
-const mainQuery = graphql`
-  query {
-    navInfo {
-      data
-    }
-  }
-`
 
 // Use local storage to maintain initial state and set up our context provider
 
@@ -37,13 +27,15 @@ function calculateTotal(cart) {
 }
 
 class ContextProvider extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     if (typeof window !== "undefined") {
       const storageState = window.localStorage.getItem(STORAGE_KEY)
       if (!storageState) {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(initialState))
       }
     }
+    const userData = await Auth.currentAuthenticatedUser()
+    if (userData) initialState.currentUser = userData
   }
 
   setItemQuantity = (item) => {
@@ -68,14 +60,11 @@ class ContextProvider extends Component {
     if (cart.length) {
       const index = cart.findIndex((cartItem) => cartItem.id === item.id)
       if (index >= Number(0)) {
-        // If this item is already in the cart, update its quantity
         cart[index].quantity = cart[index].quantity + item.quantity
       } else {
-        // If this item is not yet in the cart, add it
         cart.push(item)
       }
     } else {
-      // If there are no items in the cart, just add this as its first item
       cart.push(item)
     }
 
@@ -123,28 +112,21 @@ class ContextProvider extends Component {
       }
     }
 
-console.log("==== 66666 ====")
-
+    console.log("==== 66666 ====")
 
     return (
-      <StaticQuery query={mainQuery}>
-        {(queryData) => {
-          return (
-            <SiteContext.Provider
-              value={{
-                ...state,
-                navItems: queryData,
-                addToCart: this.addToCart,
-                clearCart: this.clearCart,
-                removeFromCart: this.removeFromCart,
-                setItemQuantity: this.setItemQuantity,
-              }}
-            >
-              {this.props.children}
-            </SiteContext.Provider>
-          )
+      <SiteContext.Provider
+        value={{
+          ...state,
+          currentUser: userData,
+          addToCart: this.addToCart,
+          clearCart: this.clearCart,
+          removeFromCart: this.removeFromCart,
+          setItemQuantity: this.setItemQuantity,
         }}
-      </StaticQuery>
+      >
+        {this.props.children}
+      </SiteContext.Provider>
     )
   }
 }

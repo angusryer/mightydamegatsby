@@ -65,7 +65,6 @@ export const createUser = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -75,7 +74,6 @@ export const createUser = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -167,7 +165,6 @@ export const updateUser = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -177,7 +174,6 @@ export const updateUser = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -269,7 +265,6 @@ export const deleteUser = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -279,7 +274,6 @@ export const deleteUser = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -366,7 +360,6 @@ export const createOffer = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -378,7 +371,6 @@ export const createOffer = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -465,7 +457,6 @@ export const updateOffer = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -477,7 +468,6 @@ export const updateOffer = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -564,7 +554,6 @@ export const deleteOffer = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -576,7 +565,6 @@ export const deleteOffer = /* GraphQL */ `
         id
         title
         comment
-        created
         rating
         user {
           id
@@ -613,7 +601,6 @@ export const createReview = /* GraphQL */ `
       id
       title
       comment
-      created
       rating
       user {
         id
@@ -655,7 +642,6 @@ export const createReview = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -675,7 +661,6 @@ export const updateReview = /* GraphQL */ `
       id
       title
       comment
-      created
       rating
       user {
         id
@@ -717,7 +702,6 @@ export const updateReview = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
@@ -737,7 +721,6 @@ export const deleteReview = /* GraphQL */ `
       id
       title
       comment
-      created
       rating
       user {
         id
@@ -779,7 +762,6 @@ export const deleteReview = /* GraphQL */ `
           id
           title
           comment
-          created
           rating
           createdAt
           updatedAt
