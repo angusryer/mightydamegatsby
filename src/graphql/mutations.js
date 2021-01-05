@@ -1,58 +1,199 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createProduct = /* GraphQL */ `
-  mutation CreateProduct(
-    $input: CreateProductInput!
-    $condition: ModelProductConditionInput
+export const createUser = /* GraphQL */ `
+  mutation CreateUser(
+    $input: CreateUserInput!
+    $condition: ModelUserConditionInput
   ) {
-    createProduct(input: $input, condition: $condition) {
+    createUser(input: $input, condition: $condition) {
       id
+      firstName
+      lastName
+      displayName
+      email
+      dateRegistered
+      userType
+      streetAddressOne
+      streetAddressTwo
+      city
+      provinceState
+      country
+      postalZip
+      phone
+      subscriber
+      dateSubscribed
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUser = /* GraphQL */ `
+  mutation UpdateUser(
+    $input: UpdateUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    updateUser(input: $input, condition: $condition) {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      dateRegistered
+      userType
+      streetAddressOne
+      streetAddressTwo
+      city
+      provinceState
+      country
+      postalZip
+      phone
+      subscriber
+      dateSubscribed
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUser = /* GraphQL */ `
+  mutation DeleteUser(
+    $input: DeleteUserInput!
+    $condition: ModelUserConditionInput
+  ) {
+    deleteUser(input: $input, condition: $condition) {
+      id
+      firstName
+      lastName
+      displayName
+      email
+      dateRegistered
+      userType
+      streetAddressOne
+      streetAddressTwo
+      city
+      provinceState
+      country
+      postalZip
+      phone
+      subscriber
+      dateSubscribed
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createOffer = /* GraphQL */ `
+  mutation CreateOffer(
+    $input: CreateOfferInput!
+    $condition: ModelOfferConditionInput
+  ) {
+    createOffer(input: $input, condition: $condition) {
+      id
+      offerType
+      title
+      shortDescription
+      longDescription
+      keywords
       categories
       price
-      name
-      image
-      description
-      currentInventory
+      salePrice
+      mainImageUrl
+      otherImageUrls
+      available
       brand
       createdAt
       updatedAt
     }
   }
 `;
-export const updateProduct = /* GraphQL */ `
-  mutation UpdateProduct(
-    $input: UpdateProductInput!
-    $condition: ModelProductConditionInput
+export const updateOffer = /* GraphQL */ `
+  mutation UpdateOffer(
+    $input: UpdateOfferInput!
+    $condition: ModelOfferConditionInput
   ) {
-    updateProduct(input: $input, condition: $condition) {
+    updateOffer(input: $input, condition: $condition) {
       id
+      offerType
+      title
+      shortDescription
+      longDescription
+      keywords
       categories
       price
-      name
-      image
-      description
-      currentInventory
+      salePrice
+      mainImageUrl
+      otherImageUrls
+      available
       brand
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteProduct = /* GraphQL */ `
-  mutation DeleteProduct(
-    $input: DeleteProductInput!
-    $condition: ModelProductConditionInput
+export const deleteOffer = /* GraphQL */ `
+  mutation DeleteOffer(
+    $input: DeleteOfferInput!
+    $condition: ModelOfferConditionInput
   ) {
-    deleteProduct(input: $input, condition: $condition) {
+    deleteOffer(input: $input, condition: $condition) {
       id
+      offerType
+      title
+      shortDescription
+      longDescription
+      keywords
       categories
       price
-      name
-      image
-      description
-      currentInventory
+      salePrice
+      mainImageUrl
+      otherImageUrls
+      available
       brand
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createReview = /* GraphQL */ `
+  mutation CreateReview(
+    $input: CreateReviewInput!
+    $condition: ModelReviewConditionInput
+  ) {
+    createReview(input: $input, condition: $condition) {
+      id
+      title
+      comment
+      rating
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateReview = /* GraphQL */ `
+  mutation UpdateReview(
+    $input: UpdateReviewInput!
+    $condition: ModelReviewConditionInput
+  ) {
+    updateReview(input: $input, condition: $condition) {
+      id
+      title
+      comment
+      rating
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteReview = /* GraphQL */ `
+  mutation DeleteReview(
+    $input: DeleteReviewInput!
+    $condition: ModelReviewConditionInput
+  ) {
+    deleteReview(input: $input, condition: $condition) {
+      id
+      title
+      comment
+      rating
       createdAt
       updatedAt
     }

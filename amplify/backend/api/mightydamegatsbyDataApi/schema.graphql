@@ -28,7 +28,7 @@ type User
   lastName: String
   displayName: String
   email: String!
-  dateRegistered: Int
+  dateRegistered: DateTime
   userType: UserType!
   streetAddressOne: String
   streetAddressTwo: String
@@ -38,7 +38,8 @@ type User
   postalZip: String
   phone: String
   subscriber: Boolean!
-  dateSubscribed: Int
+  dateSubscribed: DateTime
+  reviews: [Review]
 }
 
 type Offer
@@ -63,6 +64,7 @@ type Offer
   otherImageUrls: [String]!
   available: Boolean!
   brand: String
+  reviews: [Review]
 }
 
 type Review
@@ -72,10 +74,14 @@ type Review
       { allow: public, operations: [read] }
       { allow: groups, groups: ["Admin"] }
     ]
-  ) {
+  )
+  @relation(name: "REVIEW") {
+  from: User
+  to: Offer
   id: ID!
   title: String!
   comment: String
+  created: DateTime
   rating: Int!
 }
 
