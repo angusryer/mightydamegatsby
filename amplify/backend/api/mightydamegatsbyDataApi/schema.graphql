@@ -1,7 +1,7 @@
 type User
   @model
   @auth(rules: [{ allow: groups, groups: ["Admin"] }])
-  @key(name: "ByType", fields: ["userType"], queryField: "ByType") {
+  @key(name: "ByUserType", fields: ["userType"], queryField: "ByUserType") {
   id: ID!
   firstName: String
   lastName: String
@@ -19,8 +19,8 @@ type User
   subscriber: Boolean!
   dateSubscribed: AWSDateTime
   avatarUrl: String
-  reviews: [Review] @connection
-  offers: [Offer] @connection
+  reviews: Review @connection
+  offers: Offer @connection
 }
 
 type Offer
@@ -48,8 +48,8 @@ type Offer
   numberOfSessions: Int
   lengthOfSessionInHours: Float
   frequencyOfSessionsPerWeek: Float
-  reviews: [Review] @connection
-  users: [User] @connection
+  reviews: Review @connection
+  users: User @connection
 }
 
 type Review
@@ -65,7 +65,6 @@ type Review
   comment: String
   rating: Int!
   user: User @connection
-  offer: Offer @connection
 }
 
 enum UserType {
