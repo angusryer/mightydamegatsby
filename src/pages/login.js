@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { navigate } from "gatsby"
 import { Auth } from "aws-amplify"
 import SignUp from "../components/SignUp"
 import ConfirmSignUp from "../components/ConfirmSignUp"
@@ -9,6 +10,7 @@ export default function Login() {
   const [formState, setFormState] = useState("signUp")
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [formError, setFormError] = useState(null)
+  const [user, setUser] = useState({})
 
   const authStateMessage = "You are currently logged out."
 
@@ -23,6 +25,7 @@ export default function Login() {
         .then((user) => {
           if (user) {
             console.log(user)
+            setUser(user)
             setIsSignedIn(true)
             setFormState("signedIn")
             setFormError(null)
@@ -71,6 +74,7 @@ export default function Login() {
         Auth.currentAuthenticatedUser()
           .then((user) => {
             if (user) {
+              setUser(user)
               setIsSignedIn(true)
               setFormState("signedIn")
               setFormError(null)
@@ -88,10 +92,11 @@ export default function Login() {
   const signOut = async () => {
     await Auth.signOut()
       .then((_res) => {
+        setUser({})
         setFormState("signIn")
         setIsSignedIn(false)
         setFormError(null)
-        window.location.href = "/"
+        navigate("/")
       })
       .catch((err) => {
         setFormError(err.message)
@@ -109,10 +114,6 @@ export default function Login() {
       case "signIn":
         return <SignIn signIn={signIn} toggleFormState={toggleFormState} />
 
-      case "signedIn":
-        
-        break
-
       case "forgotPassword":
         return <ForgotPassword toggleFormState={toggleFormState} />
 
@@ -122,12 +123,12 @@ export default function Login() {
   }
 
   return isSignedIn ? (
-    <Admin signOut={signOut} />
+    navigate("/", { state: { user: user, signOut: () => signOut() } })
   ) : (
     <div className="flex flex-col items-center pt-5 ">
       <div className="max-w-5xl flex flex-col pt-5">
         <span>{formError}</span>
-        {renderForm(formState, isAdmin)}
+        {renderForm(formState, isSignedIn)}
       </div>
     </div>
   )

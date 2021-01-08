@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+// import { API, graphqlOperation } from "aws-amplify"
 import SEO from "../components/seo"
 import CartLink from "../components/CartLink"
 import Review from "../components/Review"
@@ -21,6 +22,7 @@ export default function Home({ data }) {
           </div>
           {/* Subscribe here */}
           <div className="flex flex-1 justify-center items-center relative">
+            {console.log(data)}
             {data.listReviews.items.map((review) => {
               return (
                 <Review
@@ -39,17 +41,15 @@ export default function Home({ data }) {
 }
 
 export const reviewsQuery = graphql`
-  query {
-    listReviews {
-      items {
-        comment
-        id
-        rating
-        title
-        user {
-          displayName
-        }
-      }
+query {
+  reviewsInfo {
+    data {
+      comment
+      id
+      rating
+      title
     }
   }
+}
+
 `

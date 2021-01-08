@@ -1,17 +1,16 @@
 import axios from "axios"
 import Amplify, { Storage } from "aws-amplify"
 import tag from "graphql-tag"
-import fs from "fs"
+// import fs from 'fs'
 import downloadImage from "../utils/downloadImage"
 import config from "../src/aws-exports"
-// import products from "./products"
 
 Amplify.configure(config)
 
 const graphql = require("graphql")
 const { print } = graphql
 
-export default function fetchData(dataType) {
+export default function fetchData(dataType, fs) {
   return new Promise(async (resolve, reject) => {
     switch (dataType) {
       case "PROGRAMS_DATA":
@@ -34,7 +33,7 @@ export default function fetchData(dataType) {
                 !fs.existsSync(`${__dirname}/public/downloads/${item.mainImageUrl}`)
               ) {
                 const image = await Storage.get(item.mainImageUrl)
-                await downloadImage(mainImageUrl)
+                await downloadImage(image, fs)
               }
               programs[index].mainImageUrl = relativeUrl
             } catch (err) {
@@ -65,27 +64,25 @@ export default function fetchData(dataType) {
                 !fs.existsSync(`${__dirname}/public/downloads/${item.mainImageUrl}`)
               ) {
                 const image = await Storage.get(item.mainImageUrl)
-                await downloadImage(image)
+                await downloadImage(image, fs)
               }
               products[index].mainImageUrl = relativeUrl
             } catch (err) {
               console.log("error downloading image: ", err)
             }
 
-            item.otherImageUrls.map((image, index) => {
-              try {
-                const relativeUrl = `../downloads/${image}`
-                if (
-                  !fs.existsSync(`${__dirname}/public/downloads/${image}`)
-                ) {
-                  const otherImage = await Storage.get(image)
-                  await downloadImage(otherImage)
+            item.otherImageUrls.map( async (image, index) => {
+                try {
+                  const relativeUrl = `../downloads/${image}`
+                  if (!fs.existsSync(`${__dirname}/public/downloads/${image}`)) {
+                    const otherImage = await Storage.get(image)
+                    await downloadImage(otherImage, fs)
+                  }
+                  image[index] = relativeUrl
+                } catch (err) {
+                  console.log("error downloading image: ", err)
                 }
-                image[index] = relativeUrl
-              } catch (err) {
-                console.log("error downloading image: ", err)
-              }
-            })
+              })
 
           })
         )
@@ -103,7 +100,6 @@ export default function fetchData(dataType) {
             query: print(listAllReviewsQuery),
           },
         })
-        console.log(gqlReviewsData.data)
         resolve(gqlReviewsData.data.data.listReviews.items)
         break
 
@@ -116,7 +112,7 @@ export default function fetchData(dataType) {
 
 export const DENOMINATION = "$"
 
-const listAllReviewsQuery = tag(`
+export const listAllReviewsQuery = tag(`
   query getAllReviews {
     listReviews {
       items {
@@ -132,7 +128,7 @@ const listAllReviewsQuery = tag(`
   }
   `)
 
-const listAllProductsQuery = tag(`
+export const listAllProductsQuery = tag(`
   query getAllProducts {
     ByOfferType(offerType: PRODUCT) {
       items {
@@ -156,7 +152,7 @@ const listAllProductsQuery = tag(`
   }
   `)
 
-const listAllServicesQuery = tag(`
+export const listAllServicesQuery = tag(`
   query getAllServices {
     ByOfferType(offerType: SERVICE) {
       items {

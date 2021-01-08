@@ -1,7 +1,6 @@
 import React, { useState } from "react"
-
 import { SiteContext, ContextProvider } from "../context/mainContext"
-import { DENOMINATION } from "../../providers/inventoryProvider"
+import { DENOMINATION } from "../../providers/dataProvider"
 import { FaLongArrowAltLeft } from "react-icons/fa"
 import { Link } from "gatsby"
 import Image from "../components/Image"

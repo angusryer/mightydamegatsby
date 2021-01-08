@@ -2,10 +2,6 @@ import React, { createContext, Component } from "react"
 import { toast } from "react-toastify"
 import { Auth } from "aws-amplify"
 
-console.log("==== 55555 ====")
-
-// Use local storage to maintain initial state and set up our context provider
-
 const STORAGE_KEY = "MDF_"
 
 const initialState = {
@@ -116,13 +112,10 @@ class ContextProvider extends Component {
       }
     }
 
-    console.log("==== 66666 ====")
-
     return (
       <SiteContext.Provider
         value={{
           ...state,
-          currentUser: userData,
           addToCart: this.addToCart,
           clearCart: this.clearCart,
           removeFromCart: this.removeFromCart,

@@ -30,23 +30,23 @@ export default function Products({ data }) {
   )
 }
 
-export const productsQuery = graphql`
-  query {
-    ByOfferType(offerType: PRODUCT) {
-      items {
-        available
-        brand
-        categories
-        id
-        keywords
-        longDescription
-        mainImageUrl
-        otherImageUrls
-        price
-        salePrice
-        shortDescription
-        title
-      }
-    }
-  }
-`
+// export const productsQuery = graphql`
+//   query getAllProducts {
+//     ByOfferType(offerType: "PRODUCT") {
+//       items {
+//         available
+//         brand
+//         categories
+//         id
+//         keywords
+//         longDescription
+//         mainImageUrl
+//         otherImageUrls
+//         price
+//         salePrice
+//         shortDescription
+//         title
+//       }
+//     }
+//   }
+// `

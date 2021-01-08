@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { SiteContext, ContextProvider } from '../context/mainContext'
-import { DENOMINATION } from '../../providers/inventoryProvider'
+import { DENOMINATION } from '../../providers/dataProvider'
 import { FaTimes, FaLongArrowAltRight } from 'react-icons/fa'
 import { Link } from 'gatsby'
 import CartLink from '../components/CartLink'

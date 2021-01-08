@@ -1,4 +1,4 @@
-import fs from 'fs'
+// import fs from 'fs'
 import axios from 'axios'
 import path from 'path'
 
@@ -18,7 +18,7 @@ function getPathName(url, pathName = 'downloads') {
   return rawPath
 }
 
-async function downloadImage (url) {
+async function downloadImage (url, fs) {
   return new Promise(async (resolve, reject) => {
     const path = getPathName(url)
     const writer = fs.createWriteStream(path)

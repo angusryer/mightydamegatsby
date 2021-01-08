@@ -33,26 +33,26 @@ export default function Programs({ data }) {
   )
 }
 
-export const programsQuery = graphql`
-  query {
-    ByOfferType(offerType: PROGRAMS) {
-      items {
-        available
-        brand
-        categories
-        id
-        keywords
-        longDescription
-        mainImageUrl
-        otherImageUrls
-        price
-        salePrice
-        shortDescription
-        title
-        numberOfSessions
-        lengthOfSessionInHours
-        frequencyOfSessionsPerWeek
-      }
-    }
-  }
-`
+// export const programsQuery = graphql`
+//   query getAllPrograms {
+//     ByOfferType(offerType: "SERVICE") {
+//       items {
+//         available
+//         brand
+//         categories
+//         id
+//         keywords
+//         longDescription
+//         mainImageUrl
+//         otherImageUrls
+//         price
+//         salePrice
+//         shortDescription
+//         title
+//         numberOfSessions
+//         lengthOfSessionInHours
+//         frequencyOfSessionsPerWeek
+//       }
+//     }
+//   }
+// `
