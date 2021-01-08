@@ -23,6 +23,7 @@ export const createUser = /* GraphQL */ `
       phone
       subscriber
       dateSubscribed
+      avatarUrl
       createdAt
       updatedAt
       offers {
@@ -59,6 +60,7 @@ export const createUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -95,6 +97,7 @@ export const createUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -126,6 +129,7 @@ export const updateUser = /* GraphQL */ `
       phone
       subscriber
       dateSubscribed
+      avatarUrl
       createdAt
       updatedAt
       offers {
@@ -162,6 +166,7 @@ export const updateUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -198,6 +203,7 @@ export const updateUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -229,6 +235,7 @@ export const deleteUser = /* GraphQL */ `
       phone
       subscriber
       dateSubscribed
+      avatarUrl
       createdAt
       updatedAt
       offers {
@@ -265,6 +272,7 @@ export const deleteUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -301,6 +309,7 @@ export const deleteUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -349,6 +358,7 @@ export const createOffer = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -404,6 +414,7 @@ export const createOffer = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -452,6 +463,7 @@ export const updateOffer = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -507,6 +519,7 @@ export const updateOffer = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -555,6 +568,7 @@ export const deleteOffer = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -610,6 +624,7 @@ export const deleteOffer = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -646,6 +661,7 @@ export const createReview = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -709,6 +725,7 @@ export const updateReview = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -772,6 +789,7 @@ export const deleteReview = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {

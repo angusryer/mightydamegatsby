@@ -20,6 +20,7 @@ export const getUser = /* GraphQL */ `
       phone
       subscriber
       dateSubscribed
+      avatarUrl
       createdAt
       updatedAt
       offers {
@@ -56,6 +57,7 @@ export const getUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -92,6 +94,7 @@ export const getUser = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -125,6 +128,7 @@ export const listUsers = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -192,6 +196,7 @@ export const byType = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -268,6 +273,7 @@ export const listOffers = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -322,6 +328,7 @@ export const getOffer = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
@@ -377,6 +384,7 @@ export const getOffer = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -435,6 +443,7 @@ export const byOfferType = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -482,6 +491,7 @@ export const listReviews = /* GraphQL */ `
           phone
           subscriber
           dateSubscribed
+          avatarUrl
           createdAt
           updatedAt
         }
@@ -516,6 +526,7 @@ export const getReview = /* GraphQL */ `
         phone
         subscriber
         dateSubscribed
+        avatarUrl
         createdAt
         updatedAt
         offers {
