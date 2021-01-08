@@ -18,6 +18,7 @@ type User
   phone: String
   subscriber: Boolean!
   dateSubscribed: AWSDateTime
+  avatarUrl: String
   reviews: Review @connection
   offers: Offer @connection
 }
