@@ -122,6 +122,27 @@ export default function fetchData(dataType, fs) {
 
 export const DENOMINATION = "$"
 
+// USER
+// id: ID!
+// 	firstName: String
+// 	lastName: String
+// 	displayName: String
+// 	email: String!
+// 	dateRegistered: AWSDateTime
+// 	userType: UserType!
+// 	streetAddressOne: String
+// 	streetAddressTwo: String
+// 	city: String
+// 	provinceState: String
+// 	country: String
+// 	postalZip: String
+// 	phone: String
+// 	isSubscribed: Boolean!
+// 	dateSubscribed: AWSDateTime
+// 	avatarUrl: String
+// 	reviews: [Review]! @connection(name: "UserReviewConnection")
+// 	offers: [EnrolledUsers] @connection(keyName: "byUser", fields: ["id"])
+
 export const listAllReviewsQuery = tag(`
   query getAllReviews {
     listReviews {
@@ -140,25 +161,42 @@ export const listAllReviewsQuery = tag(`
   }
   `)
 
+  // PRODUCTS/SERVICES
+	// id: ID!
+	// offerType: OfferType!
+	// title: String!
+	// shortDescription: String!
+	// longDescription: String!
+	// keywords: [String]!
+	// categories: [String]!
+	// price: Float!
+	// salePrice: Float
+	// mainImageUrl: String!
+	// otherImageUrls: [String]!
+	// available: Boolean!
+	// brand: String
+	// numberOfSessions: Float
+	// lengthOfSessionInHours: Float
+	// frequencyOfSessionsPerWeek: Float
+	// reviews: [Review]! @connection(name: "OfferReviewConnection")
+	// users: [EnrolledUsers]! @connection(keyName: "byOffer", fields: ["id"])
+
 export const listAllProductsQuery = tag(`
   query getAllProducts {
     byOfferType(offerType: PRODUCT) {
       items {
         id
-        available
-        brand
-        categories
-        createdAt
-        keywords
+        title
+        shortDescription
         longDescription
-        mainImageUrl
-        offerType
-        otherImageUrls
+        keywords
+        categories
         price
         salePrice
-        shortDescription
-        title
-        updatedAt
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
       }
     }
   }
@@ -168,21 +206,21 @@ export const listAllServicesQuery = tag(`
   query getAllServices {
     byOfferType(offerType: SERVICE) {
       items {
-        available
-        brand
-        categories
-        createdAt
         id
-        keywords
+        title
+        shortDescription
         longDescription
-        mainImageUrl
-        offerType
-        otherImageUrls
+        keywords
+        categories
         price
         salePrice
-        shortDescription
-        title
-        updatedAt
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
       }
     }
   }
