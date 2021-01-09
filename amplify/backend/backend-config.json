@@ -62,7 +62,14 @@
               "description": "mightydamegatsbyDataApi"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authmightydamegatsbyd8ed1464"
+              }
+            }
+          ]
         }
       }
     }
