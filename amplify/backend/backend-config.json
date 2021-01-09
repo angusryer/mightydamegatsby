@@ -36,29 +36,6 @@
     }
   },
   "api": {
-    "mightydamegatsbyDataApi": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authmightydamegatsbyd8ed1464"
-            }
-          },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 100,
-                "description": "mightydamegatsbyDataApiKey"
-              }
-            }
-          ]
-        }
-      }
-    },
     "mightydamegatsbyStripeApi": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
@@ -72,6 +49,22 @@
           ]
         }
       ]
+    },
+    "mightydamegatsbyDataApi": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 100,
+              "description": "mightydamegatsbyDataApiKEY"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
     }
   }
 }
