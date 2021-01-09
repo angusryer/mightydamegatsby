@@ -24,6 +24,18 @@ export const createUser = /* GraphQL */ `
       isSubscribed
       dateSubscribed
       avatarUrl
+      createdAt
+      updatedAt
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -36,18 +48,6 @@ export const createUser = /* GraphQL */ `
         }
         nextToken
       }
-      offers {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -74,6 +74,18 @@ export const updateUser = /* GraphQL */ `
       isSubscribed
       dateSubscribed
       avatarUrl
+      createdAt
+      updatedAt
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -86,18 +98,6 @@ export const updateUser = /* GraphQL */ `
         }
         nextToken
       }
-      offers {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -124,6 +124,18 @@ export const deleteUser = /* GraphQL */ `
       isSubscribed
       dateSubscribed
       avatarUrl
+      createdAt
+      updatedAt
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -136,18 +148,6 @@ export const deleteUser = /* GraphQL */ `
         }
         nextToken
       }
-      offers {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -160,6 +160,8 @@ export const createEnrolledUsers = /* GraphQL */ `
       id
       userId
       offerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -178,14 +180,14 @@ export const createEnrolledUsers = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -204,17 +206,15 @@ export const createEnrolledUsers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -227,6 +227,8 @@ export const updateEnrolledUsers = /* GraphQL */ `
       id
       userId
       offerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -245,14 +247,14 @@ export const updateEnrolledUsers = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -271,17 +273,15 @@ export const updateEnrolledUsers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -294,6 +294,8 @@ export const deleteEnrolledUsers = /* GraphQL */ `
       id
       userId
       offerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -312,14 +314,14 @@ export const deleteEnrolledUsers = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -338,17 +340,15 @@ export const deleteEnrolledUsers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -374,6 +374,18 @@ export const createOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -386,18 +398,6 @@ export const createOffer = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -423,6 +423,18 @@ export const updateOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -435,18 +447,6 @@ export const updateOffer = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -472,6 +472,18 @@ export const deleteOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -484,18 +496,6 @@ export const deleteOffer = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -510,6 +510,8 @@ export const createReview = /* GraphQL */ `
       comment
       rating
       ownerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -528,14 +530,14 @@ export const createReview = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -554,17 +556,15 @@ export const createReview = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -579,6 +579,8 @@ export const updateReview = /* GraphQL */ `
       comment
       rating
       ownerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -597,14 +599,14 @@ export const updateReview = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -623,17 +625,15 @@ export const updateReview = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -648,6 +648,8 @@ export const deleteReview = /* GraphQL */ `
       comment
       rating
       ownerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -666,14 +668,14 @@ export const deleteReview = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -692,17 +694,15 @@ export const deleteReview = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;

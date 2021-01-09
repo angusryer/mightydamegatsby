@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+  subscription OnCreateUser($id: String) {
+    onCreateUser(id: $id) {
       id
       firstName
       lastName
@@ -21,6 +21,18 @@ export const onCreateUser = /* GraphQL */ `
       isSubscribed
       dateSubscribed
       avatarUrl
+      createdAt
+      updatedAt
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -33,24 +45,12 @@ export const onCreateUser = /* GraphQL */ `
         }
         nextToken
       }
-      offers {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+  subscription OnUpdateUser($id: String) {
+    onUpdateUser(id: $id) {
       id
       firstName
       lastName
@@ -68,6 +68,18 @@ export const onUpdateUser = /* GraphQL */ `
       isSubscribed
       dateSubscribed
       avatarUrl
+      createdAt
+      updatedAt
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -80,24 +92,12 @@ export const onUpdateUser = /* GraphQL */ `
         }
         nextToken
       }
-      offers {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+  subscription OnDeleteUser($id: String) {
+    onDeleteUser(id: $id) {
       id
       firstName
       lastName
@@ -115,6 +115,18 @@ export const onDeleteUser = /* GraphQL */ `
       isSubscribed
       dateSubscribed
       avatarUrl
+      createdAt
+      updatedAt
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -127,18 +139,6 @@ export const onDeleteUser = /* GraphQL */ `
         }
         nextToken
       }
-      offers {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -148,6 +148,8 @@ export const onCreateEnrolledUsers = /* GraphQL */ `
       id
       userId
       offerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -166,14 +168,14 @@ export const onCreateEnrolledUsers = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -192,17 +194,15 @@ export const onCreateEnrolledUsers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -212,6 +212,8 @@ export const onUpdateEnrolledUsers = /* GraphQL */ `
       id
       userId
       offerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -230,14 +232,14 @@ export const onUpdateEnrolledUsers = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -256,17 +258,15 @@ export const onUpdateEnrolledUsers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -276,6 +276,8 @@ export const onDeleteEnrolledUsers = /* GraphQL */ `
       id
       userId
       offerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -294,14 +296,14 @@ export const onDeleteEnrolledUsers = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -320,23 +322,21 @@ export const onDeleteEnrolledUsers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onCreateOffer = /* GraphQL */ `
-  subscription OnCreateOffer {
-    onCreateOffer {
+  subscription OnCreateOffer($id: String) {
+    onCreateOffer(id: $id) {
       id
       offerType
       title
@@ -353,6 +353,18 @@ export const onCreateOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -365,24 +377,12 @@ export const onCreateOffer = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateOffer = /* GraphQL */ `
-  subscription OnUpdateOffer {
-    onUpdateOffer {
+  subscription OnUpdateOffer($id: String) {
+    onUpdateOffer(id: $id) {
       id
       offerType
       title
@@ -399,6 +399,18 @@ export const onUpdateOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -411,24 +423,12 @@ export const onUpdateOffer = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteOffer = /* GraphQL */ `
-  subscription OnDeleteOffer {
-    onDeleteOffer {
+  subscription OnDeleteOffer($id: String) {
+    onDeleteOffer(id: $id) {
       id
       offerType
       title
@@ -445,6 +445,18 @@ export const onDeleteOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -457,29 +469,19 @@ export const onDeleteOffer = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onCreateReview = /* GraphQL */ `
-  subscription OnCreateReview {
-    onCreateReview {
+  subscription OnCreateReview($ownerId: String) {
+    onCreateReview(ownerId: $ownerId) {
       id
       title
       comment
       rating
       ownerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -498,14 +500,14 @@ export const onCreateReview = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -524,28 +526,28 @@ export const onCreateReview = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateReview = /* GraphQL */ `
-  subscription OnUpdateReview {
-    onUpdateReview {
+  subscription OnUpdateReview($ownerId: String) {
+    onUpdateReview(ownerId: $ownerId) {
       id
       title
       comment
       rating
       ownerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -564,14 +566,14 @@ export const onUpdateReview = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -590,28 +592,28 @@ export const onUpdateReview = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteReview = /* GraphQL */ `
-  subscription OnDeleteReview {
-    onDeleteReview {
+  subscription OnDeleteReview($ownerId: String) {
+    onDeleteReview(ownerId: $ownerId) {
       id
       title
       comment
       rating
       ownerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -630,14 +632,14 @@ export const onDeleteReview = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -656,17 +658,15 @@ export const onDeleteReview = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;

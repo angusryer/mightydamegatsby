@@ -6,19 +6,21 @@ type User
         allow: owner
         ownerField: "id"
         operations: [create, update, delete, read]
+		provider: userPools
       }
       {
         allow: groups
         groups: ["Admin"]
         operations: [create, update, delete, read]
+		provider: userPools
       }
     ]
   )
   @key(name: "ByUserType", fields: ["userType"], queryField: "ByUserType") {
-  id: ID!
+  id: ID! @auth(rules: [{ allow: public, operations: [read] }])
   firstName: String
   lastName: String
-  displayName: String
+  displayName: String @auth(rules: [{ allow: public, operations: [read] }])
   email: String!
   dateRegistered: AWSDateTime
   userType: UserType!
@@ -31,7 +33,7 @@ type User
   phone: String
   isSubscribed: Boolean!
   dateSubscribed: AWSDateTime
-  avatarUrl: String
+  avatarUrl: String @auth(rules: [{ allow: public, operations: [read] }])
   reviews: [Review] @connection(name: "UserReviewConnection")
   offers: [EnrolledUsers] @connection(keyName: "byUser", fields: ["id"])
 }
@@ -45,6 +47,7 @@ type EnrolledUsers
         allow: groups
         groups: ["Admin"]
         operations: [create, update, delete, read]
+		provider: userPools
       }
     ]
   )
@@ -61,16 +64,18 @@ type Offer
   @model
   @auth(
     rules: [
-      { allow: public, operations: [read] }
+      { allow: public, operations: [read], provider: apiKey }
       {
         allow: owner
         ownerField: "id"
         operations: [create, update, delete, read]
+		provider: userPools
       }
       {
         allow: groups
         groups: ["Admin"]
         operations: [create, update, delete, read]
+		provider: userPools
       }
     ]
   )
@@ -99,16 +104,18 @@ type Review
   @model
   @auth(
     rules: [
-      { allow: public, operations: [read] }
+      { allow: public, provider: apiKey, operations: [read] }
       {
         allow: owner
         ownerField: "ownerId"
         operations: [create, update, delete, read]
+        provider: userPools
       }
       {
         allow: groups
         groups: ["Admin"]
         operations: [create, update, delete, read]
+        provider: userPools
       }
     ]
   ) {

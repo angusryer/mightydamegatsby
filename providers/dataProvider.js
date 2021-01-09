@@ -151,6 +151,7 @@ export const listAllReviewsQuery = tag(`
         comment
         rating
         title
+        ownerId
         user {
           id
           displayName

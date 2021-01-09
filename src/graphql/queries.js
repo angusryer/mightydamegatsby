@@ -1,53 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
-      id
-      firstName
-      lastName
-      displayName
-      email
-      dateRegistered
-      userType
-      streetAddressOne
-      streetAddressTwo
-      city
-      provinceState
-      country
-      postalZip
-      phone
-      isSubscribed
-      dateSubscribed
-      avatarUrl
-      reviews {
-        items {
-          id
-          title
-          comment
-          rating
-          ownerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      offers {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const listUsers = /* GraphQL */ `
   query ListUsers(
     $filter: ModelUserFilterInput
@@ -73,38 +26,51 @@ export const listUsers = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       nextToken
     }
   }
 `;
-export const getOffer = /* GraphQL */ `
-  query GetOffer($id: ID!) {
-    getOffer(id: $id) {
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
       id
-      offerType
-      title
-      shortDescription
-      longDescription
-      keywords
-      categories
-      price
-      salePrice
-      mainImageUrl
-      otherImageUrls
-      available
-      brand
-      numberOfSessions
-      lengthOfSessionInHours
-      frequencyOfSessionsPerWeek
+      firstName
+      lastName
+      displayName
+      email
+      dateRegistered
+      userType
+      streetAddressOne
+      streetAddressTwo
+      city
+      provinceState
+      country
+      postalZip
+      phone
+      isSubscribed
+      dateSubscribed
+      avatarUrl
+      createdAt
+      updatedAt
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       reviews {
         items {
           id
@@ -117,18 +83,52 @@ export const getOffer = /* GraphQL */ `
         }
         nextToken
       }
-      users {
-        items {
-          id
-          userId
-          offerId
-          createdAt
-          updatedAt
+    }
+  }
+`;
+export const byUserType = /* GraphQL */ `
+  query ByUserType(
+    $userType: UserType
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    ByUserType(
+      userType: $userType
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        isSubscribed
+        dateSubscribed
+        avatarUrl
+        createdAt
+        updatedAt
+        offers {
+          nextToken
         }
-        nextToken
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
+      nextToken
     }
   }
 `;
@@ -156,14 +156,105 @@ export const listOffers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
+        reviews {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const getOffer = /* GraphQL */ `
+  query GetOffer($id: ID!) {
+    getOffer(id: $id) {
+      id
+      offerType
+      title
+      shortDescription
+      longDescription
+      keywords
+      categories
+      price
+      salePrice
+      mainImageUrl
+      otherImageUrls
+      available
+      brand
+      numberOfSessions
+      lengthOfSessionInHours
+      frequencyOfSessionsPerWeek
+      createdAt
+      updatedAt
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      reviews {
+        items {
+          id
+          title
+          comment
+          rating
+          ownerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const byOfferType = /* GraphQL */ `
+  query ByOfferType(
+    $offerType: OfferType
+    $sortDirection: ModelSortDirection
+    $filter: ModelOfferFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    byOfferType(
+      offerType: $offerType
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         createdAt
         updatedAt
+        users {
+          nextToken
+        }
+        reviews {
+          nextToken
+        }
       }
       nextToken
     }
@@ -177,6 +268,8 @@ export const getReview = /* GraphQL */ `
       comment
       rating
       ownerId
+      createdAt
+      updatedAt
       user {
         id
         firstName
@@ -195,14 +288,14 @@ export const getReview = /* GraphQL */ `
         isSubscribed
         dateSubscribed
         avatarUrl
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         offers {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
       offer {
         id
@@ -221,17 +314,15 @@ export const getReview = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
+        createdAt
+        updatedAt
         users {
           nextToken
         }
-        createdAt
-        updatedAt
+        reviews {
+          nextToken
+        }
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -248,6 +339,8 @@ export const listReviews = /* GraphQL */ `
         comment
         rating
         ownerId
+        createdAt
+        updatedAt
         user {
           id
           firstName
@@ -289,99 +382,6 @@ export const listReviews = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const byUserType = /* GraphQL */ `
-  query ByUserType(
-    $userType: UserType
-    $sortDirection: ModelSortDirection
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    ByUserType(
-      userType: $userType
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        dateRegistered
-        userType
-        streetAddressOne
-        streetAddressTwo
-        city
-        provinceState
-        country
-        postalZip
-        phone
-        isSubscribed
-        dateSubscribed
-        avatarUrl
-        reviews {
-          nextToken
-        }
-        offers {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const byOfferType = /* GraphQL */ `
-  query ByOfferType(
-    $offerType: OfferType
-    $sortDirection: ModelSortDirection
-    $filter: ModelOfferFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    byOfferType(
-      offerType: $offerType
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        offerType
-        title
-        shortDescription
-        longDescription
-        keywords
-        categories
-        price
-        salePrice
-        mainImageUrl
-        otherImageUrls
-        available
-        brand
-        numberOfSessions
-        lengthOfSessionInHours
-        frequencyOfSessionsPerWeek
-        reviews {
-          nextToken
-        }
-        users {
-          nextToken
-        }
-        createdAt
-        updatedAt
       }
       nextToken
     }
