@@ -23,7 +23,7 @@ export default function Home({ data }) {
           {/* Subscribe here */}
           <div className="flex flex-1 justify-center items-center relative">
             {console.log(data)}
-            {data.listReviews.items.map((review) => {
+            {data.reviewsInfo.data.map((review) => {
               return (
                 <Review
                   key={review.id}
@@ -44,12 +44,14 @@ export const reviewsQuery = graphql`
 query {
   reviewsInfo {
     data {
-      comment
       id
       rating
       title
+      comment
+      user {
+        displayName
+      }
     }
   }
 }
-
 `

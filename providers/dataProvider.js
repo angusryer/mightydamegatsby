@@ -24,7 +24,10 @@ export default function fetchData(dataType, fs) {
             query: print(listAllServicesQuery),
           },
         })
-        let programs = gqlProgramsData.data.data.ByOfferType.items
+        let programs = gqlProgramsData.data.data.byOfferType.items
+
+        console.log("PROGRAMS ===> ", programs)
+
         await Promise.all(
           programs.map(async (item, index) => {
             try {
@@ -55,7 +58,10 @@ export default function fetchData(dataType, fs) {
             query: print(listAllProductsQuery),
           },
         })
-        let products = gqlProductsData.data.data.ByOfferType.items
+        let products = gqlProductsData.data.data.byOfferType.items
+
+        console.log("PRODUCTS ===> ", products)
+
         await Promise.all(
           products.map(async (item, index) => {
             try {
@@ -100,6 +106,10 @@ export default function fetchData(dataType, fs) {
             query: print(listAllReviewsQuery),
           },
         })
+
+        console.log("REVIEWS ===> ", gqlReviewsData.data)
+
+
         resolve(gqlReviewsData.data.data.listReviews.items)
         break
 
@@ -121,7 +131,9 @@ export const listAllReviewsQuery = tag(`
         rating
         title
         user {
+          id
           displayName
+          avatarUrl
         }
       }
     }
@@ -130,13 +142,13 @@ export const listAllReviewsQuery = tag(`
 
 export const listAllProductsQuery = tag(`
   query getAllProducts {
-    ByOfferType(offerType: PRODUCT) {
+    byOfferType(offerType: PRODUCT) {
       items {
+        id
         available
         brand
         categories
         createdAt
-        id
         keywords
         longDescription
         mainImageUrl
@@ -154,7 +166,7 @@ export const listAllProductsQuery = tag(`
 
 export const listAllServicesQuery = tag(`
   query getAllServices {
-    ByOfferType(offerType: SERVICE) {
+    byOfferType(offerType: SERVICE) {
       items {
         available
         brand

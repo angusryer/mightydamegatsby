@@ -35,8 +35,8 @@ export default function Programs({ data }) {
 
 // export const programsQuery = graphql`
 //   query getAllPrograms {
-//     ByOfferType(offerType: "SERVICE") {
-//       items {
+//     programsInfo {
+//       data {
 //         available
 //         brand
 //         categories

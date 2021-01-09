@@ -32,8 +32,8 @@ export default function Products({ data }) {
 
 // export const productsQuery = graphql`
 //   query getAllProducts {
-//     ByOfferType(offerType: "PRODUCT") {
-//       items {
+//     productsInfo {
+//       data {
 //         available
 //         brand
 //         categories

@@ -1,19 +1,19 @@
 type User
 	@model
-	# @auth(
-	# 	rules: [
-	# 		{
-	# 			allow: owner
-	# 			ownerField: "id"
-	# 			operations: [create, update, delete, read]
-	# 		}
-	# 		{
-	# 			allow: groups
-	# 			groups: ["Admin"]
-	# 			operations: [create, update, delete, read]
-	# 		}
-	# 	]
-	# )
+	@auth(
+		rules: [
+			# {
+			# 	allow: owner
+			# 	ownerField: "id"
+			# 	operations: [create, update, delete, read]
+			# }
+			{
+				allow: groups
+				groups: ["Admin"]
+				operations: [create, update, delete, read]
+			}
+		]
+	)
 	@key(name: "ByUserType", fields: ["userType"], queryField: "ByUserType") {
 	id: ID!
 	firstName: String
@@ -39,20 +39,20 @@ type User
 # Join table to enabled users-to-offers relationships
 type EnrolledUsers
 	@model(queries: null)
-	# @auth(
-	# 	rules: [
+	@auth(
+		rules: [
 	# 		{
 	# 			allow: owner
 	# 			ownerField: "id"
 	# 			operations: [create, update, delete, read]
 	# 		}
-	# 		{
-	# 			allow: groups
-	# 			groups: ["Admin"]
-	# 			operations: [create, update, delete, read]
-	# 		}
-	# 	]
-	# )
+			{
+				allow: groups
+				groups: ["Admin"]
+				operations: [create, update, delete, read]
+			}
+		]
+	)
 	@key(name: "byUser", fields: ["userId", "offerId"])
 	@key(name: "byOffer", fields: ["offerId", "userId"]) {
 	id: ID!
@@ -64,21 +64,21 @@ type EnrolledUsers
 
 type Offer
 	@model
-	# @auth(
-	# 	rules: [
-	# 		{ allow: public, operations: [read] }
+	@auth(
+		rules: [
+			{ allow: public, operations: [read] }
 	# 		{
 	# 			allow: owner
 	# 			ownerField: "id"
 	# 			operations: [create, update, delete, read]
 	# 		}
-	# 		{
-	# 			allow: groups
-	# 			groups: ["Admin"]
-	# 			operations: [create, update, delete, read]
-	# 		}
-	# 	]
-	# )
+			{
+				allow: groups
+				groups: ["Admin"]
+				operations: [create, update, delete, read]
+			}
+		]
+	)
 	@key(name: "byOfferType", fields: ["offerType"], queryField: "byOfferType") {
 	id: ID!
 	offerType: OfferType!
@@ -101,21 +101,21 @@ type Offer
 }
 
 type Review @model {
-	# @auth(
-	# 	rules: [
-	# 		{ allow: public, operations: [read] }
+	@auth(
+		rules: [
+			{ allow: public, operations: [read] }
 	# 		{
 	# 			allow: owner
 	# 			ownerField: "ownerId"
 	# 			operations: [create, update, delete, read]
 	# 		}
-	# 		{
-	# 			allow: groups
-	# 			groups: ["Admin"]
-	# 			operations: [create, update, delete, read]
-	# 		}
-	# 	]
-	# )
+			{
+				allow: groups
+				groups: ["Admin"]
+				operations: [create, update, delete, read]
+			}
+		]
+	)
 	id: ID!
 	title: String!
 	comment: String!
