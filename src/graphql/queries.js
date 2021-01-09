@@ -18,89 +18,33 @@ export const getUser = /* GraphQL */ `
       country
       postalZip
       phone
-      subscriber
+      isSubscribed
       dateSubscribed
       avatarUrl
-      createdAt
-      updatedAt
-      offers {
-        id
-        offerType
-        title
-        shortDescription
-        longDescription
-        keywords
-        categories
-        price
-        salePrice
-        mainImageUrl
-        otherImageUrls
-        available
-        brand
-        numberOfSessions
-        lengthOfSessionInHours
-        frequencyOfSessionsPerWeek
-        users {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-        reviews {
+      reviews {
+        items {
           id
           title
           comment
           rating
+          ownerId
           createdAt
           updatedAt
         }
+        nextToken
       }
-      reviews {
-        id
-        title
-        comment
-        rating
-        user {
+      offers {
+        items {
           id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
+          userId
+          offerId
           createdAt
           updatedAt
         }
-        createdAt
-        updatedAt
+        nextToken
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -126,109 +70,65 @@ export const listUsers = /* GraphQL */ `
         country
         postalZip
         phone
-        subscriber
+        isSubscribed
         dateSubscribed
         avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
         createdAt
         updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
-        reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
-        }
       }
       nextToken
     }
   }
 `;
-export const byType = /* GraphQL */ `
-  query ByType(
-    $userType: UserType
-    $sortDirection: ModelSortDirection
-    $filter: ModelUserFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    ByType(
-      userType: $userType
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        dateRegistered
-        userType
-        streetAddressOne
-        streetAddressTwo
-        city
-        provinceState
-        country
-        postalZip
-        phone
-        subscriber
-        dateSubscribed
-        avatarUrl
-        createdAt
-        updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
-        reviews {
+export const getOffer = /* GraphQL */ `
+  query GetOffer($id: ID!) {
+    getOffer(id: $id) {
+      id
+      offerType
+      title
+      shortDescription
+      longDescription
+      keywords
+      categories
+      price
+      salePrice
+      mainImageUrl
+      otherImageUrls
+      available
+      brand
+      numberOfSessions
+      lengthOfSessionInHours
+      frequencyOfSessionsPerWeek
+      reviews {
+        items {
           id
           title
           comment
           rating
+          ownerId
           createdAt
           updatedAt
         }
+        nextToken
       }
-      nextToken
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -256,62 +156,28 @@ export const listOffers = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
+        reviews {
+          nextToken
+        }
         users {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
+          nextToken
         }
         createdAt
         updatedAt
-        reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
-        }
       }
       nextToken
     }
   }
 `;
-export const getOffer = /* GraphQL */ `
-  query GetOffer($id: ID!) {
-    getOffer(id: $id) {
+export const getReview = /* GraphQL */ `
+  query GetReview($id: ID!) {
+    getReview(id: $id) {
       id
-      offerType
       title
-      shortDescription
-      longDescription
-      keywords
-      categories
-      price
-      salePrice
-      mainImageUrl
-      otherImageUrls
-      available
-      brand
-      numberOfSessions
-      lengthOfSessionInHours
-      frequencyOfSessionsPerWeek
-      users {
+      comment
+      rating
+      ownerId
+      user {
         id
         firstName
         lastName
@@ -326,12 +192,84 @@ export const getOffer = /* GraphQL */ `
         country
         postalZip
         phone
-        subscriber
+        isSubscribed
         dateSubscribed
         avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
         createdAt
         updatedAt
-        offers {
+      }
+      offer {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
+        reviews {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listReviews = /* GraphQL */ `
+  query ListReviews(
+    $filter: ModelReviewFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listReviews(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        title
+        comment
+        rating
+        ownerId
+        user {
+          id
+          firstName
+          lastName
+          displayName
+          email
+          dateRegistered
+          userType
+          streetAddressOne
+          streetAddressTwo
+          city
+          provinceState
+          country
+          postalZip
+          phone
+          isSubscribed
+          dateSubscribed
+          avatarUrl
+          createdAt
+          updatedAt
+        }
+        offer {
           id
           offerType
           title
@@ -351,46 +289,56 @@ export const getOffer = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
-        }
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
-      reviews {
+      nextToken
+    }
+  }
+`;
+export const byUserType = /* GraphQL */ `
+  query ByUserType(
+    $userType: UserType
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    ByUserType(
+      userType: $userType
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
         id
-        title
-        comment
-        rating
-        user {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        isSubscribed
+        dateSubscribed
+        avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
         }
         createdAt
         updatedAt
       }
+      nextToken
     }
   }
 `;
@@ -402,7 +350,7 @@ export const byOfferType = /* GraphQL */ `
     $limit: Int
     $nextToken: String
   ) {
-    ByOfferType(
+    byOfferType(
       offerType: $offerType
       sortDirection: $sortDirection
       filter: $filter
@@ -426,140 +374,16 @@ export const byOfferType = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
+        reviews {
+          nextToken
+        }
         users {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-        reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
-        }
-      }
-      nextToken
-    }
-  }
-`;
-export const listReviews = /* GraphQL */ `
-  query ListReviews(
-    $filter: ModelReviewFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listReviews(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        comment
-        rating
-        user {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
+          nextToken
         }
         createdAt
         updatedAt
       }
       nextToken
-    }
-  }
-`;
-export const getReview = /* GraphQL */ `
-  query GetReview($id: ID!) {
-    getReview(id: $id) {
-      id
-      title
-      comment
-      rating
-      user {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        dateRegistered
-        userType
-        streetAddressOne
-        streetAddressTwo
-        city
-        provinceState
-        country
-        postalZip
-        phone
-        subscriber
-        dateSubscribed
-        avatarUrl
-        createdAt
-        updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
-        reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
-        }
-      }
-      createdAt
-      updatedAt
     }
   }
 `;

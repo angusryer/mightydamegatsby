@@ -18,89 +18,33 @@ export const onCreateUser = /* GraphQL */ `
       country
       postalZip
       phone
-      subscriber
+      isSubscribed
       dateSubscribed
       avatarUrl
-      createdAt
-      updatedAt
-      offers {
-        id
-        offerType
-        title
-        shortDescription
-        longDescription
-        keywords
-        categories
-        price
-        salePrice
-        mainImageUrl
-        otherImageUrls
-        available
-        brand
-        numberOfSessions
-        lengthOfSessionInHours
-        frequencyOfSessionsPerWeek
-        users {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-        reviews {
+      reviews {
+        items {
           id
           title
           comment
           rating
+          ownerId
           createdAt
           updatedAt
         }
+        nextToken
       }
-      reviews {
-        id
-        title
-        comment
-        rating
-        user {
+      offers {
+        items {
           id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
+          userId
+          offerId
           createdAt
           updatedAt
         }
-        createdAt
-        updatedAt
+        nextToken
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -121,89 +65,33 @@ export const onUpdateUser = /* GraphQL */ `
       country
       postalZip
       phone
-      subscriber
+      isSubscribed
       dateSubscribed
       avatarUrl
-      createdAt
-      updatedAt
-      offers {
-        id
-        offerType
-        title
-        shortDescription
-        longDescription
-        keywords
-        categories
-        price
-        salePrice
-        mainImageUrl
-        otherImageUrls
-        available
-        brand
-        numberOfSessions
-        lengthOfSessionInHours
-        frequencyOfSessionsPerWeek
-        users {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-        reviews {
+      reviews {
+        items {
           id
           title
           comment
           rating
+          ownerId
           createdAt
           updatedAt
         }
+        nextToken
       }
-      reviews {
-        id
-        title
-        comment
-        rating
-        user {
+      offers {
+        items {
           id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
+          userId
+          offerId
           createdAt
           updatedAt
         }
-        createdAt
-        updatedAt
+        nextToken
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -224,12 +112,70 @@ export const onDeleteUser = /* GraphQL */ `
       country
       postalZip
       phone
-      subscriber
+      isSubscribed
       dateSubscribed
       avatarUrl
+      reviews {
+        items {
+          id
+          title
+          comment
+          rating
+          ownerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      offers {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
-      offers {
+    }
+  }
+`;
+export const onCreateEnrolledUsers = /* GraphQL */ `
+  subscription OnCreateEnrolledUsers {
+    onCreateEnrolledUsers {
+      id
+      userId
+      offerId
+      user {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        isSubscribed
+        dateSubscribed
+        avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      offer {
         id
         offerType
         title
@@ -246,67 +192,145 @@ export const onDeleteUser = /* GraphQL */ `
         numberOfSessions
         lengthOfSessionInHours
         frequencyOfSessionsPerWeek
-        users {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
         reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
+          nextToken
         }
-      }
-      reviews {
-        id
-        title
-        comment
-        rating
-        user {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
+        users {
+          nextToken
         }
         createdAt
         updatedAt
       }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateEnrolledUsers = /* GraphQL */ `
+  subscription OnUpdateEnrolledUsers {
+    onUpdateEnrolledUsers {
+      id
+      userId
+      offerId
+      user {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        isSubscribed
+        dateSubscribed
+        avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      offer {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
+        reviews {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteEnrolledUsers = /* GraphQL */ `
+  subscription OnDeleteEnrolledUsers {
+    onDeleteEnrolledUsers {
+      id
+      userId
+      offerId
+      user {
+        id
+        firstName
+        lastName
+        displayName
+        email
+        dateRegistered
+        userType
+        streetAddressOne
+        streetAddressTwo
+        city
+        provinceState
+        country
+        postalZip
+        phone
+        isSubscribed
+        dateSubscribed
+        avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      offer {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
+        reviews {
+          nextToken
+        }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -329,86 +353,30 @@ export const onCreateOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
-      users {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        dateRegistered
-        userType
-        streetAddressOne
-        streetAddressTwo
-        city
-        provinceState
-        country
-        postalZip
-        phone
-        subscriber
-        dateSubscribed
-        avatarUrl
-        createdAt
-        updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
-        reviews {
+      reviews {
+        items {
           id
           title
           comment
           rating
+          ownerId
           createdAt
           updatedAt
         }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
-      reviews {
-        id
-        title
-        comment
-        rating
-        user {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -431,86 +399,30 @@ export const onUpdateOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
-      users {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        dateRegistered
-        userType
-        streetAddressOne
-        streetAddressTwo
-        city
-        provinceState
-        country
-        postalZip
-        phone
-        subscriber
-        dateSubscribed
-        avatarUrl
-        createdAt
-        updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
-        reviews {
+      reviews {
+        items {
           id
           title
           comment
           rating
+          ownerId
           createdAt
           updatedAt
         }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
-      reviews {
-        id
-        title
-        comment
-        rating
-        user {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -533,86 +445,30 @@ export const onDeleteOffer = /* GraphQL */ `
       numberOfSessions
       lengthOfSessionInHours
       frequencyOfSessionsPerWeek
-      users {
-        id
-        firstName
-        lastName
-        displayName
-        email
-        dateRegistered
-        userType
-        streetAddressOne
-        streetAddressTwo
-        city
-        provinceState
-        country
-        postalZip
-        phone
-        subscriber
-        dateSubscribed
-        avatarUrl
-        createdAt
-        updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
-        reviews {
+      reviews {
+        items {
           id
           title
           comment
           rating
+          ownerId
           createdAt
           updatedAt
         }
+        nextToken
+      }
+      users {
+        items {
+          id
+          userId
+          offerId
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
       createdAt
       updatedAt
-      reviews {
-        id
-        title
-        comment
-        rating
-        user {
-          id
-          firstName
-          lastName
-          displayName
-          email
-          dateRegistered
-          userType
-          streetAddressOne
-          streetAddressTwo
-          city
-          provinceState
-          country
-          postalZip
-          phone
-          subscriber
-          dateSubscribed
-          avatarUrl
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -623,6 +479,7 @@ export const onCreateReview = /* GraphQL */ `
       title
       comment
       rating
+      ownerId
       user {
         id
         firstName
@@ -638,39 +495,43 @@ export const onCreateReview = /* GraphQL */ `
         country
         postalZip
         phone
-        subscriber
+        isSubscribed
         dateSubscribed
         avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
         createdAt
         updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
+      }
+      offer {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
+          nextToken
         }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -684,6 +545,7 @@ export const onUpdateReview = /* GraphQL */ `
       title
       comment
       rating
+      ownerId
       user {
         id
         firstName
@@ -699,39 +561,43 @@ export const onUpdateReview = /* GraphQL */ `
         country
         postalZip
         phone
-        subscriber
+        isSubscribed
         dateSubscribed
         avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
         createdAt
         updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
+      }
+      offer {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
+          nextToken
         }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -745,6 +611,7 @@ export const onDeleteReview = /* GraphQL */ `
       title
       comment
       rating
+      ownerId
       user {
         id
         firstName
@@ -760,39 +627,43 @@ export const onDeleteReview = /* GraphQL */ `
         country
         postalZip
         phone
-        subscriber
+        isSubscribed
         dateSubscribed
         avatarUrl
+        reviews {
+          nextToken
+        }
+        offers {
+          nextToken
+        }
         createdAt
         updatedAt
-        offers {
-          id
-          offerType
-          title
-          shortDescription
-          longDescription
-          keywords
-          categories
-          price
-          salePrice
-          mainImageUrl
-          otherImageUrls
-          available
-          brand
-          numberOfSessions
-          lengthOfSessionInHours
-          frequencyOfSessionsPerWeek
-          createdAt
-          updatedAt
-        }
+      }
+      offer {
+        id
+        offerType
+        title
+        shortDescription
+        longDescription
+        keywords
+        categories
+        price
+        salePrice
+        mainImageUrl
+        otherImageUrls
+        available
+        brand
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
         reviews {
-          id
-          title
-          comment
-          rating
-          createdAt
-          updatedAt
+          nextToken
         }
+        users {
+          nextToken
+        }
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt

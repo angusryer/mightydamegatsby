@@ -59,7 +59,7 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 100,
-              "description": "mightydamegatsbyDataApiKEY"
+              "description": "mightydamegatsbyDataApi"
             }
           },
           "additionalAuthenticationProviders": []

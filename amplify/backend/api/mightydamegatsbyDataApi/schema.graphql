@@ -1,119 +1,137 @@
 type User
-  @model
-  @auth(
-    rules: [
-      {
-        allow: owner
-        ownerField: "id"
-        operations: [create, update, delete, read]
-      }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [create, update, delete, read]
-      }
-    ]
-  )
-  @key(name: "ByUserType", fields: ["userType"], queryField: "ByUserType") {
-  id: ID!
-  firstName: String
-  lastName: String
-  displayName: String
-  email: String!
-  dateRegistered: AWSDateTime
-  userType: UserType!
-  streetAddressOne: String
-  streetAddressTwo: String
-  city: String
-  provinceState: String
-  country: String
-  postalZip: String
-  phone: String
-  isSubscribed: Boolean!
-  dateSubscribed: AWSDateTime
-  avatarUrl: String
-  reviews: [Review]! @connection(name: "UserReviewConnection")
-  offers: [EnrolledUsers] @connection(keyName: "byUser", fields: ["id"])
+	@model
+	# @auth(
+	# 	rules: [
+	# 		{
+	# 			allow: owner
+	# 			ownerField: "id"
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 		{
+	# 			allow: groups
+	# 			groups: ["Admin"]
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 	]
+	# )
+	@key(name: "ByUserType", fields: ["userType"], queryField: "ByUserType") {
+	id: ID!
+	firstName: String
+	lastName: String
+	displayName: String
+	email: String!
+	dateRegistered: AWSDateTime
+	userType: UserType!
+	streetAddressOne: String
+	streetAddressTwo: String
+	city: String
+	provinceState: String
+	country: String
+	postalZip: String
+	phone: String
+	isSubscribed: Boolean!
+	dateSubscribed: AWSDateTime
+	avatarUrl: String
+	reviews: [Review]! @connection(name: "UserReviewConnection")
+	offers: [EnrolledUsers] @connection(keyName: "byUser", fields: ["id"])
 }
 
 # Join table to enabled users-to-offers relationships
 type EnrolledUsers
-  @model(queries: null)
-  @key(name: "byUser", fields: ["userId", "offerId"])
-  @key(name: "byOffer", fields: ["offerId", "userId"]) {
-  id: ID!
-  userId: ID!
-  offerId: ID!
-  user: User! @connection(fields: ["userId"])
-  offer: Offer! @connection(fields: ["offerId"])
+	@model(queries: null)
+	# @auth(
+	# 	rules: [
+	# 		{
+	# 			allow: owner
+	# 			ownerField: "id"
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 		{
+	# 			allow: groups
+	# 			groups: ["Admin"]
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 	]
+	# )
+	@key(name: "byUser", fields: ["userId", "offerId"])
+	@key(name: "byOffer", fields: ["offerId", "userId"]) {
+	id: ID!
+	userId: ID!
+	offerId: ID!
+	user: User! @connection(fields: ["userId"])
+	offer: Offer! @connection(fields: ["offerId"])
 }
 
 type Offer
-  @model
-  @auth(
-    rules: [
-      { allow: public, operations: [read] }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [create, update, delete, read]
-      }
-    ]
-  )
-  @key(name: "byOfferType", fields: ["offerType"], queryField: "byOfferType") {
-  id: ID!
-  offerType: OfferType!
-  title: String!
-  shortDescription: String!
-  longDescription: String!
-  keywords: [String]!
-  categories: [String]!
-  price: Float!
-  salePrice: Float
-  mainImageUrl: String!
-  otherImageUrls: [String]!
-  available: Boolean!
-  brand: String
-  numberOfSessions: Float
-  lengthOfSessionInHours: Float
-  frequencyOfSessionsPerWeek: Float
-  reviews: [Review]! @connection(name: "OfferReviewConnection")
-  users: [EnrolledUsers]! @connection(keyName: "byOffer", fields: ["id"])
+	@model
+	# @auth(
+	# 	rules: [
+	# 		{ allow: public, operations: [read] }
+	# 		{
+	# 			allow: owner
+	# 			ownerField: "id"
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 		{
+	# 			allow: groups
+	# 			groups: ["Admin"]
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 	]
+	# )
+	@key(name: "byOfferType", fields: ["offerType"], queryField: "byOfferType") {
+	id: ID!
+	offerType: OfferType!
+	title: String!
+	shortDescription: String!
+	longDescription: String!
+	keywords: [String]!
+	categories: [String]!
+	price: Float!
+	salePrice: Float
+	mainImageUrl: String!
+	otherImageUrls: [String]!
+	available: Boolean!
+	brand: String
+	numberOfSessions: Float
+	lengthOfSessionInHours: Float
+	frequencyOfSessionsPerWeek: Float
+	reviews: [Review]! @connection(name: "OfferReviewConnection")
+	users: [EnrolledUsers]! @connection(keyName: "byOffer", fields: ["id"])
 }
 
-type Review
-  @model
-  @auth(
-    rules: [
-      { allow: public, operations: [read] }
-      {
-        allow: owner
-        ownerField: "ownerId"
-        operations: [create, update, delete, read]
-      }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [create, update, delete, read]
-      }
-    ]
-  ) {
-  id: ID!
-  title: String!
-  comment: String!
-  rating: Int!
-  ownerId: String!
-  user: User! @connection(name: "UserReviewConnection")
-  offer: Offer! @connection(name: "OfferReviewConnection")
+type Review @model {
+	# @auth(
+	# 	rules: [
+	# 		{ allow: public, operations: [read] }
+	# 		{
+	# 			allow: owner
+	# 			ownerField: "ownerId"
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 		{
+	# 			allow: groups
+	# 			groups: ["Admin"]
+	# 			operations: [create, update, delete, read]
+	# 		}
+	# 	]
+	# )
+	id: ID!
+	title: String!
+	comment: String!
+	rating: Int!
+	ownerId: String!
+	user: User! @connection(name: "UserReviewConnection")
+	offer: Offer! @connection(name: "OfferReviewConnection")
 }
 
 enum UserType {
-  ADMIN
-  MEMBER
-  PUBLIC
+	ADMIN
+	MEMBER
+	PUBLIC
 }
 
 enum OfferType {
-  PRODUCT
-  SERVICE
+	PRODUCT
+	SERVICE
 }
