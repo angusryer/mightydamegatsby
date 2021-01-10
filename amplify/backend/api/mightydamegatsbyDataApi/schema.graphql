@@ -16,11 +16,11 @@ type User
       }
     ]
   )
-  @key(name: "ByUserType", fields: ["userType"], queryField: "ByUserType") {
-  id: ID! @auth(rules: [{ allow: public, operations: [read] }])
+  @key(name: "byUserType", fields: ["userType"], queryField: "byUserType") {
+  id: ID!
   firstName: String
   lastName: String
-  displayName: String @auth(rules: [{ allow: public, operations: [read] }])
+  displayName: String
   email: String!
   dateRegistered: AWSDateTime
   userType: UserType!
@@ -31,9 +31,9 @@ type User
   country: String
   postalZip: String
   phone: String
-  isSubscribed: Boolean!
+  isSubscribed: Boolean
   dateSubscribed: AWSDateTime
-  avatarUrl: String @auth(rules: [{ allow: public, operations: [read] }])
+  avatarUrl: String
   reviews: [Review] @connection(name: "UserReviewConnection")
   offers: [EnrolledUsers] @connection(keyName: "byUser", fields: ["id"])
 }
@@ -90,7 +90,7 @@ type Offer
   price: Float!
   salePrice: Float
   mainImageUrl: String!
-  otherImageUrls: [String]!
+  otherImageUrls: [String]
   available: Boolean!
   brand: String
   numberOfSessions: Float
