@@ -12,15 +12,16 @@ export default function Home({ data }) {
       <SEO title="Home | Mighty Dame Fitness" />
       <div className="w-full">
         <div
-          className="bg-green-200
-        lg:h-hero
+          className="lg:h-hero
         p-6 pb-10 smpb-6
         flex lg:flex-row flex-col"
         >
+          <Link to="/login">Login</Link>
           <div className="pt-4 pl-2 sm:pt-12 sm:pl-12 flex flex-col">
             Hero text
           </div>
           {/* Subscribe here */}
+
           <div className="flex flex-1 justify-center items-center relative">
             {console.log(data)}
             {data.reviewsInfo.data.map((review) => {
@@ -48,9 +49,7 @@ query {
       rating
       title
       comment
-      user {
-        displayName
-      }
+      ownerId
     }
   }
 }

@@ -2,17 +2,18 @@ type User
   @model
   @auth(
     rules: [
+      { allow: public, operations: [read], provider: apiKey }
       {
         allow: owner
         ownerField: "id"
         operations: [create, update, delete, read]
-		provider: userPools
+        provider: userPools
       }
       {
         allow: groups
         groups: ["Admin"]
         operations: [create, update, delete, read]
-		provider: userPools
+        provider: userPools
       }
     ]
   )
@@ -47,7 +48,7 @@ type EnrolledUsers
         allow: groups
         groups: ["Admin"]
         operations: [create, update, delete, read]
-		provider: userPools
+        provider: userPools
       }
     ]
   )
@@ -69,13 +70,13 @@ type Offer
         allow: owner
         ownerField: "id"
         operations: [create, update, delete, read]
-		provider: userPools
+        provider: userPools
       }
       {
         allow: groups
         groups: ["Admin"]
         operations: [create, update, delete, read]
-		provider: userPools
+        provider: userPools
       }
     ]
   )
@@ -124,8 +125,8 @@ type Review
   comment: String!
   rating: Int!
   ownerId: String!
-  user: User! @connection(name: "UserReviewConnection")
-  offer: Offer! @connection(name: "OfferReviewConnection")
+  user: User @connection(name: "UserReviewConnection")
+  offer: Offer @connection(name: "OfferReviewConnection")
 }
 
 enum UserType {

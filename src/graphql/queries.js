@@ -94,7 +94,7 @@ export const byUserType = /* GraphQL */ `
     $limit: Int
     $nextToken: String
   ) {
-    ByUserType(
+    byUserType(
       userType: $userType
       sortDirection: $sortDirection
       filter: $filter
