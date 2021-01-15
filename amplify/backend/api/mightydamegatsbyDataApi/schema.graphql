@@ -19,11 +19,13 @@ type User
   )
   @key(name: "byUserType", fields: ["userType"], queryField: "byUserType") {
   id: ID!
+  cognitoId: String
   firstName: String
   lastName: String
+  userName: String
   displayName: String
   email: String!
-  dateRegistered: AWSDateTime
+  dateRegistered: String
   userType: UserType!
   streetAddressOne: String
   streetAddressTwo: String
@@ -33,7 +35,7 @@ type User
   postalZip: String
   phone: String
   isSubscribed: Boolean
-  dateSubscribed: AWSDateTime
+  dateSubscribed: String
   avatarUrl: String
   reviews: [Review] @connection(name: "UserReviewConnection")
   offers: [EnrolledUsers] @connection(keyName: "byUser", fields: ["id"])
@@ -91,7 +93,9 @@ type Offer
   price: Float!
   salePrice: Float
   mainImageUrl: String!
+  mainImageFile: String
   otherImageUrls: [String]
+  otherImageFiles: [String]
   available: Boolean!
   brand: String
   numberOfSessions: Float
