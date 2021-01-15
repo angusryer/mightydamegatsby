@@ -4,7 +4,7 @@ import tag from "graphql-tag"
 import downloadImage from "../utils/downloadImage"
 import config from "../src/aws-exports"
 
-const fs = require('fs')
+const fs = require("fs")
 Amplify.configure(config)
 const graphql = require("graphql")
 const { print } = graphql
@@ -26,21 +26,38 @@ export default function fetchData(dataType) {
         let programs = gqlProgramsData.data.data.byOfferType.items
 
         await Promise.all(
+          // Loop through all products, and use the filename key to download from S3
+          // and cache the images locally. Set the items returned to the local path so
+          // that any live queries grab the images from there instead of from S3 directly.
           programs.map(async (item, index) => {
+            console.log("DATA PROVIDER PROGRAMS ===> ", item)
             try {
-              const relativeUrl = `../${item.mainImageUrl}` // is this actually a url? Because the downloadImage function needs that for its axios call
+              const relativeUrl = `../${item.mainImageFileName}`
               if (
-                !fs.existsSync(`${__dirname}/public/${item.mainImageUrl}`)
+                !fs.existsSync(`${__dirname}/public/${item.mainImageFileName}`)
               ) {
-                const image = await Storage.get(item.mainImageUrl)
+                const image = await Storage.get(item.mainImageFileName)
                 await downloadImage(image, fs)
               }
-              programs[index].mainImageUrl = relativeUrl
+              programs[index].mainImageFileName = relativeUrl
             } catch (err) {
               console.log("error downloading image: ", err)
             }
+            item.otherImageFileNames.map(async (image, index) => {
+              try {
+                const relativeUrl = `../${image}`
+                if (!fs.existsSync(`${__dirname}/public/${image}`)) {
+                  const otherImage = await Storage.get(image)
+                  await downloadImage(otherImage, fs)
+                }
+                image[index] = relativeUrl
+              } catch (err) {
+                console.log("error downloading image: ", err)
+              }
+            })
           })
         )
+
         resolve(programs)
         break
 
@@ -59,32 +76,32 @@ export default function fetchData(dataType) {
 
         await Promise.all(
           products.map(async (item, index) => {
+            console.log("DATA PROVIDER PRODUCTS ===> ", item)
             try {
-              const relativeUrl = `../${item.mainImageUrl}`
+              const relativeUrl = `../${item.mainImageFileName}`
               if (
-                !fs.existsSync(`${__dirname}/public/${item.mainImageUrl}`)
+                !fs.existsSync(`${__dirname}/public/${item.mainImageFileName}`)
               ) {
-                const image = await Storage.get(item.mainImageUrl)
+                const image = await Storage.get(item.mainImageFileName)
                 await downloadImage(image, fs)
               }
-              products[index].mainImageUrl = relativeUrl
+              products[index].mainImageFileName = relativeUrl
             } catch (err) {
               console.log("error downloading image: ", err)
             }
 
-            item.otherImageUrls.map( async (image, index) => {
-                try {
-                  const relativeUrl = `../${image}`
-                  if (!fs.existsSync(`${__dirname}/public/${image}`)) {
-                    const otherImage = await Storage.get(image)
-                    await downloadImage(otherImage, fs)
-                  }
-                  image[index] = relativeUrl
-                } catch (err) {
-                  console.log("error downloading image: ", err)
+            item.otherImageFileNames.map(async (image, index) => {
+              try {
+                const relativeUrl = `../${image}`
+                if (!fs.existsSync(`${__dirname}/public/${image}`)) {
+                  const otherImage = await Storage.get(image)
+                  await downloadImage(otherImage, fs)
                 }
-              })
-
+                image[index] = relativeUrl
+              } catch (err) {
+                console.log("error downloading image: ", err)
+              }
+            })
           })
         )
         resolve(products)
@@ -118,11 +135,13 @@ export const DENOMINATION = "$"
 
 // USER
 // id: ID!
+//  cognitoId: String
 // 	firstName: String
 // 	lastName: String
 // 	displayName: String
+//  userName: String
 // 	email: String!
-// 	dateRegistered: AWSDateTime
+// 	dateRegistered: String
 // 	userType: UserType!
 // 	streetAddressOne: String
 // 	streetAddressTwo: String
@@ -132,7 +151,7 @@ export const DENOMINATION = "$"
 // 	postalZip: String
 // 	phone: String
 // 	isSubscribed: Boolean!
-// 	dateSubscribed: AWSDateTime
+// 	dateSubscribed: String
 // 	avatarUrl: String
 // 	reviews: [Review]! @connection(name: "UserReviewConnection")
 // 	offers: [EnrolledUsers] @connection(keyName: "byUser", fields: ["id"])
@@ -156,25 +175,27 @@ export const listAllReviewsQuery = tag(`
   }
   `)
 
-  // PRODUCTS/SERVICES
-	// id: ID!
-	// offerType: OfferType!
-	// title: String!
-	// shortDescription: String!
-	// longDescription: String!
-	// keywords: [String]!
-	// categories: [String]!
-	// price: Float!
-	// salePrice: Float
-	// mainImageUrl: String!
-	// otherImageUrls: [String]!
-	// available: Boolean!
-	// brand: String
-	// numberOfSessions: Float
-	// lengthOfSessionInHours: Float
-	// frequencyOfSessionsPerWeek: Float
-	// reviews: [Review]! @connection(name: "OfferReviewConnection")
-	// users: [EnrolledUsers]! @connection(keyName: "byOffer", fields: ["id"])
+// PRODUCTS/SERVICES
+// id: ID!
+// offerType: OfferType!
+// title: String!
+// shortDescription: String!
+// longDescription: String!
+// keywords: [String]!
+// categories: [String]!
+// price: Float!
+// salePrice: Float
+// mainImageUrl: String!
+// mainImageFileName: String
+// otherImageUrls: [String]!
+// otherImageFileNames: [String]
+// available: Boolean!
+// brand: String
+// numberOfSessions: Float
+// lengthOfSessionInHours: Float
+// frequencyOfSessionsPerWeek: Float
+// reviews: [Review]! @connection(name: "OfferReviewConnection")
+// users: [EnrolledUsers]! @connection(keyName: "byOffer", fields: ["id"])
 
 export const listAllProductsQuery = tag(`
   query getAllProducts {
@@ -189,7 +210,9 @@ export const listAllProductsQuery = tag(`
         price
         salePrice
         mainImageUrl
+        mainImageFileName
         otherImageUrls
+        otherImageFileNames
         available
         brand
       }
@@ -210,7 +233,9 @@ export const listAllServicesQuery = tag(`
         price
         salePrice
         mainImageUrl
+        mainImageFileName
         otherImageUrls
+        otherImageFileNames
         available
         brand
         numberOfSessions

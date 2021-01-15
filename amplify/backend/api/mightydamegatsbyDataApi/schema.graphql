@@ -93,9 +93,9 @@ type Offer
   price: Float!
   salePrice: Float
   mainImageUrl: String!
-  mainImageFile: String
+  mainImageFileName: String
   otherImageUrls: [String]
-  otherImageFiles: [String]
+  otherImageFileNames: [String]
   available: Boolean!
   brand: String
   numberOfSessions: Float

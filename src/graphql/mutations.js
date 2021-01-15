@@ -8,8 +8,10 @@ export const createUser = /* GraphQL */ `
   ) {
     createUser(input: $input, condition: $condition) {
       id
+      cognitoId
       firstName
       lastName
+      userName
       displayName
       email
       dateRegistered
@@ -58,8 +60,10 @@ export const updateUser = /* GraphQL */ `
   ) {
     updateUser(input: $input, condition: $condition) {
       id
+      cognitoId
       firstName
       lastName
+      userName
       displayName
       email
       dateRegistered
@@ -108,8 +112,10 @@ export const deleteUser = /* GraphQL */ `
   ) {
     deleteUser(input: $input, condition: $condition) {
       id
+      cognitoId
       firstName
       lastName
+      userName
       displayName
       email
       dateRegistered
@@ -164,8 +170,10 @@ export const createEnrolledUsers = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -200,7 +208,9 @@ export const createEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -231,8 +241,10 @@ export const updateEnrolledUsers = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -267,7 +279,9 @@ export const updateEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -298,8 +312,10 @@ export const deleteEnrolledUsers = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -334,7 +350,9 @@ export const deleteEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -368,7 +386,9 @@ export const createOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
+      mainImageFile
       otherImageUrls
+      otherImageFiles
       available
       brand
       numberOfSessions
@@ -417,7 +437,9 @@ export const updateOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
+      mainImageFile
       otherImageUrls
+      otherImageFiles
       available
       brand
       numberOfSessions
@@ -466,7 +488,9 @@ export const deleteOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
+      mainImageFile
       otherImageUrls
+      otherImageFiles
       available
       brand
       numberOfSessions
@@ -514,8 +538,10 @@ export const createReview = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -550,7 +576,9 @@ export const createReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -583,8 +611,10 @@ export const updateReview = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -619,7 +649,9 @@ export const updateReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -652,8 +684,10 @@ export const deleteReview = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -688,7 +722,9 @@ export const deleteReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions

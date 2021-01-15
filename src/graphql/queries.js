@@ -10,8 +10,10 @@ export const listUsers = /* GraphQL */ `
     listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -43,8 +45,10 @@ export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
+      cognitoId
       firstName
       lastName
+      userName
       displayName
       email
       dateRegistered
@@ -103,8 +107,10 @@ export const byUserType = /* GraphQL */ `
     ) {
       items {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -150,7 +156,9 @@ export const listOffers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -182,7 +190,9 @@ export const getOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
+      mainImageFile
       otherImageUrls
+      otherImageFiles
       available
       brand
       numberOfSessions
@@ -241,7 +251,9 @@ export const byOfferType = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -272,8 +284,10 @@ export const getReview = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -308,7 +322,9 @@ export const getReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -343,8 +359,10 @@ export const listReviews = /* GraphQL */ `
         updatedAt
         user {
           id
+          cognitoId
           firstName
           lastName
+          userName
           displayName
           email
           dateRegistered
@@ -373,7 +391,9 @@ export const listReviews = /* GraphQL */ `
           price
           salePrice
           mainImageUrl
+          mainImageFile
           otherImageUrls
+          otherImageFiles
           available
           brand
           numberOfSessions

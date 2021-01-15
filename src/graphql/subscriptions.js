@@ -5,8 +5,10 @@ export const onCreateUser = /* GraphQL */ `
   subscription OnCreateUser($id: String) {
     onCreateUser(id: $id) {
       id
+      cognitoId
       firstName
       lastName
+      userName
       displayName
       email
       dateRegistered
@@ -52,8 +54,10 @@ export const onUpdateUser = /* GraphQL */ `
   subscription OnUpdateUser($id: String) {
     onUpdateUser(id: $id) {
       id
+      cognitoId
       firstName
       lastName
+      userName
       displayName
       email
       dateRegistered
@@ -99,8 +103,10 @@ export const onDeleteUser = /* GraphQL */ `
   subscription OnDeleteUser($id: String) {
     onDeleteUser(id: $id) {
       id
+      cognitoId
       firstName
       lastName
+      userName
       displayName
       email
       dateRegistered
@@ -152,8 +158,10 @@ export const onCreateEnrolledUsers = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -188,7 +196,9 @@ export const onCreateEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -216,8 +226,10 @@ export const onUpdateEnrolledUsers = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -252,7 +264,9 @@ export const onUpdateEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -280,8 +294,10 @@ export const onDeleteEnrolledUsers = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -316,7 +332,9 @@ export const onDeleteEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -347,7 +365,9 @@ export const onCreateOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
+      mainImageFile
       otherImageUrls
+      otherImageFiles
       available
       brand
       numberOfSessions
@@ -393,7 +413,9 @@ export const onUpdateOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
+      mainImageFile
       otherImageUrls
+      otherImageFiles
       available
       brand
       numberOfSessions
@@ -439,7 +461,9 @@ export const onDeleteOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
+      mainImageFile
       otherImageUrls
+      otherImageFiles
       available
       brand
       numberOfSessions
@@ -484,8 +508,10 @@ export const onCreateReview = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -520,7 +546,9 @@ export const onCreateReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -550,8 +578,10 @@ export const onUpdateReview = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -586,7 +616,9 @@ export const onUpdateReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
@@ -616,8 +648,10 @@ export const onDeleteReview = /* GraphQL */ `
       updatedAt
       user {
         id
+        cognitoId
         firstName
         lastName
+        userName
         displayName
         email
         dateRegistered
@@ -652,7 +686,9 @@ export const onDeleteReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
+        mainImageFile
         otherImageUrls
+        otherImageFiles
         available
         brand
         numberOfSessions
