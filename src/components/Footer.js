@@ -1,12 +1,17 @@
-import React from "react";
+import React from "react"
 // import SocialIcon from "./SocialIcon";
 // import LogoBlock from "./LogoBlock";
 
 export default function Footer() {
   return (
-    <footer>
-      FOOTER
-      {/* <LogoBlock width="40px" color="black" fontSize="24px" />
+    <footer className="flex justify-center flex-shrink-0">
+      <div className="flex w-fw px-8 desktop:px-0 border-solid border-t border-gray-300 items-center">
+        <span className="block text-gray-700 pt-4 pb-8 mt-2 text-xs">
+          © 2020 Mighty Dame Fitness. All rights reserved.
+        </span>
+      </div>
+    </footer>
+    /* <LogoBlock width="40px" color="black" fontSize="24px" />
       <AllLinkGroups>
         <LinkContainer>
           <Heading>Socialize With Us</Heading>
@@ -29,51 +34,6 @@ export default function Footer() {
             <ListItem>Contact Us Directly</ListItem>
           </LinkList>
         </LinkContainer>
-      </AllLinkGroups> */}
-    </footer>
-  );
+      </AllLinkGroups> */
+  )
 }
-
-// const StyledFooter = styled.footer`
-//   display: flex;
-//   flex-shrink: 0;
-//   height: 175px;
-//   padding: 0 10px;
-//   background-color: white;
-// `;
-
-// const AllLinkGroups = styled.div`
-//   display: flex;
-//   margin-left: auto;
-// `;
-
-// const LinkContainer = styled.div`
-//   display: flex;
-//   flex-flow: column nowrap;
-//   border-radius: 5px;
-//   height: 80%;
-//   width: 200px;
-//   margin: 10px;
-//   padding: 5px;
-//   background-color: rgba(0, 0, 0, 0.2);
-// `;
-
-// const LinkList = styled.ol`
-//   display: flex;
-//   flex-flow: column nowrap;
-// `;
-
-// const ListItem = styled.li`
-//   width: 80%;
-//   height: 25px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   padding: 0 10px 0 10px;
-//   border-radius: 5px;
-//   :hover {
-//     background-color: whitesmoke;
-//   }
-// `;
-
-// const Heading = styled.h3``;

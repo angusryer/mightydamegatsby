@@ -15,7 +15,14 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         custom: {
-          families: ["Fredericka the Great", 'Libre Franklin', '-apple-system', 'Helvetica Neue', 'sans-serif'],
+          families: [
+            "gagalin",
+            "Eina",
+            "Libre Franklin",
+            "-apple-system",
+            "Helvetica Neue",
+            "sans-serif",
+          ],
           urls: ["/fonts/fonts.css"],
         },
       },
@@ -24,7 +31,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `src/images`,
       },
     },
     {
@@ -36,12 +43,12 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/mightyDameLogo.png`, // This path is relative to the root of the site.
+        icon: `src/images/logoTransparentBg.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-offline`,
     `gatsby-plugin-stripe`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,

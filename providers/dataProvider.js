@@ -1,16 +1,15 @@
 import axios from "axios"
 import Amplify, { Storage } from "aws-amplify"
 import tag from "graphql-tag"
-// import fs from 'fs'
 import downloadImage from "../utils/downloadImage"
 import config from "../src/aws-exports"
 
+const fs = require('fs')
 Amplify.configure(config)
-
 const graphql = require("graphql")
 const { print } = graphql
 
-export default function fetchData(dataType, fs) {
+export default function fetchData(dataType) {
   return new Promise(async (resolve, reject) => {
     switch (dataType) {
       case "PROGRAMS_DATA":
@@ -26,14 +25,12 @@ export default function fetchData(dataType, fs) {
         })
         let programs = gqlProgramsData.data.data.byOfferType.items
 
-        console.log("PROGRAMS ===> ", programs)
-
         await Promise.all(
           programs.map(async (item, index) => {
             try {
-              const relativeUrl = `../downloads/${item.mainImageUrl}`
+              const relativeUrl = `../${item.mainImageUrl}` // is this actually a url? Because the downloadImage function needs that for its axios call
               if (
-                !fs.existsSync(`${__dirname}/public/downloads/${item.mainImageUrl}`)
+                !fs.existsSync(`${__dirname}/public/${item.mainImageUrl}`)
               ) {
                 const image = await Storage.get(item.mainImageUrl)
                 await downloadImage(image, fs)
@@ -60,14 +57,12 @@ export default function fetchData(dataType, fs) {
         })
         let products = gqlProductsData.data.data.byOfferType.items
 
-        console.log("PRODUCTS ===> ", products)
-
         await Promise.all(
           products.map(async (item, index) => {
             try {
-              const relativeUrl = `../downloads/${item.mainImageUrl}`
+              const relativeUrl = `../${item.mainImageUrl}`
               if (
-                !fs.existsSync(`${__dirname}/public/downloads/${item.mainImageUrl}`)
+                !fs.existsSync(`${__dirname}/public/${item.mainImageUrl}`)
               ) {
                 const image = await Storage.get(item.mainImageUrl)
                 await downloadImage(image, fs)
@@ -79,8 +74,8 @@ export default function fetchData(dataType, fs) {
 
             item.otherImageUrls.map( async (image, index) => {
                 try {
-                  const relativeUrl = `../downloads/${image}`
-                  if (!fs.existsSync(`${__dirname}/public/downloads/${image}`)) {
+                  const relativeUrl = `../${image}`
+                  if (!fs.existsSync(`${__dirname}/public/${image}`)) {
                     const otherImage = await Storage.get(image)
                     await downloadImage(otherImage, fs)
                   }
@@ -108,7 +103,6 @@ export default function fetchData(dataType, fs) {
         })
 
         console.log("REVIEWS ===> ", gqlReviewsData.data)
-
 
         resolve(gqlReviewsData.data.data.listReviews.items)
         break

@@ -32,9 +32,10 @@ class ContextProvider extends Component {
     }
     Auth.currentAuthenticatedUser().then(res => {
       console.log(res)
+      console.log("Auth status ===> User is authenticated")
       if (res.data) initialState.currentUser = res.data
-    }).catch(err => {
-      console.log("Auth error ===> ", err)
+    }).catch(status => {
+      console.log("Auth status ===> ", status)
     })
   }
 
