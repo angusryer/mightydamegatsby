@@ -16,7 +16,7 @@ const Image = ({ src, ...props }) => {
     fetchImage(src, updateSrc)
   }, [])
 
-  return imageSrc ? <img src={imageSrc} {...props} /> : null
+  return imageSrc ? <img src={imageSrc} alt="general" {...props} /> : null
 }
 
 export default Image

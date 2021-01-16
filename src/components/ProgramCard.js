@@ -1,44 +1,47 @@
-import React from "react";
-
-// "programId": 1,
-// "title": "Assessment 101",
-// "image": "",
-// "description": "If you're new to us and you're note sure what program fits you best, then start here.",
-// "numberOfSessions": 1,
-// "lengthOfSessionInHours": 0.5,
-// "frequencyOfSessionsPerWeek": 2,
-// "price": 39.99,
-// "available": true
+import React from "react"
 
 export default function ProgramCard(props) {
-	const {
-		title,
-		image,
-		description,
-		numberOfSessions,
-		lengthOfSessionInHours,
-		frequencyOfSessionsPerWeek,
-		price,
-		available
-	} = props;
-	return (
-		<div>
-			<img src={image} alt={title} />
-			<h3>{title}</h3>
-			<p>{description}</p>
-			<div>
-				<span>{price}</span>
-				<span>
-					{available ? "Currently Available" : "Available Soon"}
-				</span>
-			</div>
-			<div>
-				<span>Number of Sessions: {numberOfSessions}</span>
-				<span>Hours per Session: {lengthOfSessionInHours}</span>
-				<span>Sessions per Week: {frequencyOfSessionsPerWeek}</span>
-			</div>
-		</div>
-	);
+  const {
+    title,
+    image,
+    otherImages,
+    description,
+    numberOfSessions,
+    lengthOfSessionInHours,
+    frequencyOfSessionsPerWeek,
+    price,
+    available,
+  } = props
+  return (
+    <div>
+      <img className="w-auto h-60" src={image} alt={title} />
+      <div className="flex flex-wrap w-3/6 ml-auto mr-12 content-around items-center justify-end">
+        {otherImages &&
+          otherImages.map((imagePath, index) => {
+            return (
+              <img
+                key={index}
+                className="h-20 w-auto"
+                src={imagePath}
+                alt="other program views"
+              />
+            )
+          })}
+      </div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+
+      <>
+        <span>{price}</span>
+        <span>{available ? "Currently Available" : "Available Soon"}</span>
+      </>
+      <div>
+        <span>Number of Sessions: {numberOfSessions}</span>
+        <span>Hours per Session: {lengthOfSessionInHours}</span>
+        <span>Sessions per Week: {frequencyOfSessionsPerWeek}</span>
+      </div>
+    </div>
+  )
 }
 
 // const Container = styled.div`

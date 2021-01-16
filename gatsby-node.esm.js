@@ -1,17 +1,26 @@
 import Amplify from "aws-amplify"
 import fetchData from "./providers/dataProvider.js"
 import config from "./src/aws-exports"
-import fs from 'fs'
+import fs from "fs"
+// import * as graphql from "graphql"
 
 Amplify.configure(config)
 
-const graphql = require("graphql")
+// const graphql = require("graphql")
 
 //
 // Create top-level data nodes for Gatsby to construct GraphQL queries around ???
 //
 
-exports.onCreateNode = ({ node, actions}) => {
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     node: {
+//       fs: "empty",
+//     },
+//   })
+// }
+
+exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `File`) {
     fs.readFile(node.absolutePath, undefined, (_err, buf) => {
@@ -25,7 +34,6 @@ exports.sourceNodes = async ({
   createNodeId,
   createContentDigest,
 }) => {
-
   const { createNode } = actions
   const products = await fetchData("PRODUCTS_DATA", fs)
   const programs = await fetchData("PROGRAMS_DATA", fs)
@@ -53,7 +61,6 @@ exports.sourceNodes = async ({
   const productsNode = Object.assign({}, productsData, productsNodeMeta)
   createNode(productsNode)
 
-
   // create programs node
   const programsData = {
     key: "programsInfo",
@@ -75,7 +82,6 @@ exports.sourceNodes = async ({
 
   const programsNode = Object.assign({}, programsData, programsNodeMeta)
   createNode(programsNode)
-  
 
   // create reviews node
   const reviewsData = {
@@ -98,9 +104,7 @@ exports.sourceNodes = async ({
 
   const reviewsNode = Object.assign({}, reviewsData, reviewsNodeMeta)
   createNode(reviewsNode)
-
 }
-
 
 // exports.createPages = ({ graphql, actions }) => {
 //   const { createPage } = actions

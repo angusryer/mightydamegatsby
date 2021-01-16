@@ -156,9 +156,9 @@ export const listOffers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -190,9 +190,9 @@ export const getOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
-      mainImageFile
+      mainImageFileName
       otherImageUrls
-      otherImageFiles
+      otherImageFileNames
       available
       brand
       numberOfSessions
@@ -251,9 +251,9 @@ export const byOfferType = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -322,9 +322,9 @@ export const getReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -391,9 +391,9 @@ export const listReviews = /* GraphQL */ `
           price
           salePrice
           mainImageUrl
-          mainImageFile
+          mainImageFileName
           otherImageUrls
-          otherImageFiles
+          otherImageFileNames
           available
           brand
           numberOfSessions

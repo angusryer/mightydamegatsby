@@ -2,11 +2,11 @@ import React from "react"
 import CartLink from "../components/CartLink"
 import { Link } from "gatsby"
 import { SiteContext, ContextProvider } from "../context/mainContext"
-import { graphql } from "gatsby"
+// import { graphql } from "gatsby"
 
 const logo = require("../images/logoTransparentBg.png")
 
-export default function Nav(props) {
+export default function Nav() {
   return (
     <ContextProvider>
       <SiteContext.Consumer>
@@ -15,7 +15,7 @@ export default function Nav(props) {
             <nav className="h-20 p-4 flex flex-row content-center justify-between">
               <div className="flex">
                 <Link to="/">
-                  <Img className="h-full w-auto" alt="Logo" src={logo} />
+                  <img className="h-full w-auto" alt="Logo" src={logo} />
                   <h1 className="">Mighty Dame Fitness</h1>
                 </Link>
               </div>
@@ -50,12 +50,12 @@ export default function Nav(props) {
   )
 }
 
-const imageQuery = graphql`
-  query getLogo {
-    file {
-      childImageSharp {
-        fixed
-      }
-    }
-  }
-`;
+// const imageQuery = graphql`
+//   query getLogo {
+//     file {
+//       childImageSharp {
+//         fixed
+//       }
+//     }
+//   }
+// `;

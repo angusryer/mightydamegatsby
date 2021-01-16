@@ -12,12 +12,13 @@ export default function Products({ data }) {
       />
       <h1>Our Products</h1>
       <section className="flex flex-row content-center justify-evenly max-w-5xl my-0 mx-auto">
-        {data.ByOfferType.items &&
-          data.ByOfferType.items.map((product) => {
+        {data.productsInfo.data &&
+          data.productsInfo.data.map((product) => {
             return (
               <ProductCard
                 key={product.id}
-                image={product.mainImageUrl}
+                image={product.mainImageFileName}
+                otherImages={product.otherImageFileNames}
                 title={product.title}
                 description={product.shortDescription}
                 price={product.price}
@@ -30,23 +31,23 @@ export default function Products({ data }) {
   )
 }
 
-// export const productsQuery = graphql`
-//   query getAllProducts {
-//     productsInfo {
-//       data {
-//         available
-//         brand
-//         categories
-//         id
-//         keywords
-//         longDescription
-//         mainImageUrl
-//         otherImageUrls
-//         price
-//         salePrice
-//         shortDescription
-//         title
-//       }
-//     }
-//   }
-// `
+export const productsQuery = graphql`
+  query getAllProducts {
+    productsInfo {
+      data {
+        available
+        brand
+        categories
+        id
+        keywords
+        longDescription
+        mainImageFileName
+        otherImageFileNames
+        price
+        salePrice
+        shortDescription
+        title
+      }
+    }
+  }
+`

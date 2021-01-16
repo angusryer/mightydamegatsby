@@ -24,7 +24,6 @@ export default function Login() {
       await Auth.currentAuthenticatedUser()
         .then((user) => {
           if (user) {
-            console.log(user)
             setUser(user)
             setIsSignedIn(true)
             setFormState("signedIn")

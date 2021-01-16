@@ -3,13 +3,14 @@ import Amplify, { Storage } from "aws-amplify"
 import tag from "graphql-tag"
 import downloadImage from "../utils/downloadImage"
 import config from "../src/aws-exports"
+import path from "path"
+// import * as fs from "fs"
 
-const fs = require("fs")
 Amplify.configure(config)
 const graphql = require("graphql")
 const { print } = graphql
 
-export default function fetchData(dataType) {
+export default function fetchData(dataType, fs) {
   return new Promise(async (resolve, reject) => {
     switch (dataType) {
       case "PROGRAMS_DATA":
@@ -26,15 +27,21 @@ export default function fetchData(dataType) {
         let programs = gqlProgramsData.data.data.byOfferType.items
 
         await Promise.all(
+          // SEEMS LIKE ALL Storage.get(<key>) calls automatically try to get from the public directory.
+          // TODO change Admin app to upload to ./public/ folder on S3
           // Loop through all products, and use the filename key to download from S3
           // and cache the images locally. Set the items returned to the local path so
           // that any live queries grab the images from there instead of from S3 directly.
           programs.map(async (item, index) => {
-            console.log("DATA PROVIDER PROGRAMS ===> ", item)
             try {
-              const relativeUrl = `../${item.mainImageFileName}`
+              const relativeUrl = `../${item.mainImageFileName}` // once compiled, components will query
+              // for these images straight from the local server "public" folder, and these queries will
+              // be executed from the POV of the src code, so the relative path must be up one level
+              // in the public folder
               if (
-                !fs.existsSync(`${__dirname}/public/${item.mainImageFileName}`)
+                !fs.existsSync(
+                  path.join(__dirname, "public", item.mainImageFileName)
+                )
               ) {
                 const image = await Storage.get(item.mainImageFileName)
                 await downloadImage(image, fs)
@@ -46,11 +53,11 @@ export default function fetchData(dataType) {
             item.otherImageFileNames.map(async (image, index) => {
               try {
                 const relativeUrl = `../${image}`
-                if (!fs.existsSync(`${__dirname}/public/${image}`)) {
+                if (!fs.existsSync(path.join(__dirname, "public", image))) {
                   const otherImage = await Storage.get(image)
                   await downloadImage(otherImage, fs)
                 }
-                image[index] = relativeUrl
+                item.otherImageFileNames[index] = relativeUrl
               } catch (err) {
                 console.log("error downloading image: ", err)
               }
@@ -76,11 +83,12 @@ export default function fetchData(dataType) {
 
         await Promise.all(
           products.map(async (item, index) => {
-            console.log("DATA PROVIDER PRODUCTS ===> ", item)
             try {
               const relativeUrl = `../${item.mainImageFileName}`
               if (
-                !fs.existsSync(`${__dirname}/public/${item.mainImageFileName}`)
+                !fs.existsSync(
+                  path.join(__dirname, "public", item.mainImageFileName)
+                )
               ) {
                 const image = await Storage.get(item.mainImageFileName)
                 await downloadImage(image, fs)
@@ -93,11 +101,11 @@ export default function fetchData(dataType) {
             item.otherImageFileNames.map(async (image, index) => {
               try {
                 const relativeUrl = `../${image}`
-                if (!fs.existsSync(`${__dirname}/public/${image}`)) {
+                if (!fs.existsSync(path.join(__dirname, "public", image))) {
                   const otherImage = await Storage.get(image)
                   await downloadImage(otherImage, fs)
                 }
-                image[index] = relativeUrl
+                item.otherImageFileNames[index] = relativeUrl
               } catch (err) {
                 console.log("error downloading image: ", err)
               }
@@ -118,8 +126,6 @@ export default function fetchData(dataType) {
             query: print(listAllReviewsQuery),
           },
         })
-
-        console.log("REVIEWS ===> ", gqlReviewsData.data)
 
         resolve(gqlReviewsData.data.data.listReviews.items)
         break

@@ -50,7 +50,7 @@ const Cart = ({ context }) => {
                         <div className="border-b py-10" key={item.id}>
 
                           { /* Responsive - Desktop */}
-                          <div className="flex items-center hidden md:flex">
+                          <div className="items-center hidden md:flex">
                             <Link to={makeSlug(item.name)}>
                               <Image className="w-32 m-0" src={item.image} alt={item.name} />
                             </Link>
@@ -73,7 +73,7 @@ const Cart = ({ context }) => {
                                 {DENOMINATION + item.price}
                               </p>
                             </div>
-                            <div role="button" onClick={() => removeFromCart(item)} className="
+                            <div role="button" tabIndex="-5" onKeyDown={() => removeFromCart(item)} onClick={() => removeFromCart(item)} className="
                             m-0 ml-10 text-gray-900 text-s cursor-pointer
                             ">
                               <FaTimes />
@@ -81,7 +81,7 @@ const Cart = ({ context }) => {
                           </div>
 
                           { /* Responsive - Mobile */}
-                          <div className="flex items-center flex md:hidden">
+                          <div className="flex items-center md:hidden">
                             <Link to={makeSlug(item.name)}>
                               <Image className="w-32 m-0" src={item.image} alt={item.name} />
                             </Link>
@@ -107,7 +107,7 @@ const Cart = ({ context }) => {
                                 </p>
                               </div>
                             </div>
-                            <div role="button" onClick={() => removeFromCart(item)} className="
+                            <div role="button" tabIndex="-10" onKeyDown={() => removeFromCart(item)} onClick={() => removeFromCart(item)} className="
                             m-0 ml-10 text-gray-900 text-s cursor-pointer mr-2
                             ">
                               <FaTimes />

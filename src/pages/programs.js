@@ -12,12 +12,13 @@ export default function Programs({ data }) {
       />
       <h1>Our Fitness &amp; Nutrition Programs</h1>
       <section className="flex flex-row content-center justify-evenly max-w-5xl my-0 mx-auto">
-        {data.ByOfferType.items &&
-          data.ByOfferType.items.map((program) => {
+        {data.programsInfo.data &&
+          data.programsInfo.data.map((program) => {
             return (
               <ProgramCard
                 key={program.id}
-                image={program.mainImageUrl}
+                image={program.mainImageFileName}
+                otherImages={program.otherImageFileNames}
                 title={program.title}
                 description={program.longDescription}
                 numberOfSessions={program.numberOfSessions}
@@ -33,26 +34,26 @@ export default function Programs({ data }) {
   )
 }
 
-// export const programsQuery = graphql`
-//   query getAllPrograms {
-//     programsInfo {
-//       data {
-//         available
-//         brand
-//         categories
-//         id
-//         keywords
-//         longDescription
-//         mainImageUrl
-//         otherImageUrls
-//         price
-//         salePrice
-//         shortDescription
-//         title
-//         numberOfSessions
-//         lengthOfSessionInHours
-//         frequencyOfSessionsPerWeek
-//       }
-//     }
-//   }
-// `
+export const programsQuery = graphql`
+  query getAllPrograms {
+    programsInfo {
+      data {
+        available
+        brand
+        categories
+        id
+        keywords
+        longDescription
+        mainImageFileName
+        otherImageFileNames
+        price
+        salePrice
+        shortDescription
+        title
+        numberOfSessions
+        lengthOfSessionInHours
+        frequencyOfSessionsPerWeek
+      }
+    }
+  }
+`

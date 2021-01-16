@@ -196,9 +196,9 @@ export const onCreateEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -264,9 +264,9 @@ export const onUpdateEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -332,9 +332,9 @@ export const onDeleteEnrolledUsers = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -365,9 +365,9 @@ export const onCreateOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
-      mainImageFile
+      mainImageFileName
       otherImageUrls
-      otherImageFiles
+      otherImageFileNames
       available
       brand
       numberOfSessions
@@ -413,9 +413,9 @@ export const onUpdateOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
-      mainImageFile
+      mainImageFileName
       otherImageUrls
-      otherImageFiles
+      otherImageFileNames
       available
       brand
       numberOfSessions
@@ -461,9 +461,9 @@ export const onDeleteOffer = /* GraphQL */ `
       price
       salePrice
       mainImageUrl
-      mainImageFile
+      mainImageFileName
       otherImageUrls
-      otherImageFiles
+      otherImageFileNames
       available
       brand
       numberOfSessions
@@ -546,9 +546,9 @@ export const onCreateReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -616,9 +616,9 @@ export const onUpdateReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions
@@ -686,9 +686,9 @@ export const onDeleteReview = /* GraphQL */ `
         price
         salePrice
         mainImageUrl
-        mainImageFile
+        mainImageFileName
         otherImageUrls
-        otherImageFiles
+        otherImageFileNames
         available
         brand
         numberOfSessions

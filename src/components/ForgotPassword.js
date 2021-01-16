@@ -74,7 +74,7 @@ export default function ForgotPassword({ toggleFormState }) {
 						<label htmlFor='username'>Username</label>
 						<input
 							id='username'
-							autoFocus
+							// autoFocus
 							type='text'
 							value={fields.username}
 							onChange={handleFieldChange}
@@ -95,10 +95,11 @@ export default function ForgotPassword({ toggleFormState }) {
 					<label htmlFor='code'>Confirmation Code</label>
 					<input
 						id='code'
-						autoFocus
+						// autoFocus
 						type='tel'
 						value={fields.code}
 						onChange={handleFieldChange}
+						tabIndex="-1"
 					/>
 					<p>
 						Please check the email you signed up with for the reset confirmation
@@ -113,6 +114,7 @@ export default function ForgotPassword({ toggleFormState }) {
 						type='password'
 						value={fields.password}
 						onChange={handleFieldChange}
+						tabIndex="-2"
 					/>
 				</div>
 				<div id='confirmPassword'>
@@ -122,6 +124,7 @@ export default function ForgotPassword({ toggleFormState }) {
 						type='password'
 						value={fields.confirmPassword}
 						onChange={handleFieldChange}
+						tabIndex="-3"
 					/>
 				</div>
 				<button type='submit' disabled={!validateResetForm()}>
@@ -136,7 +139,7 @@ export default function ForgotPassword({ toggleFormState }) {
 			<div className='success'>
 				<p>Your password has been reset.</p>
 				<p>
-					<span onclick={() => toggleFormState("signIn")}>
+					<span role='button' tabIndex="-10" onKeyDown={() => toggleFormState("signIn")}  onclick={() => toggleFormState("signIn")}>
 						Click here to login with your new credentials.
 					</span>
 				</p>
@@ -153,8 +156,8 @@ export default function ForgotPassword({ toggleFormState }) {
 					? renderConfirmationForm()
 					: renderSuccessMessage()}
 			</div>
-			<span onClick={() => toggleFormState("signUp")}>Sign Up</span>
-			<span onClick={() => toggleFormState("signIn")}>Sign In</span>
+			<span role='button' tabIndex="-15" onKeyDown={() => toggleFormState("signUp")} onClick={() => toggleFormState("signUp")}>Sign Up</span>
+			<span role='button' tabIndex="-20" onKeyDown={() => toggleFormState("signIn")} onClick={() => toggleFormState("signIn")}>Sign In</span>
 		</>
 	);
 }

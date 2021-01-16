@@ -1083,7 +1083,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "mainImageFile",
+          "name" : "mainImageFileName",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1109,7 +1109,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "otherImageFiles",
+          "name" : "otherImageFileNames",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2690,7 +2690,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "mainImageFile",
+          "name" : "mainImageFileName",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2708,7 +2708,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "otherImageFiles",
+          "name" : "otherImageFileNames",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4222,7 +4222,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "mainImageFile",
+          "name" : "mainImageFileName",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4244,7 +4244,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "otherImageFiles",
+          "name" : "otherImageFileNames",
           "description" : null,
           "type" : {
             "kind" : "LIST",
@@ -4396,7 +4396,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "mainImageFile",
+          "name" : "mainImageFileName",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4414,7 +4414,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "otherImageFiles",
+          "name" : "otherImageFileNames",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -4614,7 +4614,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "mainImageFile",
+          "name" : "mainImageFileName",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -4636,7 +4636,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "otherImageFiles",
+          "name" : "otherImageFileNames",
           "description" : null,
           "type" : {
             "kind" : "LIST",

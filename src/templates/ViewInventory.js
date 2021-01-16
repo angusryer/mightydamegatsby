@@ -88,7 +88,7 @@
 //                         placeholder="Item price"
 //                       />
 //                     </div>
-//                     <div role="button" onClick={() => this.saveItem(index)} className="m-0 ml-10 text-gray-900 text-s cursor-pointer">
+//                     <div role="button" onKeyDown={() => this.saveItem(index)} onClick={() => this.saveItem(index)} className="m-0 ml-10 text-gray-900 text-s cursor-pointer">
 //                       <p className="text-sm ml-10 m-0">Save</p>
 //                     </div>
 //                   </div>

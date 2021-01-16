@@ -36,7 +36,7 @@ const calculateShipping = () => {
   return 0
 }
 
-const Input = ({ onChange, value, name, placeholder }) => (
+const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
   <input
     onChange={onChange}
     value={value}
@@ -44,6 +44,7 @@ const Input = ({ onChange, value, name, placeholder }) => (
     type="text"
     placeholder={placeholder}
     name={name}
+    tabIndex={tabIndex}
   />
 )
 
@@ -181,6 +182,7 @@ const Checkout = ({ context }) => {
                       value={input.name}
                       name="name"
                       placeholder="Cardholder name"
+                      tabIndex="0"
                     />
                     <CardElement className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                     <Input
@@ -188,37 +190,42 @@ const Checkout = ({ context }) => {
                       value={input.email}
                       name="email"
                       placeholder="Email"
+                      tabIndex="-1"
                     />
                     <Input
                       onChange={onChange}
                       value={input.street}
                       name="street"
                       placeholder="Street"
+                      tabIndex="-2"
                     />
                     <Input
                       onChange={onChange}
                       value={input.city}
                       name="city"
                       placeholder="City"
+                      tabIndex="-3"
                     />
                     <Input
                       onChange={onChange}
                       value={input.state}
                       name="state"
                       placeholder="State"
+                      tabIndex="-4"
                     />
                     <Input
                       onChange={onChange}
                       value={input.postal_code}
                       name="postal_code"
                       placeholder="Postal Code"
+                      tabIndex="-5"
                     />
                     <button
                       type="submit"
                       disabled={!stripe}
                       onClick={handleSubmit}
                       className="hidden md:block bg-secondary hover:bg-black text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
-                      type="button"
+                      tabIndex="-6"
                     >
                       Confirm order
                     </button>
@@ -249,7 +256,7 @@ const Checkout = ({ context }) => {
                   disabled={!stripe}
                   onClick={handleSubmit}
                   className="md:hidden bg-secondary hover:bg-black text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button"
+                  tabIndex="-7"
                 >
                   Confirm order
                 </button>
