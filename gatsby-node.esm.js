@@ -1,10 +1,10 @@
 import Amplify from "aws-amplify"
 import fetchData from "./providers/dataProvider.js"
-import config from "./src/aws-exports"
 import fs from "fs"
+import awsmobile from "./src/aws-exports"
 // import * as graphql from "graphql"
 
-Amplify.configure(config)
+Amplify.configure(awsmobile)
 
 // const graphql = require("graphql")
 

@@ -4,10 +4,16 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-import Amplify from 'aws-amplify'
-import config from './src/aws-exports'
-
-import "./src/styles/site.css"
+import React from "react"
+import Amplify from "aws-amplify"
+import awsmobile from "./src/aws-exports"
+import { ApolloProvider } from "react-apollo"
+import { gqlClient } from "./src/context/gqlClient"
 import "./src/layouts/layout.css"
+import "./src/styles/site.css"
 
-Amplify.configure(config)
+Amplify.configure(awsmobile)
+
+export const wrapRootElement = ({ element }) => (
+  <ApolloProvider client={gqlClient}>{element}</ApolloProvider>
+)

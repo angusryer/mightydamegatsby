@@ -30,12 +30,8 @@ class ContextProvider extends Component {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(initialState))
       }
     }
-    Auth.currentAuthenticatedUser().then(res => {
-      console.log(res)
-      console.log("Auth status ===> User is authenticated")
+    Auth.currentAuthenticatedUser().then((res) => {
       if (res.data) initialState.currentUser = res.data
-    }).catch(status => {
-      console.log("Auth status ===> ", status)
     })
   }
 

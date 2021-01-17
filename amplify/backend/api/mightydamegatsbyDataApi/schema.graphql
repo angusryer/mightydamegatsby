@@ -2,7 +2,7 @@ type User
   @model
   @auth(
     rules: [
-      { allow: public, operations: [read], provider: apiKey }
+      { allow: public, operations: [read, create], provider: apiKey }
       {
         allow: owner
         ownerField: "id"
