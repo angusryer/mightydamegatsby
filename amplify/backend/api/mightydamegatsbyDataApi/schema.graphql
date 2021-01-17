@@ -46,6 +46,7 @@ type EnrolledUsers
   @model(queries: null)
   @auth(
     rules: [
+      { allow: public, operations: [read], provider: apiKey },
       {
         allow: groups
         groups: ["Admin"]
