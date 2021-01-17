@@ -3,23 +3,46 @@ import gql from "graphql-tag"
 import { useMutation } from "react-apollo"
 import { v4 as uuid } from "uuid"
 import { createUser } from "../graphql/mutations"
-import { API, graphqlOperations } from 'aws-amplify'
+// import { API, graphqlOperations } from 'aws-amplify'
 
 const SUBSCRIBE_USER = gql(createUser)
+
+function getFormattedDate(dateObject) {
+  const month = dateObject.getUTCMonth() + 1 //months from 1-12
+  const day = dateObject.getUTCDate()
+  const year = dateObject.getUTCFullYear()
+  return year + "/" + month + "/" + day
+}
 
 const subscribe = async (e, subscribeUser) => {
   e.preventDefault()
   try {
-    await subscribeUser({
+    const data = await subscribeUser({
       variables: {
         input: {
           id: uuid(),
-          userType: "PUBLIC",
+          cognitoId: "",
+          firstName: "",
+          lastName: "",
+          userName: "",
+          displayName: "",
           email: e.target.email.value,
+          dateRegistered: "",
+          userType: "PUBLIC",
+          streetAddressOne: "",
+          streetAddressTwo: "",
+          city: "",
+          provinceState: "",
+          country: "",
+          postalZip: "",
+          phone: "",
+          isSubscribed: true,
+          dateSubscribed: getFormattedDate(new Date()),
+          avatarUrl: "",
         },
       },
     })
-    console.log("SUCCESS")
+    console.log("SUCCESS ==> ", data)
   } catch (err) {
     console.log("Could not subscribe user ==> ", err)
   } finally {
