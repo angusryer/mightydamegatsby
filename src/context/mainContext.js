@@ -1,6 +1,7 @@
 import React, { createContext, Component } from "react"
 import { toast } from "react-toastify"
 import { Auth } from "aws-amplify"
+import { colors } from "../theme"
 
 const STORAGE_KEY = "MDF_"
 
@@ -113,6 +114,7 @@ class ContextProvider extends Component {
       <SiteContext.Provider
         value={{
           ...state,
+          ...colors,
           addToCart: this.addToCart,
           clearCart: this.clearCart,
           removeFromCart: this.removeFromCart,

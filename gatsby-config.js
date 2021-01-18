@@ -17,11 +17,7 @@ module.exports = {
         custom: {
           families: [
             "gagalin",
-            "Eina",
-            "Libre Franklin",
-            "-apple-system",
-            "Helvetica Neue",
-            "sans-serif",
+            "Eina"
           ],
           urls: ["/fonts/fonts.css"],
         },

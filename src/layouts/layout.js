@@ -8,7 +8,7 @@ import { colors } from "../theme"
 
 toast.configure({
   progressStyle: {
-    background: colors.primary,
+    background: colors.violet,
   },
 })
 

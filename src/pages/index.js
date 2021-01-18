@@ -7,8 +7,8 @@ import Subscribe from "../components/Subscribe"
 export default function Home({ data }) {
   return (
     <>
-      <SEO title="Home | Mighty Dame Fitness" />
-      <div className="w-full">
+      <SEO title="Home" />
+      <div className="w-full bg-purple-400">
         <div
           className="lg:h-hero
         p-6 pb-10 sm:pb-6

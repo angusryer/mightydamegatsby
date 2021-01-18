@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import gql from "graphql-tag"
 import { useMutation } from "react-apollo"
 import { v4 as uuid } from "uuid"
@@ -14,7 +14,7 @@ function getFormattedDate(dateObject) {
   return year + "/" + month + "/" + day
 }
 
-const subscribe = async (e, subscribeUser) => {
+const subscribe = async (e, subscribeUser, setSubscribeSuccess) => {
   e.preventDefault()
   try {
     const data = await subscribeUser({
@@ -42,7 +42,7 @@ const subscribe = async (e, subscribeUser) => {
         },
       },
     })
-    console.log("SUCCESS ==> ", data)
+    data && setSubscribeSuccess(true)
   } catch (err) {
     console.log("Could not subscribe user ==> ", err)
   } finally {
@@ -57,11 +57,11 @@ const subscribe = async (e, subscribeUser) => {
 }
 
 export default function Subscribe() {
-  // const [subscribeSuccess, setSubscribeSuccess] = useState(false)
-  const [subscribeUser, { data }] = useMutation(SUBSCRIBE_USER)
+  const [subscribeSuccess, setSubscribeSuccess] = useState(false)
+  const [subscribeUser] = useMutation(SUBSCRIBE_USER)
 
   return (
-    <form onSubmit={(e) => subscribe(e, subscribeUser)}>
+    <form onSubmit={(e) => subscribe(e, subscribeUser, setSubscribeSuccess)}>
       <input
         className="pd-3 border rounded"
         type="email"
@@ -71,7 +71,7 @@ export default function Subscribe() {
       <button className="pd-3" type="submit">
         Start Growing
       </button>
-      {data && <span>Subscribed!</span>}
+      {subscribeSuccess && <span>Subscribed!</span>}
     </form>
   )
 }
