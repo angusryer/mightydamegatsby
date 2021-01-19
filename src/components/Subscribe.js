@@ -13,8 +13,34 @@ function getFormattedDate(dateObject) {
   return year + "/" + month + "/" + day
 }
 
-const subscribe = async (e, subscribeUser, setSubscribeSuccess) => {
+const FORM_URL = "https://app.convertkit.com/forms/1970683/subscriptions"
+
+const subscribe = async (e, subscribeUser, setSubscribeSuccess, setEmail) => {
   e.preventDefault()
+
+  const formData = new FormData(e.target)
+
+  try {
+    const response = await fetch(FORM_URL, {
+      method: "post",
+      body: formData,
+      headers: {
+        accept: "application/json",
+      },
+    })
+    setEmail("")
+
+    const json = await response.json()
+
+    if (json.status === "success") {
+      setSubscribeSuccess(true)
+      return
+    }
+  } catch (err) {
+    setSubscribeSuccess(false)
+    console.log("Couldn't subscribe user: ", err)
+  }
+
   try {
     const data = await subscribeUser({
       variables: {
@@ -41,7 +67,7 @@ const subscribe = async (e, subscribeUser, setSubscribeSuccess) => {
         },
       },
     })
-    data && setSubscribeSuccess(true)
+    data && console.log("SUCCESS adding subscriber to DB")
   } catch (err) {
     console.log("Could not subscribe user ==> ", err)
   } finally {
@@ -56,14 +82,27 @@ const subscribe = async (e, subscribeUser, setSubscribeSuccess) => {
 export default function Subscribe(styles) {
   const [subscribeSuccess, setSubscribeSuccess] = useState(false)
   const [subscribeUser] = useMutation(SUBSCRIBE_USER)
+  const [email, setEmail] = useState("")
 
   return (
-    <form className={styles.form} onSubmit={(e) => subscribe(e, subscribeUser, setSubscribeSuccess)}>
+    <form
+      className={styles.form}
+      onSubmit={(e) =>
+        subscribe(e, subscribeUser, setSubscribeSuccess, setEmail)
+      }
+      action={FORM_URL}
+      method="post"
+    >
       <input
         className={styles.input}
+        aria-label="Your email"
+        placeholder="Your beautiful email"
         type="email"
         name="email"
         id="email"
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+        required
       />
       <button className={styles.button} type="submit">
         Start Growing
@@ -72,4 +111,3 @@ export default function Subscribe(styles) {
     </form>
   )
 }
-
