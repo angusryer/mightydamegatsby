@@ -12,7 +12,7 @@ export default function Instructors() {
   return (
     <>
       <SEO
-        title="Instructors | Mighty Dame Fitness"
+        title="Instructors"
         desription="Mighty Dame Fitness Instructors"
       />
       <h1>Our Instructors</h1>

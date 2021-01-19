@@ -5,6 +5,12 @@ module.exports = {
   theme: {
     backgroundImage: {
       hero: "url('../images/hero.jpg')",
+      point1: "url('../images/point1.jpg')",
+      point2: "url('../images/point2.jpg')",
+      point3: "url('../images/point3.jpg')",
+      point4: "url('../images/point4.jpg')",
+      point5: "url('../images/point5.jpg')",
+      point16: "url('../images/point6.jpg')",
     },
     colors: {
       white: "#ffffff",

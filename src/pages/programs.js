@@ -7,7 +7,7 @@ export default function Programs({ data }) {
   return (
     <>
       <SEO
-        title="Programs | Mighty Dame Fitness"
+        title="Programs"
         desription="Mighty Dame Fitness Programs"
       />
       <h1>Our Fitness &amp; Nutrition Programs</h1>

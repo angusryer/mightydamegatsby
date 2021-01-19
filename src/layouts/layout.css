@@ -8,10 +8,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-html, body, #root, #___gatsby, #gatsby-focus-wrapper {
+html,
+body,
+#root,
+#___gatsby,
+#gatsby-focus-wrapper {
   height: 100%;
 }
-body, #root, #___gatsby, #gatsby-focus-wrapper {
+body,
+#root,
+#___gatsby,
+#gatsby-focus-wrapper {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -34,8 +41,9 @@ li {
 a {
   text-decoration: none;
 }
-h1, h2 {
-  font-family: "gagalin"
+h1,
+h2 {
+  font-family: "gagalin";
 }
 article,
 aside,
@@ -654,4 +662,8 @@ pre tt:after {
 }
 .grow-content {
   flex: 1 0 auto;
+}
+
+.reverse:nth-child(2) {
+  flex-direction: row-reverse;
 }

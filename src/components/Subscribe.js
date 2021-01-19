@@ -29,10 +29,9 @@ const subscribe = async (e, subscribeUser, setSubscribeSuccess, setEmail) => {
       },
     })
     setEmail("")
-    console.log(response)
     const json = await response.json()
 
-    if (json.status === "success") {
+    if (json.status === "success" || 200) {
       setSubscribeSuccess(true)
       return
     }
