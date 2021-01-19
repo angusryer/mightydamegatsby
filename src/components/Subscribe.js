@@ -13,7 +13,7 @@ function getFormattedDate(dateObject) {
   return year + "/" + month + "/" + day
 }
 
-const FORM_URL = "https://app.convertkit.com/forms/1970683/subscriptions"
+const FORM_URL = "https://app.convertkit.com/forms/1970875/subscriptions"
 
 const subscribe = async (e, subscribeUser, setSubscribeSuccess, setEmail) => {
   e.preventDefault()
@@ -29,7 +29,7 @@ const subscribe = async (e, subscribeUser, setSubscribeSuccess, setEmail) => {
       },
     })
     setEmail("")
-
+    console.log(response)
     const json = await response.json()
 
     if (json.status === "success") {
@@ -98,8 +98,8 @@ export default function Subscribe(styles) {
         aria-label="Your email"
         placeholder="Your beautiful email"
         type="email"
-        name="email"
-        id="email"
+        name="email_address"
+        id="email_address"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
         required
