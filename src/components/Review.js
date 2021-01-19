@@ -1,9 +1,9 @@
-import React from "react";
-import Rating from "./Rating";
+import React from "react"
+import Rating from "./Rating"
 
-const backupImage = require('../images/User.png')
+const backupImage = require("../images/User.png")
 
-export default function Review({ value, quote, reviewer, image }) {
+export default function Review({ value, quote, image }) {
   return (
     <div className="w-60 lg:max-w-80 sm:max-w-64">
       <div className="flex flex-nowrap">
@@ -13,10 +13,14 @@ export default function Review({ value, quote, reviewer, image }) {
       <q>{`${quote}`}</q>
       <div>
         <div className="w-10 h-10">
-          <img className="w-full h-auto" src={image || backupImage} alt="user avatar" />
+          <img
+            className="w-full h-auto"
+            src={image || backupImage}
+            alt="user avatar"
+          />
         </div>
         {/* <span>{reviewer}</span> */}
       </div>
     </div>
-  );
+  )
 }

@@ -10,6 +10,7 @@ const initialState = {
   numberOfItemsInCart: 0,
   total: 0,
   currentUser: {},
+  colors: {}
 }
 
 const SiteContext = createContext()

@@ -3,7 +3,6 @@ import gql from "graphql-tag"
 import { useMutation } from "react-apollo"
 import { v4 as uuid } from "uuid"
 import { createUser } from "../graphql/mutations"
-// import { API, graphqlOperations } from 'aws-amplify'
 
 const SUBSCRIBE_USER = gql(createUser)
 
@@ -49,43 +48,28 @@ const subscribe = async (e, subscribeUser, setSubscribeSuccess) => {
     console.log("Subscription process complete.")
   }
 
-  // modify graphql schema to suit changes from my work on the admin side
-  // send user email to DynamoDB (via API?), and assign that record 'true' for isSubscribed
-  // double check the user does not already exist
+  // double check the user does not already exist in Dynamo
   // create lambda that sends a SES email from amazon welcoming new user via a DynamoDB 'on new record' trigger
   // --- look into using the amazon SES template maker to see if it can access a filtered list of DynamoDB email records
 }
 
-export default function Subscribe() {
+export default function Subscribe(styles) {
   const [subscribeSuccess, setSubscribeSuccess] = useState(false)
   const [subscribeUser] = useMutation(SUBSCRIBE_USER)
 
   return (
-    <form onSubmit={(e) => subscribe(e, subscribeUser, setSubscribeSuccess)}>
+    <form className={styles.form} onSubmit={(e) => subscribe(e, subscribeUser, setSubscribeSuccess)}>
       <input
-        className="pd-3 border rounded"
+        className={styles.input}
         type="email"
         name="email"
         id="email"
       />
-      <button className="pd-3" type="submit">
+      <button className={styles.button} type="submit">
         Start Growing
       </button>
-      {subscribeSuccess && <span>Subscribed!</span>}
+      {subscribeSuccess && <span className={styles.message}>Subscribed!</span>}
     </form>
   )
 }
 
-// const createUserMutation = graphql`
-//   mutation {
-//     email {
-//       data {
-//         id
-//         rating
-//         title
-//         comment
-//         ownerId
-//       }
-//     }
-//   }
-// `

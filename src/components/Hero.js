@@ -7,35 +7,6 @@ import userImage from "../assets/User.png";
 import reviewData from "../seed/reviews.json";
 
 export default function Hero() {
-	
-	const [reviews, setReviews] = useState([]);
-
-	useEffect(() => {
-
-		const topReviews = [];
-		for (let i = 0; i < 3; i++) {
-			topReviews.push(reviewData[i])
-		}
-		setReviews(topReviews);
-		
-		// Auth.currentAuthenticatedUser((user) => {
-		// 	user.getSession((err, session) => {
-		// 		if (err) {
-		// 			throw new Error(err);
-		// 		}
-
-		// 		const sessionToken = session.getIdToken().jwtToken;
-		// 		console.log(sessionToken)
-
-		// 		// fetchItems(sessionToken);
-		// 		API.get("mightydameapi", "/api/reviews")
-		// 			.then((res) => {
-		// 				setReviews(res.data);
-		// 			})
-		// 			.catch((err) => console.log("/api/reviews GET: ", err));
-		// 	});
-		// });
-	}, []);
 
 	return (
 		<section>

@@ -1,22 +1,48 @@
-const colors = require("./src/theme")
-
-
+const { colors } = require("./src/theme")
 
 module.exports = {
   purge: ["./src/**/*.js", "./src/**/**/*.js"],
   theme: {
+    backgroundImage: {
+      hero: "url('../images/hero.jpg')",
+    },
+    colors: {
+      white: "#ffffff",
+      black: "#000000",
+      light: colors.light,
+      dark: colors.dark,
+      red: colors.red,
+      orange: colors.orange,
+      violet: colors.violet,
+      green: colors.green,
+    },
+    fontFamily: {
+      gagalin: ["gagalin"],
+      rancho: ["rancho"],
+      abril: ["abril"],
+      alex: ["alex"],
+      amble: ["amble"],
+      cardo: ["cardo"],
+      vibes: ["vibes"],
+      montez: ["montez"],
+      prata: ["prata"],
+      rufina: ["rufina"],
+      satisfy: ["satisfy"],
+      scheherazade: ["scheherazade"],
+    },
     extend: {
-      // backgroundImage: (colors) => ({
-      //   hero: "url('./src/images/AloraGriffiths.jpg')",
-      // }),
       screens: {
-        mobile: "600px",
-        c_large: "1200px",
-        desktop: "1440px",
+        xxs: "280px",
+        xs: "320px",
+        nav: "850px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        xxl: "1536px",
       },
       width: {
         28: "7rem",
-        c_large: "1200px",
         38: "10rem",
         48: "12rem",
         52: "13rem",
@@ -62,7 +88,6 @@ module.exports = {
         60: "60px",
       },
       height: {
-        hero: "600px",
         48: "12rem",
         52: "13rem",
         56: "14rem",
@@ -102,7 +127,7 @@ module.exports = {
       },
       fontSize: {
         xxs: ".6rem",
-        smaller: ".8rem",
+        xs: ".8rem",
       },
       padding: {
         ".5": ".125rem",
@@ -128,7 +153,6 @@ module.exports = {
         140: "35rem",
         144: "36rem",
         fw: "1440px",
-        c_large: "1200px",
       },
       maxHeight: {
         36: "9rem",
@@ -155,9 +179,6 @@ module.exports = {
         144: "36rem",
         fw: "1440px",
       },
-      fontFamily: {
-        light: ["Eina Light"],
-      },
       zIndex: {
         "-2": "-2",
         "-4": "-4",
@@ -165,18 +186,9 @@ module.exports = {
         "-12": "-12",
       },
       textColor: {
-        primary: "#000000",
-        secondary: "#00baa6",
+        primary: colors.dark,
       },
     },
-    backgroundColor: (theme) => ({
-      ...theme("colors"),
-      primary: "#000000",
-      secondary: "#00baa6",
-      light: "#f5f5f5",
-      "light-200": "#f0f0f0",
-      "light-300": "#e8e8e8",
-    }),
   },
   variants: {},
   plugins: [],

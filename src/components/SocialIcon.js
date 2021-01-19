@@ -1,10 +1,10 @@
-import React from "react";
-import facebookIcon from "../images/facebookIcon.png";
-import instagramIcon from "../images/instagramIcon.jpg";
-import twitterIcon from "../images/twitterIcon.png";
+import React from "react"
+import facebookIcon from "../images/fb.png"
+import instagramIcon from "../images/ig.jpg"
+import twitterIcon from "../images/twitter.png"
 
-export default function SocialIcon({ type, size }) {
-  let platformType;
+export default function SocialIcon({ type, className, textIsOn }) {
+  let platformType
 
   switch (type) {
     case "facebook":
@@ -15,12 +15,12 @@ export default function SocialIcon({ type, size }) {
             rel="noreferrer"
             target="_blank"
           >
-            <img src={facebookIcon} alt="facebook" size={size} />
-            <span>facebook</span>
+            <img src={facebookIcon} alt="facebook" className={className} />
+            {textIsOn && <span>facebook</span>}
           </a>
         </div>
-      );
-      break;
+      )
+      break
     case "instagram":
       platformType = (
         <div>
@@ -29,12 +29,12 @@ export default function SocialIcon({ type, size }) {
             rel="noreferrer"
             target="_blank"
           >
-            <img src={instagramIcon} alt="instagram" size={size} />
-            <span>instagram</span>
+            <img src={instagramIcon} alt="instagram" className={className} />
+            {textIsOn && <span>instagram</span>}
           </a>
         </div>
-      );
-      break;
+      )
+      break
     case "twitter":
       platformType = (
         <div>
@@ -43,17 +43,17 @@ export default function SocialIcon({ type, size }) {
             rel="noreferrer"
             target="_blank"
           >
-            <img src={twitterIcon} alt="twitter" size={size} />
-            <span>twitter</span>
+            <img src={twitterIcon} alt="twitter" className={className} />
+            {textIsOn && <span>twitter</span>}
           </a>
         </div>
-      );
-      break;
+      )
+      break
     default:
-      platformType = <div></div>;
+      platformType = <div></div>
   }
 
-  return platformType;
+  return platformType
 }
 
 // const IconWordBlock = styled.div`

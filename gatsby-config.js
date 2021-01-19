@@ -17,7 +17,12 @@ module.exports = {
         custom: {
           families: [
             "gagalin",
-            "Eina"
+            "rancho",
+            "abril",
+            "alex",
+            "amble",
+            ""
+
           ],
           urls: ["/fonts/fonts.css"],
         },
@@ -27,7 +32,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `src/images`,
+        path: `${__dirname}/src/images`,
       },
     },
     {
@@ -39,7 +44,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/logoTransparentBg.png`, // This path is relative to the root of the site.
+        icon: `src/images/logot.png`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-sharp`,
