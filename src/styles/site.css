@@ -3,3 +3,20 @@
 @tailwind components;
 
 @tailwind utilities;
+
+svg {
+    display: initial;
+}
+
+/* <h2 className="text-2xl text-center pb-10 font-gagalin">
+We're real. We're a potential headliner font.
+</h2>
+<h2 className="text-3xl text-center pb-10 font-cardo">
+We're real. We're a normal paragraph font.
+</h2>
+<h2 className="text-4xl text-center pb-10 font-vibes tracking-wide">
+We're real. We're a potential menu font.
+</h2>
+<h2 className="text-4xl text-center pb-10 font-scheherazade">
+We're real. We're a backup font.
+</h2> */

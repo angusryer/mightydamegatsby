@@ -23,20 +23,20 @@ export default function Nav() {
       return () => document.removeEventListener('click', hideMenu);
   })
 
-  const linkStyle = `text-center m-0 font-rancho text-xl w-24 nav:w-20 ml-2 mr-2 border-none rounded-sm hover:bg-orange hover:bg-opacity-10`
+  const linkStyle = `text-center m-0 text-base w-20 ml-2 mr-2 border-none rounded-sm hover:text-violet hover:text-opacity-80`
 
   return (
     <ContextProvider>
       <SiteContext.Consumer>
         {(context) => {
           return (
-            <nav className="sticky top-0 bg-light h-20 p-4 flex content-center justify-between">
+            <nav className="sticky top-0 bg-white h-20 p-4 flex content-center justify-between">
               <Link
                 className="flex flex-row sm:flex-nowrap items-center"
                 to="/"
               >
                 <img
-                  className="hidden xs:flex m-0 xxs:w-12 xxs:h-12"
+                  className="hidden snav:flex m-0 xxs:w-12 xxs:h-12"
                   src={logo}
                   alt="Mighty Dame Fitness"
                 />
@@ -57,8 +57,8 @@ export default function Nav() {
                 <Link className={linkStyle} to="/login">
                   Members
                 </Link>
-                <Link className="flex" to="/cart">
-                  <FaShoppingCart className="h-5 w-auto" />
+                <Link className="flex self-center hover:text-violet hover:text-opacity-80" to="/cart">
+                  <FaShoppingCart className="h-5" />
                 </Link>
                 {context.numberOfItemsInCart > Number(0) && (
                   <div>

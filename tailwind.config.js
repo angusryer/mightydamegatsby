@@ -24,22 +24,15 @@ module.exports = {
     },
     fontFamily: {
       gagalin: ["gagalin"],
-      rancho: ["rancho"],
-      abril: ["abril"],
-      alex: ["alex"],
-      amble: ["amble"],
       cardo: ["cardo"],
       vibes: ["vibes"],
-      montez: ["montez"],
-      prata: ["prata"],
-      rufina: ["rufina"],
-      satisfy: ["satisfy"],
       scheherazade: ["scheherazade"],
     },
     extend: {
       screens: {
         xxs: "280px",
         xs: "320px",
+        snav: "347px",
         nav: "850px",
         sm: "640px",
         md: "768px",

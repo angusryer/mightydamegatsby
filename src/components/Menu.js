@@ -7,9 +7,9 @@ import SocialIcon from "./SocialIcon"
 const { orange } = colors
 
 export default function Menu({ linkStyle, numberOfItemsInCart }) {
-  const linkStylePlus = `${linkStyle} py-2 text-light hover:bg-orange hover:bg-opacity-30`
+  const linkStylePlus = `${linkStyle} py-2 text-light hover:text-violet hover:text-opacity-30`
   return (
-    <div className="flex flex-col pt-10 items-center fixed top-0 right-0 bg-dark bg-opacity-80 border-collapse rounded-sm w-24 h-screen">
+    <div className="flex flex-col pt-10 items-center p-auto fixed top-0 right-0 bg-dark bg-opacity-80 border-collapse rounded-sm w-28 h-screen">
       <Link className="flex" to="/">
         <img
           className="w-12 h-auto py-5"
@@ -30,8 +30,8 @@ export default function Menu({ linkStyle, numberOfItemsInCart }) {
         <Link className={linkStylePlus} to="/login">
           Members
         </Link>
-        <Link className="flex" to="/cart">
-          <FaShoppingCart className="h-5 w-auto" />
+        <Link className={linkStylePlus + " pb-5"} to="/cart">
+          <FaShoppingCart className="h-5 w-auto transform -translate-x-px" />
         </Link>
         {numberOfItemsInCart > Number(0) && (
           <div>
@@ -39,9 +39,9 @@ export default function Menu({ linkStyle, numberOfItemsInCart }) {
           </div>
         )}
       </div>
-      <div className="flex flex-col py-3">
-        <SocialIcon className="h-6 w-auto p-1" type="facebook" />
-        <SocialIcon className="h-6 w-auto p-1" type="instagram" />
+      <div className="flex flex-col h-28 justify-between">
+        <SocialIcon className="h-7 w-auto p-1 transform translate-x-px" type="facebook" />
+        <SocialIcon className="h-7 w-auto p-1 transform translate-x-px" type="instagram" />
         <SocialIcon className="h-6 w-auto p-1" type="twitter" />
       </div>
     </div>

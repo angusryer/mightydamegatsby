@@ -38,8 +38,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `mighty-dame-fitness-site`,
-        short_name: `mdf-site`,
+        name: `Mighty Dame Fitness`,
+        short_name: `Mighty Dame`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,

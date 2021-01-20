@@ -85,7 +85,7 @@ export default function Subscribe(styles) {
 
   return (
     <form
-      className={styles.form}
+      className="flex flex-col justify-center mt-2 sm:max-w-md sm:flex-row"
       onSubmit={(e) =>
         subscribe(e, subscribeUser, setSubscribeSuccess, setEmail)
       }
@@ -93,7 +93,7 @@ export default function Subscribe(styles) {
       method="post"
     >
       <input
-        className={styles.input}
+        className="border-none rounded-sm outline-none text-xs w-full p-1"
         aria-label="Your email"
         placeholder="Your beautiful email"
         type="email"
@@ -103,10 +103,10 @@ export default function Subscribe(styles) {
         value={email}
         required
       />
-      <button className={styles.button} type="submit">
-        Start Growing
+      <button className="text-light p-1 text-xs w-28 mt-1 bg-violet bg-opacity-50 border-none rounded-sm sm:mt-0 sm:ml-2" type="submit">
+        Start Learning
       </button>
-      {subscribeSuccess && <span className={styles.message}>Subscribed!</span>}
+      {subscribeSuccess && <span className="align-middle text-center pl-5 text-xs">Subscribed!</span>}
     </form>
   )
 }

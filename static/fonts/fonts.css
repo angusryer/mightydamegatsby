@@ -2,47 +2,41 @@
   font-family: "gagalin";
   src: url("./Gagalin-Regular.ttf") format("truetype");
 }
+
 @font-face {
-  font-family: "rancho";
-  src: url("./Rancho-Regular.ttf") format("truetype");
+  font-family: "cardo";
+  src: url("./Cardo-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: normal;
 }
+
 @font-face {
-  font-family: "abril";
-  src: url("./AbrilFatface-Regular.ttf") format("truetype");
+  font-family: "cardo";
+  src: url("./Cardo-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: bold;
 }
-@font-face {
-  font-family: "alex";
-  src: url("./AlexBrush-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "amble";
-  src: url("./Amble-Regular.ttf") format("truetype");
-}
+
 @font-face {
   font-family: "cardo";
   src: url("./Cardo-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
+
 @font-face {
   font-family: "vibes";
   src: url("./GreatVibes-Regular.ttf") format("truetype");
 }
-@font-face {
-  font-family: "montez";
-  src: url("./Montez-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "prata";
-  src: url("./Prata-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "rufina";
-  src: url("./Rufina-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "satisfy";
-  src: url("./Satisfy-Regular.ttf") format("truetype");
-}
+
 @font-face {
   font-family: "scheherazade";
   src: url("./Scheherazade-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "scheherazade";
+  src: url("./Scheherazade-Regular.ttf") format("truetype");
+  font-weight: bold;
 }
