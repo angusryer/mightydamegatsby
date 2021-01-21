@@ -19,7 +19,7 @@ type User
   )
   @key(name: "byUserType", fields: ["userType"], queryField: "byUserType") {
   id: ID!
-  cognitoId: String
+  cognitoId: ID
   firstName: String
   lastName: String
   userName: String
@@ -129,7 +129,7 @@ type Review
   title: String!
   comment: String!
   rating: Int!
-  ownerId: String!
+  ownerId: ID!
   user: User @connection(name: "UserReviewConnection", fields: ["ownerId"])
   offer: Offer @connection(name: "OfferReviewConnection")
 }
