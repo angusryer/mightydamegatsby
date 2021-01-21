@@ -2,6 +2,7 @@ import React from "react"
 import Review from "../components/Review"
 
 export default function Reviews({ reviewsData }) {
+  console.log(reviewsData)
   return (
     <section className="flex flex-col w-full max-w-6xl items-center nav:flex-row nav:overflow-y-scroll">
       <div className="">
@@ -11,7 +12,7 @@ export default function Reviews({ reviewsData }) {
               key={review.id}
               value={review.rating}
               quote={review.comment}
-              reviewer={review.ownerId}
+              reviewer={review.user.displayName}
             />
           )
         })}
