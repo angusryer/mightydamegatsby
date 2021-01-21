@@ -130,7 +130,7 @@ type Review
   comment: String!
   rating: Int!
   ownerId: String!
-  user: User @connection(name: "UserReviewConnection")
+  user: User @connection(name: "UserReviewConnection", fields: ["ownerId"])
   offer: Offer @connection(name: "OfferReviewConnection")
 }
 

@@ -78,14 +78,16 @@ const subscribe = async (e, subscribeUser, setSubscribeSuccess, setEmail) => {
   // --- look into using the amazon SES template maker to see if it can access a filtered list of DynamoDB email records
 }
 
-export default function Subscribe(styles) {
+export default function Subscribe({ centered, dark }) {
   const [subscribeSuccess, setSubscribeSuccess] = useState(false)
   const [subscribeUser] = useMutation(SUBSCRIBE_USER)
   const [email, setEmail] = useState("")
 
   return (
     <form
-      className="flex flex-col justify-center mt-2 sm:max-w-md sm:flex-row"
+      className={`flex flex-col justify-center mt-2 sm:max-w-md sm:flex-row ${
+        centered && "border-t border-b border-opacity-30 border-green pt-1 pb-1"
+      }`}
       onSubmit={(e) =>
         subscribe(e, subscribeUser, setSubscribeSuccess, setEmail)
       }
@@ -93,7 +95,7 @@ export default function Subscribe(styles) {
       method="post"
     >
       <input
-        className="border-none rounded-sm outline-none text-xs w-full p-1"
+        className="placeholder-violet placeholder-opacity-75 border-none rounded-sm outline-none text-xs w-full max-w-sm p-1"
         aria-label="Your email"
         placeholder="Your beautiful email"
         type="email"
@@ -103,10 +105,29 @@ export default function Subscribe(styles) {
         value={email}
         required
       />
-      <button className="text-light p-1 text-xs w-28 mt-1 bg-violet bg-opacity-50 border-none rounded-sm sm:mt-0 sm:ml-2" type="submit">
-        Start Learning
-      </button>
-      {subscribeSuccess && <span className="align-middle text-center pl-5 text-xs">Subscribed!</span>}
+      <div
+        className={`${
+          centered && "flex flex-col items-center nav:items-start"
+        }`}
+      >
+        <button
+          className={`text-light p-1 text-xs w-28 mt-1 bg-violet bg-opacity-50 ${
+            dark && "bg-opacity-90"
+          } border-none rounded-sm sm:mt-0 sm:ml-2 whitespace-nowrap`}
+          type="submit"
+        >
+          Start Learning
+        </button>
+        {subscribeSuccess && (
+          <span
+            className={`align-middle p-2 text-center pl-5 ${
+              centered && "pl-0"
+            } text-xs`}
+          >
+            Subscribed!
+          </span>
+        )}
+      </div>
     </form>
   )
 }

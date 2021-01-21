@@ -40,8 +40,14 @@ export default function Menu({ linkStyle, numberOfItemsInCart }) {
         )}
       </div>
       <div className="flex flex-col h-28 justify-between">
-        <SocialIcon className="h-7 w-auto p-1 transform translate-x-px" type="facebook" />
-        <SocialIcon className="h-7 w-auto p-1 transform translate-x-px" type="instagram" />
+        <SocialIcon
+          className="h-7 w-auto p-1 transform translate-x-px"
+          type="facebook"
+        />
+        <SocialIcon
+          className="h-7 w-auto p-1 transform translate-x-px"
+          type="instagram"
+        />
         <SocialIcon className="h-6 w-auto p-1" type="twitter" />
       </div>
     </div>

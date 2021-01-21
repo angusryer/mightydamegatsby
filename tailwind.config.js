@@ -107,6 +107,8 @@ module.exports = {
         140: "35rem",
         144: "36rem",
         fw: "1440px",
+        nav: "60px",
+        footer: "120px"
       },
       spacing: {
         72: "18rem",

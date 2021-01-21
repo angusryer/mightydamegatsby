@@ -3,7 +3,7 @@ import Review from "../components/Review"
 
 export default function Reviews({ reviewsData }) {
   return (
-    <section className="">
+    <section className="flex flex-col w-full max-w-6xl items-center nav:flex-row nav:overflow-y-scroll">
       <div className="">
         {reviewsData.map((review) => {
           return (
@@ -11,7 +11,7 @@ export default function Reviews({ reviewsData }) {
               key={review.id}
               value={review.rating}
               quote={review.comment}
-              //   reviewer={review.ownerId}
+              reviewer={review.ownerId}
             />
           )
         })}
