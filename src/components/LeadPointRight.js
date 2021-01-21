@@ -3,7 +3,7 @@ import React from "react"
 export default function LeadPointRight({ image, children }) {
   return (
     <div
-      className={`flex flex-col nav:flex-row-reverse items-center w-full max-w-md mt-3 mb-4`}
+      className={`flex flex-col nav:flex-row-reverse items-center w-full mt-3 mb-4`}
     >
       <div
         style={{ backgroundImage: `url(${image})` }}

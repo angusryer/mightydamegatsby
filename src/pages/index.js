@@ -61,11 +61,13 @@ export default function Home({ data }) {
               Personal coaches free up your time.
             </LeadPointLeft>
           </LeadPointContainer>
-          <CallToAction>
-            Like the women below, we're helping women be the mighty dames that
-            they really are, one at a time.
-          </CallToAction>
-          <Subscribe centered dark />
+          <div className="flex flex-col self-center items-center max-w-6xl bg-opacity-5 bg-violet">
+            <CallToAction>
+              Like the women below, we're helping women be the mighty dames that
+              they really are. Start now!
+            </CallToAction>
+            <Subscribe centered dark />
+          </div>
           <Reviews reviewsData={data.reviewsInfo.data} />
         </div>
       </div>

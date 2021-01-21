@@ -126,7 +126,6 @@ export default function fetchData(dataType, fs) {
             query: print(listAllReviewsQuery),
           },
         })
-        console.log(gqlReviewsData.data.data.listReviews.items)
         resolve(gqlReviewsData.data.data.listReviews.items)
         break
 
