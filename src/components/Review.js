@@ -4,7 +4,7 @@ import backupImage from "../images/User.png"
 
 export default function Review({ value, title, quote, image, reviewer }) {
   return (
-    <div className="w-60 lg:max-w-80 sm:max-w-64 my-12">
+    <div className="w-60 lg:max-w-80 sm:max-w-64 my-12 mx-4">
       <div className="flex flex-nowrap h-4 mb-4">
         <Rating value={value} height="5" />
         <span className="ml-2 min-w-min text-xs">{` ${value} bars`}</span>

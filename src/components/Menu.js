@@ -7,17 +7,17 @@ import SocialIcon from "./SocialIcon"
 const { orange } = colors
 
 export default function Menu({ linkStyle, numberOfItemsInCart }) {
-  const linkStylePlus = `${linkStyle} py-2 text-light hover:text-violet hover:text-opacity-30`
+  const linkStylePlus = `${linkStyle} py-2 w-full text-light text-xs hover:text-green`
   return (
-    <div className="flex flex-col pt-10 items-center p-auto fixed top-0 right-0 bg-dark bg-opacity-80 border-collapse rounded-sm w-28 h-screen">
-      <Link className="flex" to="/">
+    <div className="flex flex-col pt-16 items-center pb-auto fixed top-0 right-0 bg-dark bg-opacity-80 rounded-sm min-w-28 h-screen">
+      <Link className="flex h-12 w-12" to="/">
         <img
-          className="w-12 h-12 py-5"
+          className="h-12 w-12"
           src={logo}
           alt="Mighty Dame Fitness"
         />
       </Link>
-      <div className="mt-1 flex flex-col justify-start">
+      <div className="mt-3 flex flex-col justify-start">
         <Link className={linkStylePlus} to="/instructors">
           Instructors
         </Link>

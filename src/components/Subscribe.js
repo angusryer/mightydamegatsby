@@ -85,8 +85,8 @@ export default function Subscribe({ centered, dark }) {
 
   return (
     <form
-      className={`flex flex-col justify-center mt-2 sm:max-w-md sm:flex-row ${
-        centered && "border-t border-b border-opacity-30 border-green pt-1 pb-1"
+      className={`flex flex-col justify-center mt-2 sm:max-w-md ${
+        centered && ""
       }`}
       onSubmit={(e) =>
         subscribe(e, subscribeUser, setSubscribeSuccess, setEmail)
@@ -95,9 +95,11 @@ export default function Subscribe({ centered, dark }) {
       method="post"
     >
       <input
-        className="placeholder-violet placeholder-opacity-75 border-none rounded-sm outline-none text-xs w-full max-w-sm p-1"
+        className={`placeholder-white border-b border-light text-light bg-transparent text-center outline-none text-xs w-full max-w-sm pt-1 pb-2 ${
+          dark && "placeholder-dark border-green text-dark"
+        }`}
         aria-label="Your email"
-        placeholder="Your beautiful email"
+        placeholder="Your best email"
         type="email"
         name="email_address"
         id="email_address"
@@ -107,16 +109,14 @@ export default function Subscribe({ centered, dark }) {
       />
       <div
         className={`${
-          centered && "flex flex-col items-center nav:items-start"
+          centered && "flex flex-col items-center"
         }`}
       >
         <button
-          className={`text-light p-1 text-xs w-28 mt-1 bg-violet bg-opacity-50 ${
-            dark && "bg-opacity-90"
-          } border-none rounded-sm sm:mt-0 sm:ml-2 whitespace-nowrap`}
+          className={`text-light p-1 text-xs w-32 mt-3 bg-violet border-none rounded-full whitespace-nowrap`}
           type="submit"
         >
-          Start Learning
+          Start Building
         </button>
         {subscribeSuccess && (
           <span

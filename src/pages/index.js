@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import Hero from "../components/Hero"
 import Headline from "../components/Headline"
+import SubHeadline from '../components/SubHeadline'
 import Subscribe from "../components/Subscribe"
 import Reviews from "../components/Reviews"
 import point1 from "../images/point1.jpg"
@@ -11,6 +12,7 @@ import point3 from "../images/point3.jpg"
 import point4 from "../images/point4.jpg"
 import point5 from "../images/point5.jpg"
 import point6 from "../images/point6.jpg"
+import logo from "../images/MDNoBorder.png"
 import LeadPointContainer from "../components/LeadPointContainer"
 import LeadPointLeft from "../components/LeadPointLeft"
 import LeadPointRight from "../components/LeadPointRight"
@@ -22,16 +24,18 @@ export default function Home({ data }) {
       <SEO title="Home" />
       <div className="flex flex-col">
         <Hero>
+          <img src={logo} alt="The Mighty Dame" className="w-48 max-w-60 h-auto max-h-80"/>
           <Headline>
-            Confidence is built with consistency. Start learning the science and
-            getting fit right now.
+            Confidence is built with consistency.
           </Headline>
-          <Subscribe />
+          <SubHeadline>
+            Weekly fitness and nutrition bits made for motivated women.
+          </SubHeadline>
+          <Subscribe centered />
         </Hero>
         <div className="flex flex-col self-center max-w-6xl">
-          <CallToAction>
-            Our newsletter keeps you close to actionable insights and a powerful
-            community. Unsubscribe any time. (But why?)
+          <CallToAction bt bb>
+            Our QA-style newsletter gives you actions and knowledge in a short, consistent format. Unsubscribe any time.
           </CallToAction>
         </div>
         <div className="flex flex-col self-center items-center max-w-6xl">
@@ -49,7 +53,7 @@ export default function Home({ data }) {
           </LeadPointContainer>
           <LeadPointContainer>
             <h2 className="text-3xl text-center pb-10 font-cardo font-bold">
-              And we still do what the rest do:
+              We still do what others do
             </h2>
             <LeadPointLeft image={point4}>
               We keep you accountable and driven.
@@ -61,10 +65,10 @@ export default function Home({ data }) {
               Personal coaches free up your time.
             </LeadPointLeft>
           </LeadPointContainer>
-          <div className="flex flex-col self-center items-center max-w-6xl bg-opacity-5 bg-violet">
-            <CallToAction>
-              Like the women below, we're helping women be the mighty dames that
-              they really are. Start now!
+          <div className="flex flex-col self-center items-center max-w-6xl pb-16 border-none">
+            <CallToAction bt>
+              We're helping women be the mighty dames that
+              they really are, one by one. Start now.
             </CallToAction>
             <Subscribe centered dark />
           </div>
