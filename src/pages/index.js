@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import SEO from "../components/seo"
 import Hero from "../components/Hero"
 import Headline from "../components/Headline"
-import SubHeadline from '../components/SubHeadline'
+import SubHeadline from "../components/SubHeadline"
 import Subscribe from "../components/Subscribe"
 import Reviews from "../components/Reviews"
 import point1 from "../images/point1.jpg"
@@ -24,18 +24,25 @@ export default function Home({ data }) {
       <SEO title="Home" />
       <div className="flex flex-col">
         <Hero>
-          <img src={logo} alt="The Mighty Dame" className="w-48 max-w-60 h-auto max-h-80"/>
-          <Headline>
-            Confidence is built with consistency.
-          </Headline>
-          <SubHeadline>
-            Weekly fitness and nutrition bits made for motivated women.
-          </SubHeadline>
-          <Subscribe centered />
+          <div className="flex flex-col nav:flex-row nav:items-center">
+            <img
+              src={logo}
+              alt="The Mighty Dame"
+              className="w-48 h-auto nav:w-96 flex self-center"
+            />
+            <div className="max-w-60 nav:max-w-72 nav:ml-16">
+              <Headline>Confidence is built with consistency.</Headline>
+              <SubHeadline>
+                Weekly fitness and nutrition bits made for motivated women.
+              </SubHeadline>
+              <Subscribe centered />
+            </div>
+          </div>
         </Hero>
         <div className="flex flex-col self-center max-w-6xl">
           <CallToAction bt bb>
-            Our QA-style newsletter gives you actions and knowledge in a short, consistent format. Unsubscribe any time.
+            Our QA-style newsletter gives you actions and knowledge in a short,
+            consistent format. Unsubscribe any time.
           </CallToAction>
         </div>
         <div className="flex flex-col self-center items-center max-w-6xl">
@@ -67,8 +74,8 @@ export default function Home({ data }) {
           </LeadPointContainer>
           <div className="flex flex-col self-center items-center max-w-6xl pb-16 border-none">
             <CallToAction bt>
-              We're helping women be the mighty dames that
-              they really are, one by one. Start now.
+              We're helping women be the mighty dames that they really are, one
+              by one. Start now.
             </CallToAction>
             <Subscribe centered dark />
           </div>

@@ -23,18 +23,18 @@ export default function Nav() {
     return () => document.removeEventListener("click", hideMenu)
   })
 
-  const linkStyle = `text-center m-0 text-base w-20 ml-2 mr-2 border-none rounded-sm hover:text-white`
+  const linkStyle = `text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-light hover:shadow-lg`
 
   return (
     <ContextProvider>
       <SiteContext.Consumer>
         {(context) => {
           return (
-            <nav className="sticky top-0 bg-violet flex flex-shrink-0 justify-center">
-              <div className="w-full h-full bg-opacity-20 bg-dark p-4">
+            <nav className="sticky top-0 bg-violet flex flex-shrink-0">
+              <div className="flex w-full h-full bg-opacity-20 bg-dark p-4 justify-center">
                 <div className="w-full max-w-6xl flex items-center justify-between">
                   <Link
-                    className="flex flex-row sm:flex-nowrap items-center"
+                    className="flex flex-row ml- sm:flex-nowrap items-center"
                     to="/"
                   >
                     <img
@@ -60,7 +60,7 @@ export default function Nav() {
                       Members
                     </Link>
                     <Link
-                      className="flex self-center hover:text-white hover:text-opacity-80"
+                      className="flex self-center text-light hover:shadow-lg border-none p-3 rounded-full"
                       to="/cart"
                     >
                       <FaShoppingCart className="h-5" />
