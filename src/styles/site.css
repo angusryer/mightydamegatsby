@@ -5,37 +5,45 @@
 @tailwind utilities;
 
 svg {
-    display: initial;
+  display: initial;
 }
 
 body {
-    background-color: #F9F2E8;
+  background-color: #f9f2e8;
 }
 
 .luminous {
-    mix-blend-mode: luminosity;
+  mix-blend-mode: luminosity;
 }
 
 .dodge {
-    mix-blend-mode: color-dodge;
+  mix-blend-mode: color-dodge;
 }
 
 .hue {
-    mix-blend-mode: hue;
+  mix-blend-mode: hue;
 }
 
 .lighten {
-    mix-blend-mode: lighten;
+  mix-blend-mode: lighten;
 }
 
 .overlay {
-    mix-blend-mode: overlay;
+  mix-blend-mode: overlay;
 }
 
 .hardlight {
-    mix-blend-mode: hard-light;
+  mix-blend-mode: hard-light;
 }
 
 .difference {
-    mix-blend-mode: difference;
+  mix-blend-mode: difference;
+}
+
+.cardgrid-wide {
+  grid-template-columns: 0.5fr 0.17fr auto;
+}
+
+.cardgrid-narrow {
+  grid-template-rows: 0.5fr 0.17fr auto;
 }

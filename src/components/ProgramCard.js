@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 export default function ProgramCard(props) {
   const {
@@ -12,73 +12,65 @@ export default function ProgramCard(props) {
     price,
     available,
   } = props
+
+  const [mainImageState, setMainImageState] = useState(null)
+  const [otherImagesState, setOtherImagesState] = useState([])
+
+  const displayMainImage = (selectedImage) => {
+    const otherImagesFiltered = otherImagesState.filter((image) => {
+      return image !== selectedImage
+    })
+
+    otherImagesFiltered.push(mainImageState)
+
+    setMainImageState(selectedImage)
+    setOtherImagesState(otherImagesFiltered)
+  }
+
+  useEffect(() => {
+    setMainImageState(image)
+    setOtherImagesState(otherImages)
+  }, [])
+
   return (
-    <div>
-      <img className="w-auto h-60" src={image} alt={title} />
-      <div className="flex flex-wrap w-3/6 ml-auto mr-12 content-around items-center justify-end">
-        {otherImages &&
-          otherImages.map((imagePath, index) => {
+    <div className="grid cardgrid-narrow nav:cardgrid-wide mb-20">
+      <div className="w-full h-full py-2 max-w-6xl nav:px-5">
+        <img
+          className="w-full max-w-none h-full object-center object-cover overflow-hidden"
+          src={mainImageState}
+          alt={title}
+        />
+      </div>
+      <div className="flex flex-nowrap w-full justify-around items-center">
+        {otherImagesState &&
+          otherImagesState.map((imagePath, index) => {
             return (
               <img
                 key={index}
-                className="h-20 w-auto"
+                className="h-20 w-24 object-cover object-center"
                 src={imagePath}
                 alt="other program views"
+                onClick={() => displayMainImage(imagePath)}
               />
             )
           })}
       </div>
-      <h3>{title}</h3>
-      <p>{description}</p>
+      <div className="flex flex-col p-5 items-center">
+        <h3 className="font-gagalin text-lg text-center my-3">{title}</h3>
+        <p className="my-2 text-center">{description}</p>
 
-      <>
-        <span>{price}</span>
-        <span>{available ? "Currently Available" : "Available Soon"}</span>
-      </>
-      <div>
-        <span>Number of Sessions: {numberOfSessions}</span>
-        <span>Hours per Session: {lengthOfSessionInHours}</span>
-        <span>Sessions per Week: {frequencyOfSessionsPerWeek}</span>
+        <div className="my-2 flex flex-col items-center">
+          <span className="my-1">Number of Sessions: {numberOfSessions}</span>
+          <span className="my-1">Hours per Session: {lengthOfSessionInHours}</span>
+          <span className="my-1">Sessions per Week: {frequencyOfSessionsPerWeek}</span>
+        </div>
+        
+        <div className="flex flex-col my-3 items-center">
+          <span className="my-1">{"$" + price}</span>
+          <span className="my-1">{available ? "Some Availability" : "Coming SOON"}</span>
+        </div>
+      
       </div>
     </div>
   )
 }
-
-// const Container = styled.div`
-// 	max-width: 500px;
-// 	width: 50%;
-// 	height: 320px;
-// 	border: 1px solid grey;
-// 	border-radius: 5px;
-// 	display: flex;
-// 	flex-flow: column nowrap;
-// 	margin: 10px;
-// 	:hover {
-// 		background-color: whitesmoke;
-// 	}
-// `;
-
-// const Image = styled.img`
-// 	max-height: 60%;
-// 	width: auto;
-// `;
-
-// const Title = styled.h3``;
-
-// const Description = styled.p``;
-
-// const PriceAvailableGroup = styled.div`
-// 	display: flex;
-// `;
-
-// const Price = styled.span``;
-
-// const Available = styled.span``;
-
-// const DataPoints = styled.div`
-// 	display: flex;
-// 	align-items: center;
-// 	flex-flow: row nowrap;
-// `;
-
-// const Data = styled.span``;

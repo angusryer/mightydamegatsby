@@ -10,8 +10,8 @@ export default function Programs({ data }) {
         title="Programs"
         desription="Mighty Dame Fitness Programs"
       />
-      <h1>Our Fitness &amp; Nutrition Programs</h1>
-      <section className="flex flex-row content-center justify-evenly max-w-5xl my-0 mx-auto">
+      <h2 className="flex items-center font-gagalin text-2xl text-center my-10">Our Fitness &amp; Nutrition Programs</h2>
+      <section className="flex flex-col items-center justify-start max-w-5xl my-5 h-full">
         {data.programsInfo.data &&
           data.programsInfo.data.map((program) => {
             return (

@@ -8,17 +8,17 @@ export default function Instructors() {
   return (
     <>
       <SEO title="Instructors" desription="Mighty Dame Fitness Instructors" />
-      <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5">
+      <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5 items-center">
         <h1 className="font-gagalin text-2xl my-5">Meet the Instructor</h1>
         <div className="flex flex-row my-12 self-center">
-          <div className="h-34 w-38 overflow-hidden border-none rounded-full">
-            <img
-              className="w-auto h-34"
-              src={instructorImage}
-              alt="Emily Engel"
-            />
-          </div>
-          <h2 className="text-2xl transform -translate-x-8 translate-y-8">
+            <div className=" min-h-32 min-w-32 w-32 h-30 overflow-hidden border-none rounded-full">
+              <img
+                className="w-32 h-30 min-h-32 min-w-32"
+                src={instructorImage}
+                alt="Emily Engel"
+              />
+            </div>
+          <h2 className="text-2xl transform -translate-x-4 translate-y-8">
             Hi. I'm Emily.
           </h2>
         </div>
@@ -26,7 +26,7 @@ export default function Instructors() {
           Who I’m{" "}
           <span className="font-gagalin text-2xl font-bold text-red">not</span>:
         </h2>
-        <ol className="my-10 grid grid-cols-4 nav:grid-rows-4">
+        <ol className="my-10 grid nav:grid-cols-4 grid-rows-4">
           <li className="flex items-center p-3">
             <img src={redx} alt="red x" className="w-4 h-4 mr-3" />
             An athlete.
@@ -51,7 +51,7 @@ export default function Instructors() {
           <span className="font-gagalin text-2xl font-bold text-green">am</span>
           :
         </h2>
-        <ol className="my-10 grid grid-cols-4 nav:grid-rows-4">
+        <ol className="my-10 grid nav:grid-cols-4 grid-rows-4">
           <li className="flex items-center p-3">
             <img src={check} alt="red x" className="w-4 h-4 mr-3" />A mother.
           </li>
@@ -72,14 +72,14 @@ export default function Instructors() {
         </ol>
 
         <article className="">
-          <h2 className="font-bold text-lg my-5 mt-6">Where I've come from:</h2>
+          <h2 className="font-bold text-xl my-5 mt-6">Where I've come from:</h2>
           <p className="my-3">
             I didn’t grow up playing sports. I avoided gym-class like the plague
             in high school and dove into the arts. I also dove into terrible
             eating habits and found myself weighing at least 190lb when I was 19
             years old.
           </p>
-          <blockquote className="text-center my-10 italic">
+          <blockquote className="text-center my-10 italic font-bold">
             Not doing much physically didn’t help at all.
           </blockquote>
           <p className="my-3">
@@ -102,11 +102,11 @@ export default function Instructors() {
             done with losing. I was done with not showing up for the fight. I
             was done with feeling sub-par.
           </p>
-          <blockquote className="text-center my-10 italic">
+          <blockquote className="text-center my-10 italic font-bold">
             I wanted to get the guy.
           </blockquote>
 
-          <h2 className="font-bold text-lg my-5 mt-6">Flash forward a year:</h2>
+          <h2 className="font-bold text-xl my-5 mt-6">Flash forward a year:</h2>
           <p className="my-3">
             I got the guy, I got the fitness, and I was just beginning. Today, I
             am a certified Nutrition Coach from Precision Nutrition (2019) and a
@@ -125,14 +125,15 @@ export default function Instructors() {
             And since falling in love with my barbell, I’m also on a mission to
             convince you of two things:
           </p>
-          <blockquote className="text-center my-10 italic">
+          <blockquote className="text-center my-10 italic font-bold">
             You don’t have to like sports or have a history of playing them to
             be active; and Women aren’t meant to just do cardio and be meek:
           </blockquote>
           <blockquote className="text-center my-10 text-xl font-bold">
-            We’re meant to be Mighty Dames!
+            We’re meant to be{" "}
+            <span className="font-gagalin text-2xl">Mighty Dames!</span>
           </blockquote>
-          <cite className="">-Emily</cite>
+          <cite className="block text-right mr-5 font-bold">-Emily</cite>
         </article>
       </section>
     </>
