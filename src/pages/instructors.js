@@ -11,13 +11,13 @@ export default function Instructors() {
       <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5 items-center">
         <h1 className="font-gagalin text-2xl my-5">Meet the Instructor</h1>
         <div className="flex flex-row my-12 self-center">
-            <div className=" min-h-32 min-w-32 w-32 h-30 overflow-hidden border-none rounded-full">
-              <img
-                className="w-32 h-30 min-h-32 min-w-32"
-                src={instructorImage}
-                alt="Emily Engel"
-              />
-            </div>
+          <div className=" min-h-32 min-w-32 w-32 h-30 overflow-hidden border-none rounded-full">
+            <img
+              className="w-32 h-30 min-h-32 min-w-32"
+              src={instructorImage}
+              alt="Emily Engel"
+            />
+          </div>
           <h2 className="text-2xl transform -translate-x-4 translate-y-8">
             Hi. I'm Emily.
           </h2>
@@ -26,7 +26,7 @@ export default function Instructors() {
           Who I’m{" "}
           <span className="font-gagalin text-2xl font-bold text-red">not</span>:
         </h2>
-        <ol className="my-10 grid nav:grid-cols-4 grid-rows-4">
+        <ol className="my-10 grid nav:grid-rows-none nav:grid-cols-4 grid-rows-4 grid-cols-none">
           <li className="flex items-center p-3">
             <img src={redx} alt="red x" className="w-4 h-4 mr-3" />
             An athlete.
@@ -51,7 +51,7 @@ export default function Instructors() {
           <span className="font-gagalin text-2xl font-bold text-green">am</span>
           :
         </h2>
-        <ol className="my-10 grid nav:grid-cols-4 grid-rows-4">
+        <ol className="my-10 grid nav:grid-rows-none nav:grid-cols-4 grid-rows-4 grid-cols-none">
           <li className="flex items-center p-3">
             <img src={check} alt="red x" className="w-4 h-4 mr-3" />A mother.
           </li>

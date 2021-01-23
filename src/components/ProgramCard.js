@@ -33,15 +33,15 @@ export default function ProgramCard(props) {
   }, [])
 
   return (
-    <div className="grid cardgrid-narrow nav:cardgrid-wide mb-20">
+    <div className="grid cardgrid-wide cardgrid-narrow mb-20">
       <div className="w-full h-full py-2 max-w-6xl nav:px-5">
         <img
-          className="w-full max-w-none h-full object-center object-cover overflow-hidden"
+          className="w-full max-w-none h-full object-center object-cover "
           src={mainImageState}
           alt={title}
         />
       </div>
-      <div className="flex flex-nowrap w-full justify-around items-center">
+      <div className="flex flex-nowrap nav:flex-col w-full justify-center nav:justify-start nav:pt-2 items-center">
         {otherImagesState &&
           otherImagesState.map((imagePath, index) => {
             return (

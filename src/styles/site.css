@@ -40,10 +40,15 @@ body {
   mix-blend-mode: difference;
 }
 
-.cardgrid-wide {
-  grid-template-columns: 0.5fr 0.17fr auto;
-}
-
 .cardgrid-narrow {
+  grid-template-columns: none;
   grid-template-rows: 0.5fr 0.17fr auto;
 }
+
+@media (min-width: 850px) {
+  .cardgrid-wide {
+    grid-template-rows: none;
+    grid-template-columns: 0.5fr 0.17fr 0.33fr;
+  }
+}
+
