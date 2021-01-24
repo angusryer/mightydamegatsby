@@ -9,7 +9,7 @@ exports.handler = async (event, context, callback) => {
 
 	// Here, update the array to include the Admin emails you would like to use
 	let adminEmails = [
-			"fitness@mightydame.com",
+			"admin@mightydame.com",
 			"angus@ryer.ca"
 		],
 		isAdmin = false;
