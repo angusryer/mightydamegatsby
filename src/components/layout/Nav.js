@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
 import { Link } from "gatsby"
 import { FaCircle, FaShoppingCart } from "react-icons/fa"
-import { SiteContext, ContextProvider } from "../context/mainContext"
+import { SiteContext, ContextProvider } from "../../context/mainContext"
 import Menu from "./Menu"
-import logo from "../images/logot.png"
-import menu from "../images/menu.svg"
-import { colors } from "../theme"
+import logo from "../../images/logot.png"
+import menu from "../../images/menu.svg"
+import { colors } from "../../theme"
 const { orange } = colors
 
 export default function Nav() {

@@ -1,11 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/seo"
-import Hero from "../components/Hero"
-import Headline from "../components/Headline"
-import SubHeadline from "../components/SubHeadline"
-import Subscribe from "../components/Subscribe"
-import Reviews from "../components/Reviews"
+import SEO from "../components/common/Seo"
+import Hero from "../components/landing/Hero"
+import Headline from "../components/landing/Headline"
+import SubHeadline from "../components/landing/SubHeadline"
+import Subscribe from "../components/landing/Subscribe"
+import Reviews from "../components/common/Reviews"
 import point1 from "../images/point1.jpg"
 import point2 from "../images/point2.jpg"
 import point3 from "../images/point3.jpg"
@@ -13,10 +13,11 @@ import point4 from "../images/point4.jpg"
 import point5 from "../images/point5.jpg"
 import point6 from "../images/point6.jpg"
 import logo from "../images/MDNoBorder.png"
-import LeadPointContainer from "../components/LeadPointContainer"
-import LeadPointLeft from "../components/LeadPointLeft"
-import LeadPointRight from "../components/LeadPointRight"
-import CallToAction from "../components/CallToAction"
+import LeadPointContainer from "../components/landing/LeadPointContainer"
+import LeadPointLeft from "../components/landing/LeadPointLeft"
+import LeadPointRight from "../components/landing/LeadPointRight"
+import CallToAction from "../components/landing/CallToAction"
+import SocialIcon from "../components/common/SocialIcon"
 
 export default function Home({ data }) {
   return (
@@ -41,8 +42,19 @@ export default function Home({ data }) {
         </Hero>
         <div className="flex flex-col self-center max-w-6xl">
           <CallToAction bt bb>
-            Our QA-style newsletter gives you actions and knowledge in a short,
-            consistent format. Unsubscribe any time.
+            <p className="text-xl font-bold px-4 mt-3 text-center">
+              Our QA-style newsletter gives you actions and knowledge in a
+              short, consistent format. Unsubscribe any time.
+            </p>
+            <div className="flex max-w-32 w-1/2 items-center my-3">
+              <hr className="bg-violet w-full h-1px" />
+              <span className="font-gagalin text-lg text-center mx-2">OR</span>
+              <hr className="bg-violet w-full h-1px" />
+            </div>
+            <div className="flex mb-3 w-1/2 max-w-24 justify-around items-center">
+              <SocialIcon type="facebook" className="w-6 h-auto" />
+              <SocialIcon type="instagram" className="w-6 h-auto" />
+            </div>
           </CallToAction>
         </div>
         <div className="flex flex-col self-center items-center max-w-6xl">
@@ -74,8 +86,10 @@ export default function Home({ data }) {
           </LeadPointContainer>
           <div className="flex flex-col self-center items-center max-w-6xl pb-16 border-none">
             <CallToAction bt>
-              We're helping women be the mighty dames that they really are, one
-              by one. Start now.
+              <p className="text-xl font-bold px-4 text-center">
+                We're helping women be the mighty dames that they really are,
+                one by one. Start now.
+              </p>
             </CallToAction>
             <Subscribe centered dark />
           </div>

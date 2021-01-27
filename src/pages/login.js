@@ -1,134 +1,79 @@
 import React, { useState, useEffect } from "react"
 import { navigate } from "gatsby"
-import { Auth } from "aws-amplify"
-import SignUp from "../components/SignUp"
-import ConfirmSignUp from "../components/ConfirmSignUp"
-import SignIn from "../components/SignIn"
-import ForgotPassword from "../components/ForgotPassword"
+import { Router } from "@reach/router"
+import { verifySignInStatus, signOut } from "../utilities/auth"
+import { isBrowser } from "../../utils/helpers"
+import SignUp from "../components/auth/SignUp"
+import ConfirmSignUp from "../components/auth/ConfirmSignUp"
+import SignIn from "../components/auth/SignIn"
+import ForgotPassword from "../components/auth/ForgotPassword"
+import Profile from "../protected/profile"
 
-export default function Login() {
-  const [formState, setFormState] = useState("signUp")
-  const [isSignedIn, setIsSignedIn] = useState(false)
+function LoginForm() {
+  const [formState, setFormState] = useState("signIn")
   const [formError, setFormError] = useState(null)
-  const [user, setUser] = useState({})
-
-  const authStateMessage = "You are currently logged out."
 
   const toggleFormState = (newFormState) => {
     setFormState(newFormState)
     setFormError(null)
   }
 
-  useEffect(() => {
-    const checkSigninStatus = async () => {
-      await Auth.currentAuthenticatedUser()
-        .then((user) => {
-          if (user) {
-            setUser(user)
-            setIsSignedIn(true)
-            setFormState("signedIn")
-            setFormError(null)
-          }
-        })
-        .catch((_err) => {
-          setFormError(authStateMessage)
-        })
-    }
-    checkSigninStatus()
-    setFormError(null)
-  }, [])
-
-  const signUp = async (form) => {
-    const { username, email, password } = form
-    await Auth.signUp({
-      username,
-      password,
-      attributes: { email },
-    })
-      .then((_res) => {
-        setFormState("confirmSignUp")
-        setFormError(null)
-      })
-      .catch((err) => {
-        setFormError(err.message)
-      })
-  }
-
-  const confirmSignUp = async (form) => {
-    const { username, authcode } = form
-    await Auth.confirmSignUp(username, authcode)
-      .then((_res) => {
-        setFormState("signIn")
-        setFormError(null)
-      })
-      .catch((err) => {
-        setFormError(err.message)
-      })
-  }
-
-  const signIn = async (form) => {
-    const { username, password } = form
-    await Auth.signIn(username, password)
-      .then((_res) => {
-        Auth.currentAuthenticatedUser()
-          .then((user) => {
-            if (user) {
-              setUser(user)
-              setIsSignedIn(true)
-              setFormState("signedIn")
-              setFormError(null)
-            }
-          })
-          .catch((_err) => {
-            setFormError(authStateMessage)
-          })
-      })
-      .catch((err) => {
-        setFormError(err.message)
-      })
-  }
-
-  const signOut = async () => {
-    await Auth.signOut()
-      .then((_res) => {
-        setUser({})
-        setFormState("signIn")
-        setIsSignedIn(false)
-        setFormError(null)
-        navigate("/")
-      })
-      .catch((err) => {
-        setFormError(err.message)
-      })
-  }
-
-  const renderForm = (formState, isSignedIn) => {
+  const renderForm = (formState) => {
     switch (formState) {
       case "signUp":
-        return <SignUp signUp={signUp} toggleFormState={toggleFormState} />
+        return (
+          <SignUp toggleFormState={toggleFormState} onError={setFormError} />
+        )
 
       case "confirmSignUp":
-        return <ConfirmSignUp confirmSignUp={confirmSignUp} />
+        return <ConfirmSignUp onError={setFormError} />
 
       case "signIn":
-        return <SignIn signIn={signIn} toggleFormState={toggleFormState} />
+        return (
+          <SignIn toggleFormState={toggleFormState} onError={setFormError} />
+        )
 
       case "forgotPassword":
-        return <ForgotPassword toggleFormState={toggleFormState} />
+        return (
+          <ForgotPassword
+            toggleFormState={toggleFormState}
+            onError={setFormError}
+          />
+        )
 
       default:
-        return null
+        return <></>
     }
   }
 
-  return isSignedIn ? (
-    navigate("/", { state: { user: user, signOut: () => signOut() } })
-  ) : (
+  return (
     <div className="flex flex-col items-center pt-5 ">
       <div className="max-w-5xl flex flex-col pt-5">
         <span>{formError}</span>
-        {renderForm(formState, isSignedIn)}
+        {renderForm(formState)}
       </div>
     </div>
+  )
+}
+
+export default function Login() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const initialUserCheck = async () => {
+      const data = await verifySignInStatus()
+      setUser(data)
+    }
+    initialUserCheck()
+  }, [])
+
+  return (
+    <Router basepath="/">
+      {user instanceof Object && isBrowser ? (
+        <Profile path="profile" user={user} />
+      ) : (
+        <LoginForm path="login" />
+      )}
+    </Router>
   )
 }

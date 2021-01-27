@@ -30,6 +30,8 @@ function getTrimmedString(string, length = 8) {
   }
 }
 
+const isBrowser = typeof window !== 'undefined';
+
 export {
-  makeSlug, makeTitle, getTrimmedString
+  makeSlug, makeTitle, getTrimmedString, isBrowser
 }

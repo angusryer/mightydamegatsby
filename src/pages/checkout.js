@@ -3,8 +3,8 @@ import { SiteContext, ContextProvider } from "../context/mainContext"
 import { DENOMINATION } from "../../providers/dataProvider"
 import { FaLongArrowAltLeft } from "react-icons/fa"
 import { Link } from "gatsby"
-import Image from "../components/Image"
 import { v4 as uuid } from "uuid"
+import Image from "../components/common/Image"
 
 import {
   CardElement,

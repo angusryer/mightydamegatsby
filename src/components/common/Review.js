@@ -1,6 +1,6 @@
 import React from "react"
 import Rating from "./Rating"
-import backupImage from "../images/User.png"
+import backupImage from "../../images/User.png"
 
 export default function Review({ value, title, quote, image, reviewer }) {
   return (
@@ -11,10 +11,12 @@ export default function Review({ value, title, quote, image, reviewer }) {
       </div>
       <q className="">{`${quote}`}</q>
       <div className="w-full flex justify-end items-center">
-        <span className="transform translate-x-3.5">{reviewer}</span>
+        <span className="transform translate-x-3.5 font-bold">
+          {reviewer}
+        </span>
         <div className="w-8 h-8 border-none rounded-full overflow-hidden">
           <img
-            className="w-full h-auto"
+            className="w-full h-auto opacity-50"
             src={image || backupImage}
             alt="user avatar"
           />

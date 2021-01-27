@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/seo"
+import SEO from "../components/common/Seo"
 import instructorImage from "../images/emily.png"
 import redx from "../images/redx.png"
 import check from "../images/greencheck.png"

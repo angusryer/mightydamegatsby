@@ -95,6 +95,8 @@ module.exports = {
         60: "60px",
       },
       height: {
+        "1px": "1px",
+        "2px": "2px",
         14: "1rem",
         16: "2rem",
         18: "3rem",

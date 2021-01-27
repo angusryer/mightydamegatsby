@@ -1,7 +1,7 @@
 {
   "name": "mightydamegatsby",
   "private": true,
-  "description": "Mighty Dame Fitness e-commerce products and services website",
+  "description": "Mighty Dame Fitness and Nutrition services and products website",
   "version": "1.0.0",
   "author": "Angus Ryer <angus@ryer.ca>",
   "dependencies": {

@@ -1,6 +1,6 @@
 import React from "react"
-import Footer from "../components/Footer"
-import Nav from "../components/Nav"
+import Footer from "../components/layout/Footer"
+import Nav from "../components/layout/Nav"
 import { SiteContext, ContextProvider } from "../context/mainContext"
 import "react-toastify/dist/ReactToastify.css"
 import { toast } from "react-toastify"

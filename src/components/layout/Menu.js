@@ -1,9 +1,9 @@
 import { Link } from "gatsby"
 import React from "react"
 import { FaCircle, FaShoppingCart } from "react-icons/fa"
-import logo from "../images/logot.png"
-import { colors } from "../theme"
-import SocialIcon from "./SocialIcon"
+import logo from "../../images/logot.png"
+import { colors } from "../../theme"
+import SocialIcon from "../common/SocialIcon"
 const { orange } = colors
 
 export default function Menu({ linkStyle, numberOfItemsInCart }) {
@@ -43,12 +43,18 @@ export default function Menu({ linkStyle, numberOfItemsInCart }) {
         <SocialIcon
           className="h-7 w-auto p-1 transform translate-x-0.5"
           type="facebook"
+          fill="white"
         />
         <SocialIcon
           className="h-7 w-auto p-1 transform translate-x-0.5"
           type="instagram"
+          fill="white"
         />
-        <SocialIcon className="h-6 w-auto p-1 transform translate-x-px" type="twitter" />
+        <SocialIcon
+          className="h-6 w-auto p-1 transform translate-x-px"
+          type="twitter"
+          fill="white"
+        />
       </div>
     </div>
   )

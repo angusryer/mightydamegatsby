@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/seo"
-import ProgramCard from "../components/ProgramCard"
+import SEO from "../components/common/Seo"
+import ProgramCard from "../components/common/ProgramCard"
 
 export default function Programs({ data }) {
   return (

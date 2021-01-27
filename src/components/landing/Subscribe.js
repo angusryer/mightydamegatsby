@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import gql from "graphql-tag"
 import { useMutation } from "react-apollo"
 import { v4 as uuid } from "uuid"
-import { createUser } from "../graphql/mutations"
+import { createUser } from "../../graphql/mutations"
 
 const SUBSCRIBE_USER = gql(createUser)
 

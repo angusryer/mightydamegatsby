@@ -1,7 +1,7 @@
 import React from "react"
 import { FaShoppingCart, FaCircle } from "react-icons/fa"
 import { Link } from "gatsby"
-import { colors } from "../theme"
+import { colors } from "../../theme"
 const { orange } = colors
 
 export default function CartLink({ numberOfItemsInCart = 0 }) {

@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/seo"
-import ProductCard from "../components/ProductCard"
+import SEO from "../components/common/Seo"
+import ProductCard from "../components/common/ProductCard"
 
 export default function Products({ data }) {
   return (

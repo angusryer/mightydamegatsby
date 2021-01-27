@@ -1,5 +1,5 @@
 import React from "react";
-import star from "../images/star.png";
+import star from "../../images/star.png";
 
 export default function Rating({ value, height }) {
   let starElements = [];

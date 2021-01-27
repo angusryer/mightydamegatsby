@@ -4,51 +4,57 @@
 
 @tailwind utilities;
 
-svg {
-  display: initial;
-}
-
-body {
-  background-color: #f9f2e8;
-}
-
-.luminous {
-  mix-blend-mode: luminosity;
-}
-
-.dodge {
-  mix-blend-mode: color-dodge;
-}
-
-.hue {
-  mix-blend-mode: hue;
-}
-
-.lighten {
-  mix-blend-mode: lighten;
-}
-
-.overlay {
-  mix-blend-mode: overlay;
-}
-
-.hardlight {
-  mix-blend-mode: hard-light;
-}
-
-.difference {
-  mix-blend-mode: difference;
-}
-
-.cardgrid-narrow {
-  grid-template-columns: none;
-  grid-template-rows: 0.5fr 0.17fr auto;
-}
-
-@media (min-width: 850px) {
-  .cardgrid-wide {
-    grid-template-rows: none;
-    grid-template-columns: 0.5fr 0.17fr 0.33fr;
+@layer base {
+  svg {
+    display: initial;
   }
-}
 
+  body {
+    background-color: #f9f2e8;
+  }
+
+  .luminous {
+    mix-blend-mode: luminosity;
+  }
+
+  .dodge {
+    mix-blend-mode: color-dodge;
+  }
+
+  .hue {
+    mix-blend-mode: hue;
+  }
+
+  .lighten {
+    mix-blend-mode: lighten;
+  }
+
+  .overlay {
+    mix-blend-mode: overlay;
+  }
+
+  .hardlight {
+    mix-blend-mode: hard-light;
+  }
+
+  .difference {
+    mix-blend-mode: difference;
+  }
+
+  .cardgrid-narrow {
+    grid-template-columns: none;
+    grid-template-rows: 0.5fr 0.17fr auto;
+  }
+
+  @media (min-width: 850px) {
+    .cardgrid-wide {
+      grid-template-rows: none;
+      grid-template-columns: 0.5fr 0.17fr 0.33fr;
+    }
+  }
+
+  .textShadow {
+    text-shadow: 1px 1px 1px #000;
+  }
+
+}

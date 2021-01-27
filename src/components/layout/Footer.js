@@ -1,5 +1,5 @@
 import React from "react"
-import SocialIcon from './SocialIcon'
+import SocialIcon from "../common/SocialIcon"
 
 export default function Footer() {
   return (
@@ -10,9 +10,17 @@ export default function Footer() {
           &#169; 2020-2021 Mighty Dame Fitness. All rights reserved.
         </span>
         <div className="nav:mr-4 flex w-full max-w-20 mb-5 nav:mb-0 justify-between items-center">
-          <SocialIcon type="facebook" className="w-auto h-5 my-2" />
-          <SocialIcon type="instagram" className="w-auto h-5 my-2" />
-          <SocialIcon type="twitter" className="w-auto h-4 my-2" />
+          <SocialIcon
+            type="facebook"
+            className="w-auto h-5 my-2"
+            fill="white"
+          />
+          <SocialIcon
+            type="instagram"
+            className="w-auto h-5 my-2"
+            fill="white"
+          />
+          <SocialIcon type="twitter" className="w-auto h-4 my-2" fill="white" />
         </div>
       </div>
     </footer>
