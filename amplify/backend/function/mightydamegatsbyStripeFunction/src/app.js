@@ -1,5 +1,5 @@
 // https://stripe.com/docs/payments/without-card-authentication
-const stripe = require("stripe")("sk_test_51I4CtmC7XKWyZhsUJuW5BDwDnAdkP4uGA2GSaw5cK0XRxhUBfrb0j1pOALHXEQlmLoJhlSL098QDErJAMVUIKKyL009wr50va0")
+const stripe = require("stripe")("sk_test_51IDyuEFdSoxpYycd0bX1AkcR1zPQklb02JyeqRMkOgRQO2WGf7rkU59Ux3DCza7Vi0HbKW6FtnMty3LvlGcvqk7400mgbFcK65")
 
 exports.handler = async event => {
   if (!event.body || event.httpMethod !== "POST") {

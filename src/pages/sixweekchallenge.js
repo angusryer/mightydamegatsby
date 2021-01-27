@@ -5,14 +5,14 @@ import { Link } from "gatsby"
 import { v4 as uuid } from "uuid"
 import Image from "../components/common/Image"
 import mightyDameWithText from "../images/MightDameWithWords.png"
-
+import { loadStripe } from "@stripe/stripe-js"
+import axios from "axios"
 import {
   CardElement,
   Elements,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js"
-import { loadStripe } from "@stripe/stripe-js"
 
 const item = {
   id: uuid(),
@@ -130,13 +130,18 @@ const Checkout = ({ context }) => {
       receipt_email: email,
       id: uuid(),
     }
-    console.log("order: ", order)
+
     // TODO call API
-    const { err, intent } = await stripe.handleCardAction(
-      "sk_test_51IDyuEFdSoxpYycd0bX1AkcR1zPQklb02JyeqRMkOgRQO2WGf7rkU59Ux3DCza7Vi0HbKW6FtnMty3LvlGcvqk7400mgbFcK65"
-    )
-    if (err) console.log(err.message)
-    console.log(intent)
+    try {
+      const data = await axios.post(
+        "https://oatann8h4d.execute-api.ca-central-1.amazonaws.com/dev/payments",
+        order
+      )
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+
     // setOrderCompleted(true)
   }
 
