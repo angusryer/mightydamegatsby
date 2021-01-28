@@ -14,7 +14,28 @@ import {
   useElements,
 } from "@stripe/react-stripe-js"
 
-const item = {
+// TEST object
+// {
+//   "email": "angus@ryer.ca",
+//   "amount": 199,
+//   "items": [{
+//     "name": "Mighty Dame Fitness - Six Week Challenge",
+//     "quantity": 1,
+//     "price": 199
+//   }],
+//   "currency": "cad",
+//   "address": {
+//       "street": "22 Centre Line Road",
+//       "city": "Marmora",
+//       "postal_code": "K0K2M0",
+//       "state": "ON"
+//     },
+//   "payment_method_id": 1234,
+//   "receipt_email": "angus@ryer.ca",
+//   "id": 1
+// }
+
+const item1 = {
   id: uuid(),
   image: "",
   name: "Mighty Dame Fitness - Six Week Challenge",
@@ -22,16 +43,16 @@ const item = {
   price: 199,
 }
 
-const cart = [item]
+const cartItems = [item1]
 
-const completeCart = {
-  cart: cart,
+const completedCart = {
+  cart: cartItems,
   numberOfItemsInCart: 1,
   total: 199,
 }
 
 export default function SixWeekChallenge() {
-  return <CheckoutWithContext cart={completeCart} />
+  return <CheckoutWithContext completedCart={completedCart} />
 }
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -40,10 +61,10 @@ const stripePromise = loadStripe(
   "pk_test_51IDyuEFdSoxpYycd6b8KkroZ8bsUlsT9yewAqiuc26Vg28VXOBNSXgm4YTAWOYW1DR4Gg39gBJk819oFCmn9IHh300voPu85Oj"
 )
 
-function CheckoutWithContext({ cart }) {
+function CheckoutWithContext({ completedCart }) {
   return (
     <Elements stripe={stripePromise}>
-      <Checkout context={cart} />
+      <Checkout context={completedCart} />
     </Elements>
   )
 }
@@ -83,7 +104,7 @@ const Checkout = ({ context }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const { name, email, street, city, postal_code, province } = input
-    const { total } = context
+    const { total, cart } = context
 
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -115,7 +136,8 @@ const Checkout = ({ context }) => {
     }
 
     const address = {
-      street: street,
+      line1: street,
+      line2: "",
       city: city,
       postal_code: postal_code,
       state: province,
@@ -123,6 +145,7 @@ const Checkout = ({ context }) => {
 
     const order = {
       email: email,
+      items: cart,
       amount: total,
       currency: "cad",
       address: address,
@@ -137,18 +160,18 @@ const Checkout = ({ context }) => {
         "https://oatann8h4d.execute-api.ca-central-1.amazonaws.com/dev/payments",
         order
       )
-      console.log(data)
+      console.log("SUCCESSFUL RESPONSE ===> ", data)
+      setOrderCompleted(true)
     } catch (err) {
-      console.log(err)
+      console.log("POST ERROR ===> ", err)
     }
-
-    // setOrderCompleted(true)
   }
 
   const { total } = context
 
   const calculateTax = () => {
     // TODO implement different regional tax rates if needed
+    // This is only for client viewing. Tax is calculated on the server
     switch (input.province) {
       case "ON":
         return total * 0.13
@@ -170,7 +193,7 @@ const Checkout = ({ context }) => {
 
   return (
     <div className="flex flex-col items-center pb-10">
-      <div className="flex flex-col w-full max-w-5xl">
+      <div className="flex flex-col w-full max-w-5xl px-5">
         <div className="pt-10 pb-8">
           <h1 className="text-5xl font-light">Checkout</h1>
           <Link to="/cart">
@@ -187,12 +210,12 @@ const Checkout = ({ context }) => {
                 <img
                   className="w-32 m-0"
                   src={mightyDameWithText}
-                  alt={item.name}
+                  alt={item1.name}
                 />
-                <p className="m-0 pl-10 text-gray-600 text-xl">{item.name}</p>
+                <p className="m-0 pl-10 text-gray-600 text-xl">{item1.name}</p>
                 <div className="flex flex-1 justify-end">
                   <p className="m-0 pl-10 text-gray-900 tracking-tighter font-semibold">
-                    {DENOMINATION + item.price}
+                    {DENOMINATION + item1.price}
                   </p>
                 </div>
               </div>
