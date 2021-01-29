@@ -19,8 +19,8 @@ export const getUserObject = (rawData) => {
 
 export async function verifySignInStatus() {
   try {
-    const response = await Auth.currentAuthenticatedUser()
-    const userData = getUserObject(response)
+    const data = await Auth.currentAuthenticatedUser()
+    const userData = getUserObject(data)
     if (userData !== null) {
       return {
         success: true,
@@ -44,7 +44,6 @@ export async function signIn(username, password) {
   try {
     const data = await Auth.signIn(username, password)
     const userData = getUserObject(data)
-    console.log(userData)
     if (userData !== null) {
       return {
         success: true,
@@ -75,7 +74,7 @@ export async function signUp(username, email, password) {
       if (userData !== null) {
         return {
           success: true,
-          response: getUserObject(res),
+          response: userData,
         }
       } else {
         return {
@@ -99,7 +98,7 @@ export async function confirmSignUp(username, authCode) {
       if (userData !== null) {
         return {
           success: true,
-          response: getUserObject(res),
+          response: userData,
         }
       } else {
         return {

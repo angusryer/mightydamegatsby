@@ -2,12 +2,13 @@ import React from "react"
 import { useFormFields } from "../../../utils/hooksLib"
 import { confirmSignUp } from "../../utilities/auth"
 
-export default function ConfirmSignUp({ onError }) {
+export default function ConfirmSignUp({ setError, setUser }) {
   const [form, setForm] = useFormFields()
 
   const handleSubmit = async (formFields) => {
-    const data = await confirmSignUp(formFields)
-    if (!data.success) onError(data.response.message)
+    const { success, response } = await confirmSignUp(formFields)
+    if (success) setUser(response)
+    else setError(response)
   }
 
   return (

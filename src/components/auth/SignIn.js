@@ -4,12 +4,13 @@ import { signIn } from "../../utilities/auth"
 import ButtonTwo from "../common/ButtonTwo"
 import FunctionalLink from "./FunctionalLink"
 
-export default function SignIn({ toggleFormState, onError }) {
+export default function SignIn({ toggleFormState, setError, setUser }) {
   const [form, setForm] = useFormFields()
 
   const handleSubmit = async (formFields) => {
-    const data = await signIn(formFields)
-    if (!data.success) onError(data.response.message)
+    const { success, response } = await signIn(formFields)
+    if (success) setUser(response)
+    else setError(response)
   }
 
   return (
