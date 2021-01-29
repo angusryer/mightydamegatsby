@@ -3,7 +3,6 @@ import { DENOMINATION } from "../../providers/dataProvider"
 import { FaLongArrowAltLeft } from "react-icons/fa"
 import { Link } from "gatsby"
 import { v4 as uuid } from "uuid"
-import Image from "../components/common/Image"
 import mightyDameWithText from "../images/MightDameWithWords.png"
 import { loadStripe } from "@stripe/stripe-js"
 import axios from "axios"
@@ -14,33 +13,16 @@ import {
   useElements,
 } from "@stripe/react-stripe-js"
 
-// TEST object
-// {
-//   "email": "angus@ryer.ca",
-//   "amount": 199,
-//   "items": [{
-//     "name": "Mighty Dame Fitness - Six Week Challenge",
-//     "quantity": 1,
-//     "price": 199
-//   }],
-//   "currency": "cad",
-//   "address": {
-//       "street": "22 Centre Line Road",
-//       "city": "Marmora",
-//       "postal_code": "K0K2M0",
-//       "state": "ON"
-//     },
-//   "payment_method_id": 1234,
-//   "receipt_email": "angus@ryer.ca",
-//   "id": 1
-// }
+const stripePromise = loadStripe(process.env.GATSBY_PK)
 
+// Static purchase items
+//
 const item1 = {
   id: uuid(),
   image: "",
   name: "Mighty Dame Fitness - Six Week Challenge",
   quantity: 1,
-  price: 199,
+  price: 5,
 }
 
 const cartItems = [item1]
@@ -48,18 +30,10 @@ const cartItems = [item1]
 const completedCart = {
   cart: cartItems,
   numberOfItemsInCart: 1,
-  total: 199,
+  total: item1.price * item1.quantity,
 }
-
-export default function SixWeekChallenge() {
-  return <CheckoutWithContext completedCart={completedCart} />
-}
-
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(
-  "pk_test_51IDyuEFdSoxpYycd6b8KkroZ8bsUlsT9yewAqiuc26Vg28VXOBNSXgm4YTAWOYW1DR4Gg39gBJk819oFCmn9IHh300voPu85Oj"
-)
+//
+//
 
 function CheckoutWithContext({ completedCart }) {
   return (
@@ -84,6 +58,7 @@ const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
 const Checkout = ({ context }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [orderCompleted, setOrderCompleted] = useState(false)
+  const [receipts, setReceipts] = useState([])
   const [input, setInput] = useState({
     name: "",
     email: "",
@@ -118,6 +93,14 @@ const Checkout = ({ context }) => {
       return
     }
 
+    const address = {
+      line1: street,
+      line2: "",
+      city: city,
+      postal_code: postal_code,
+      state: province,
+    }
+
     // Get a reference to a mounted CardElement. Elements knows how
     // to find your CardElement because there can only ever be one of
     // each type of element.
@@ -127,7 +110,7 @@ const Checkout = ({ context }) => {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
-      billing_details: { name: name },
+      billing_details: { name: name, email: email, address: address },
     })
 
     if (error) {
@@ -135,15 +118,8 @@ const Checkout = ({ context }) => {
       return
     }
 
-    const address = {
-      line1: street,
-      line2: "",
-      city: city,
-      postal_code: postal_code,
-      state: province,
-    }
-
     const order = {
+      id: uuid(),
       email: email,
       items: cart,
       amount: total,
@@ -151,19 +127,18 @@ const Checkout = ({ context }) => {
       address: address,
       payment_method_id: paymentMethod.id,
       receipt_email: email,
-      id: uuid(),
     }
 
-    // TODO call API
     try {
-      const data = await axios.post(
-        "https://oatann8h4d.execute-api.ca-central-1.amazonaws.com/dev/payments",
-        order
-      )
-      console.log("SUCCESSFUL RESPONSE ===> ", data)
+      const data = await axios({
+        method: "post",
+        url: process.env.GATSBY_PAYMENT_ENDPOINT,
+        data: order,
+      })
       setOrderCompleted(true)
+      setReceipts(data.chargeReceipts)
     } catch (err) {
-      console.log("POST ERROR ===> ", err)
+      throw err.message
     }
   }
 
@@ -187,6 +162,21 @@ const Checkout = ({ context }) => {
         <Link className="font-gagalin text-violet text-xl my-3" to="/">
           You are a Mighty Dame.
         </Link>
+        <div className="mt-5 flex items-center justify-center">
+          <p className="mb-3">View your receipt here:</p>
+          {receipts.map((receipt) => {
+            return (
+              <a
+                className=""
+                href={receipt}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {receipt}
+              </a>
+            )
+          })}
+        </div>
       </div>
     )
   }
@@ -314,4 +304,8 @@ const Checkout = ({ context }) => {
       </div>
     </div>
   )
+}
+
+export default function SixWeekChallenge() {
+  return <CheckoutWithContext completedCart={completedCart} />
 }

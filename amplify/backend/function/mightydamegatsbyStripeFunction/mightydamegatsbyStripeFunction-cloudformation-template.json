@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-mightydamegatsby-dev-143702-deployment",
-          "S3Key": "amplify-builds/mightydamegatsbyStripeFunction-472f4c486b59764b4b4f-build.zip"
+          "S3Key": "amplify-builds/mightydamegatsbyStripeFunction-5051627775652f77624b-build.zip"
         }
       }
     },

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react"
-import { navigate } from "gatsby"
 import { Router } from "@reach/router"
-import { verifySignInStatus, signOut } from "../utilities/auth"
+import { verifySignInStatus } from "../utilities/auth"
 import { isBrowser } from "../../utils/helpers"
 import SignUp from "../components/auth/SignUp"
 import ConfirmSignUp from "../components/auth/ConfirmSignUp"
 import SignIn from "../components/auth/SignIn"
 import ForgotPassword from "../components/auth/ForgotPassword"
-import Profile from "../protected/profile"
+import Profile from "./profile"
+import { navigate } from "gatsby"
 
-function LoginForm() {
+function LoginForm({ error }) {
   const [formState, setFormState] = useState("signIn")
-  const [formError, setFormError] = useState(null)
+  const [formError, setFormError] = useState(error)
 
   const toggleFormState = (newFormState) => {
     setFormState(newFormState)
@@ -58,22 +58,26 @@ function LoginForm() {
 
 export default function Login() {
   const [user, setUser] = useState(null)
+  const [error, setError] = useState("")
 
   useEffect(() => {
     const initialUserCheck = async () => {
-      const data = await verifySignInStatus()
-      setUser(data)
+      const { success, response } = await verifySignInStatus()
+      if (success) setUser(response)
+      else setError(response)
     }
     initialUserCheck()
-  }, [])
+  }, [user])
+
+  useEffect(() => {
+    if (user !== null && isBrowser)
+      navigate("/profile")
+  })
 
   return (
-    <Router basepath="/">
-      {user instanceof Object && isBrowser ? (
-        <Profile path="profile" user={user} />
-      ) : (
-        <LoginForm path="login" />
-      )}
+    <Router>
+      <LoginForm path="/login" error={error} />
+      <Profile path="/profile" user={user} />
     </Router>
   )
 }

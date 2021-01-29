@@ -1,3 +1,7 @@
+// require("dotenv").config({
+//   path: `.env.${process.env.NODE_ENV}`,
+// })
+
 module.exports = {
   siteMetadata: {
     title: `Mighty Dame Fitness`,
@@ -15,15 +19,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         custom: {
-          families: [
-            "gagalin",
-            "rancho",
-            "abril",
-            "alex",
-            "amble",
-            ""
-
-          ],
+          families: ["gagalin", "cardo"],
           urls: ["/fonts/fonts.css"],
         },
       },
