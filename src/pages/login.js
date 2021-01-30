@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Router } from "@reach/router"
-import { verifySignInStatus } from "../utilities/auth"
-import { isBrowser } from "../../utils/helpers"
+import { verifySignInStatus } from "../libs/auth"
+import { isBrowser } from "../libs/envFsLib"
 import SignUp from "../components/auth/SignUp"
 import ConfirmSignUp from "../components/auth/ConfirmSignUp"
 import SignIn from "../components/auth/SignIn"
 import ForgotPassword from "../components/auth/ForgotPassword"
-import Profile from "./profile"
+import Profile from "../protected/profile"
 import { navigate } from "gatsby"
 
 function LoginForm({ error, setUser, setError }) {
@@ -89,7 +89,7 @@ export default function Login() {
         setError={setError}
         setUser={setUser}
       />
-      <Profile path="/profile" user={user} />
+      <Profile path="/profile" />
     </Router>
   )
 }

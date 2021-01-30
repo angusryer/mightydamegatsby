@@ -1,31 +1,21 @@
 import React from "react"
 import Footer from "../components/layout/Footer"
 import Nav from "../components/layout/Nav"
-import { SiteContext, ContextProvider } from "../context/mainContext"
-import "react-toastify/dist/ReactToastify.css"
-import { toast } from "react-toastify"
-import { colors } from "../theme"
+// import "react-toastify/dist/ReactToastify.css"
+// import { toast } from "react-toastify"
 
-toast.configure({
-  progressStyle: {
-    background: colors.violet,
-  },
-})
+// toast.configure({
+//   progressStyle: {
+//     background: colors.violet,
+//   },
+// })
 
 export default function Layout({ children }) {
   return (
-    <ContextProvider>
-      <SiteContext.Consumer>
-        {(context) => {
-          return (
-            <>
-              <Nav context={context} />
-              <main>{children}</main>
-              <Footer />
-            </>
-          )
-        }}
-      </SiteContext.Consumer>
-    </ContextProvider>
+    <>
+      <Nav />
+      <main>{children}</main>
+      <Footer />
+    </>
   )
 }

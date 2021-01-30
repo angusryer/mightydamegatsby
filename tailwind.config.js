@@ -1,8 +1,24 @@
-const { colors } = require("./src/theme")
+const RED = "#EE3F46"
+const LIGHT = "#F9F2E8"
+const GREEN = "#0D5259"
+const ORANGE = "#F57C23"
+const VIOLET = "#BE2C8F"
+const DARK = "#201D16"
+const BLACK = "#000"
+const WHITE = "#FFF"
 
 module.exports = {
   purge: ["./src/**/*.js", "./src/**/**/*.js"],
   theme: {
+    backgroundColor: {
+      primary: "var(--color-bg-primary)",
+      secondary: "var(--color-bg-secondary)",
+    },
+    textColor: {
+      accent: "var(--color-text-accent)",
+      primary: "var(--color-text-primary)",
+      secondary: "var(--color-text-secondary)",
+    },
     backgroundImage: {
       hero: "url('../images/hero.jpg')",
       point1: "url('../images/point1.jpg')",
@@ -10,17 +26,17 @@ module.exports = {
       point3: "url('../images/point3.jpg')",
       point4: "url('../images/point4.jpg')",
       point5: "url('../images/point5.jpg')",
-      point16: "url('../images/point6.jpg')",
+      point6: "url('../images/point6.jpg')",
     },
     colors: {
       white: "#ffffff",
       black: "#000000",
-      light: colors.light,
-      dark: colors.dark,
-      red: colors.red,
-      orange: colors.orange,
-      violet: colors.violet,
-      green: colors.green,
+      light: LIGHT,
+      dark: DARK,
+      red: RED,
+      orange: ORANGE,
+      violet: VIOLET,
+      green: GREEN,
       transparent: "transparent"
     },
     fontFamily: {
@@ -293,7 +309,7 @@ module.exports = {
         "-12": "-12",
       },
       textColor: {
-        primary: colors.dark,
+        primary: DARK,
       },
     },
   },

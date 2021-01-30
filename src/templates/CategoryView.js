@@ -1,6 +1,6 @@
 // import React from "react"
 // import ListItem from "../components/ListItem"
-// import { makeTitle, makeSlug } from "../../utils/helpers"
+// import { makeTitle, makeSlug } from "../libs/stringLib"
 // import CartLink from "../components/CartLink"
 
 // export default function CategoryView(props) {

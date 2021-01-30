@@ -5,7 +5,7 @@
 // import { updateProduct, deleteProduct } from '../graphql/mutations'
 // import Image from '../components/Image'
 // import { Link } from 'gatsby'
-// import { makeSlug } from '../../utils/helpers'
+// import { makeSlug } from '../libs/stringLib'
 // import { FaTimes } from 'react-icons/fa'
 
 // class ViewInventory extends React.Component {

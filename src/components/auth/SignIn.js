@@ -1,6 +1,6 @@
 import React from "react"
-import { useFormFields } from "../../../utils/hooksLib"
-import { signIn } from "../../utilities/auth"
+import { useFormFields } from "../../libs/hooksLib"
+import { signIn } from "../../libs/auth"
 import ButtonTwo from "../common/ButtonTwo"
 import FunctionalLink from "./FunctionalLink"
 

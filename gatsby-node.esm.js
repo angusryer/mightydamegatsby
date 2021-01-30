@@ -2,6 +2,7 @@ import Amplify from "aws-amplify"
 import fetchData from "./providers/dataProvider.js"
 import fs from "fs"
 import awsmobile from "./src/aws-exports"
+import { PRODUCTS, PROGRAMS, REVIEWS } from "./providers/dataProvider"
 
 Amplify.configure(awsmobile)
 
@@ -28,9 +29,10 @@ exports.sourceNodes = async ({
   createContentDigest,
 }) => {
   const { createNode } = actions
-  const products = await fetchData("PRODUCTS_DATA", fs)
-  const programs = await fetchData("PROGRAMS_DATA", fs)
-  const reviews = await fetchData("REVIEWS_DATA", fs)
+  const products = await fetchData(PRODUCTS, fs)
+  const programs = await fetchData(PROGRAMS, fs)
+  const reviews = await fetchData(REVIEWS)
+  console.log("PRODUCTS from gatsby-node ==> ", products)
 
   // create products node
   const productsData = {

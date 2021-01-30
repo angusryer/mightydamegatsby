@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { SiteContext, ContextProvider } from "../context/mainContext"
+import React, { useState, useContext } from "react"
+import { CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../../providers/dataProvider"
 import { FaLongArrowAltLeft } from "react-icons/fa"
 import { Link } from "gatsby"
@@ -18,17 +18,11 @@ import { loadStripe } from "@stripe/stripe-js"
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_DvXwcKnVaaZUpWJIbh9cjgZr00IjIAjZAA")
 
-function CheckoutWithContext(props) {
+export default function CheckoutWithContext(props) {
   return (
-    <ContextProvider>
-      <SiteContext.Consumer>
-        {(context) => (
-          <Elements stripe={stripePromise}>
-            <Checkout {...props} context={context} />
-          </Elements>
-        )}
-      </SiteContext.Consumer>
-    </ContextProvider>
+    <Elements stripe={stripePromise}>
+      <Checkout {...props} />
+    </Elements>
   )
 }
 
@@ -48,7 +42,10 @@ const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
   />
 )
 
-const Checkout = ({ context }) => {
+const Checkout = () => {
+  const { clearCart, numberOfItemsInCart, cart, total } = useContext(
+    CartContext
+  )
   const [errorMessage, setErrorMessage] = useState(null)
   const [orderCompleted, setOrderCompleted] = useState(false)
   const [input, setInput] = useState({
@@ -71,7 +68,6 @@ const Checkout = ({ context }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const { name, email, street, city, postal_code, state } = input
-    const { total, clearCart } = context
 
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -116,7 +112,6 @@ const Checkout = ({ context }) => {
     clearCart()
   }
 
-  const { numberOfItemsInCart, cart, total } = context
   const cartEmpty = numberOfItemsInCart === Number(0)
 
   if (orderCompleted) {
@@ -268,5 +263,3 @@ const Checkout = ({ context }) => {
     </div>
   )
 }
-
-export default CheckoutWithContext

@@ -1,21 +1,22 @@
-import React from "react"
-import { SiteContext, ContextProvider } from "../context/mainContext"
+import React, { useContext } from "react"
+import { CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../../providers/dataProvider"
 import { FaTimes, FaLongArrowAltRight } from "react-icons/fa"
 import { Link } from "gatsby"
 import CartLink from "../components/common/CartLink"
 import QuantityPicker from "../components/common/QuantityPicker"
-import { makeSlug } from "../../utils/helpers"
+import { makeSlug } from "../libs/stringLib"
 import Image from "../components/common/Image"
 
-const Cart = ({ context }) => {
+export default function Cart() {
   const {
     numberOfItemsInCart,
     cart,
-    removeFromCart,
+    RemoveFromCart,
     total,
     setItemQuantity,
-  } = context
+  } = useContext(CartContext)
+
   const cartEmpty = numberOfItemsInCart === Number(0)
 
   function increment(item) {
@@ -84,8 +85,8 @@ const Cart = ({ context }) => {
                         <div
                           role="button"
                           tabIndex="-5"
-                          onKeyDown={() => removeFromCart(item)}
-                          onClick={() => removeFromCart(item)}
+                          onKeyDown={() => RemoveFromCart(item)}
+                          onClick={() => RemoveFromCart(item)}
                           className="
                             m-0 ml-10 text-gray-900 text-s cursor-pointer
                             "
@@ -130,8 +131,8 @@ const Cart = ({ context }) => {
                         <div
                           role="button"
                           tabIndex="-10"
-                          onKeyDown={() => removeFromCart(item)}
-                          onClick={() => removeFromCart(item)}
+                          onKeyDown={() => RemoveFromCart(item)}
+                          onClick={() => RemoveFromCart(item)}
                           className="
                             m-0 ml-10 text-gray-900 text-s cursor-pointer mr-2
                             "
@@ -166,15 +167,3 @@ const Cart = ({ context }) => {
     </>
   )
 }
-
-function CartWithContext(props) {
-  return (
-    <ContextProvider>
-      <SiteContext.Consumer>
-        {(context) => <Cart {...props} context={context} />}
-      </SiteContext.Consumer>
-    </ContextProvider>
-  )
-}
-
-export default CartWithContext

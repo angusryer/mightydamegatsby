@@ -1,6 +1,6 @@
 import React from "react"
-import { useFormFields } from "../../../utils/hooksLib"
-import { confirmSignUp } from "../../utilities/auth"
+import { useFormFields } from "../../libs/hooksLib"
+import { confirmSignUp } from "../../libs/auth"
 
 export default function ConfirmSignUp({ setError, setUser }) {
   const [form, setForm] = useFormFields()

@@ -1,131 +1,96 @@
-import React, { createContext, Component } from "react"
-import { toast } from "react-toastify"
-import { Auth } from "aws-amplify"
-import { colors } from "../theme"
-
-const STORAGE_KEY = "MDF_"
-
-const initialState = {
-  cart: [],
-  numberOfItemsInCart: 0,
-  total: 0,
-  currentUser: {},
-  colors: {}
-}
-
-const SiteContext = createContext()
-
-function calculateTotal(cart) {
-  const total = cart.reduce((cumulative, next) => {
-    // const quantity = next.quantity // TODO delete
-    cumulative = cumulative + JSON.parse(next.price) * JSON.parse(next.quantity)
-    return cumulative
-  }, 0)
-  return total
-}
+import React, { Component } from "react"
+import { verifySignInStatus } from "../libs/auth"
+import {
+  CART_KEY,
+  CartContext,
+  AddToCart,
+  clearCart,
+  initialCart,
+  RemoveFromCart,
+  setItemQty,
+} from "./cartContext"
+import {
+  USER_KEY,
+  UserContext,
+  initialUser,
+  storeUser,
+  removeUser,
+} from "./userContext"
+import {
+  THEME_KEY,
+  ThemeContext,
+  initialTheme,
+  toggleTheme,
+} from "./themeContext"
+import { isBrowser } from "../libs/envFsLib"
+import AlertContext, { AlertContextProvider } from "./alertContext"
 
 class ContextProvider extends Component {
+
+  state = {
+    cartState: initialCart,
+    userState: initialUser,
+    themeState: initialTheme
+  }
+
   async componentDidMount() {
-    if (typeof window !== "undefined") {
-      const storageState = window.localStorage.getItem(STORAGE_KEY)
-      if (!storageState) {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(initialState))
-      }
+    if (isBrowser) {
+      const cartLocalStorage = window.localStorage.getItem(CART_KEY)
+      if (!cartLocalStorage)
+        window.localStorage.setItem(CART_KEY, JSON.stringify(initialCart))
+      const userLocalStorage = window.localStorage.getItem(USER_KEY)
+      if (!userLocalStorage)
+        window.localStorage.setItem(USER_KEY, JSON.stringify(initialUser))
+      const themelocalStorage = window.localStorage.getItem(THEME_KEY)
+      if (!themelocalStorage)
+        window.localStorage.setItem(THEME_KEY, JSON.stringify(initialTheme))
     }
-    Auth.currentAuthenticatedUser().then((res) => {
-      if (res.data) initialState.currentUser = res.data
-    })
-  }
-
-  setItemQuantity = (item) => {
-    const storageState = JSON.parse(window.localStorage.getItem(STORAGE_KEY))
-    const { cart } = storageState
-    const index = cart.findIndex((cartItem) => cartItem.id === item.id)
-    cart[index].quantity = item.quantity
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        cart,
-        numberOfItemsInCart: cart.length,
-        total: calculateTotal(cart),
-      })
-    )
-    this.forceUpdate() // force a re-render on our context since we haven't triggered it (no setState anywhere, we've only updated local storage)
-  }
-
-  addToCart = (item) => {
-    const storageState = JSON.parse(window.localStorage.getItem(STORAGE_KEY))
-    const { cart } = storageState
-    if (cart.length) {
-      const index = cart.findIndex((cartItem) => cartItem.id === item.id)
-      if (index >= Number(0)) {
-        cart[index].quantity = cart[index].quantity + item.quantity
-      } else {
-        cart.push(item)
-      }
-    } else {
-      cart.push(item)
-    }
-
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        cart,
-        numberOfItemsInCart: cart.length,
-        total: calculateTotal(cart),
-      })
-    )
-    toast("Successfully added to cart!", {
-      position: toast.POSITION.BOTTOM_RIGHT,
-    })
-    this.forceUpdate() // force a re-render on our context since we haven't triggered it (no setState anywhere, we've only updated local storage)
-  }
-
-  removeFromCart = (item) => {
-    const storageState = JSON.parse(window.localStorage.getItem(STORAGE_KEY))
-    let { cart } = storageState
-    cart = cart.filter((cartItem) => cartItem.id !== item.id)
-
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        cart,
-        numberOfItemsInCart: cart.length,
-        total: calculateTotal(cart),
-      })
-    )
-    this.forceUpdate() // force a re-render on our context since we haven't triggered it (no setState anywhere, we've only updated local storage)
-  }
-
-  clearCart = () => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(initialState))
-    this.forceUpdate() // force a re-render on our context since we haven't triggered it (no setState anywhere, we've only updated local storage)
+    const { success, response } = await verifySignInStatus()
+    if (success) this.setState({userState: response})
   }
 
   render() {
-    let state = initialState
-    if (typeof window !== "undefined") {
-      const storageState = window.localStorage.getItem(STORAGE_KEY)
-      if (storageState) {
-        state = JSON.parse(storageState)
-      }
+    if (isBrowser) {
+      const cartLocalStorage = window.localStorage.getItem(CART_KEY)
+      if (cartLocalStorage) this.setState({cartState: JSON.parse(cartLocalStorage)})
+      const userLocalStorage = window.localStorage.getItem(USER_KEY)
+      if (userLocalStorage) this.setState({userState: JSON.parse(userLocalStorage)})
+      const themeLocalStorage = window.localStorage.getItem(THEME_KEY)
+      if (themeLocalStorage) this.setState({themeState: JSON.parse(themeLocalStorage)})
     }
 
     return (
-      <SiteContext.Provider
-        value={{
-          ...state,
-          ...colors,
-          addToCart: this.addToCart,
-          clearCart: this.clearCart,
-          removeFromCart: this.removeFromCart,
-          setItemQuantity: this.setItemQuantity,
-        }}
-      >
-        {this.props.children}
-      </SiteContext.Provider>
+      <AlertContextProvider>
+        <UserContext.Provider
+          value={{
+            ...this.userState,
+            storeUser: (user) => storeUser(user, this.forceUpdate),
+            removeUser: () => removeUser(this.forceUpdate),
+          }}
+        >
+          <ThemeContext.Provider
+            value={{
+              ...this.themeState,
+              toggleTheme: () => toggleTheme(this.forceUpdate),
+            }}
+          >
+            <CartContext.Provider
+              value={{
+                ...this.cartState,
+                removeFromCart: (item) =>
+                  RemoveFromCart(item, this.forceUpdate),
+                setItemQty: (item) => setItemQty(item, this.forceUpdate),
+                addToCart: (item) => AddToCart(item, this.forceUpdate),
+                clearCart: (item) => clearCart(item, this.forceUpdate),
+              }}
+            >
+              {this.props.children}
+            </CartContext.Provider>
+          </ThemeContext.Provider>
+        </UserContext.Provider>
+      </AlertContextProvider>
     )
   }
 }
 
-export { SiteContext, ContextProvider }
+export { AlertContext, CartContext, UserContext, ThemeContext, ContextProvider }

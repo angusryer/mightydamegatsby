@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Auth } from "aws-amplify"
-import { useFormFields } from "../../../utils/hooksLib"
+import { useFormFields } from "../../libs/hooksLib"
 
 export default function ForgotPassword({ toggleFormState, onError }) {
   const [form, setForm] = useFormFields({
