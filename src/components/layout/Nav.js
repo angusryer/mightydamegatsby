@@ -24,7 +24,7 @@ export default function Nav() {
     return () => document.removeEventListener("click", hideMenu)
   })
 
-  const linkStyle = `text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-secondary hover:shadow-lg`
+  const linkStyle = `font-extralight text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-secondary hover:shadow-lg`
 
   return (
     <nav className="sticky top-0 bg-secondary flex flex-shrink-0">

@@ -1,9 +1,13 @@
-import axios from "axios"
-import Amplify, { Storage } from "aws-amplify"
-import tag from "graphql-tag"
-import downloadImage from "../src/libs/envFsLib"
-import config from "../src/aws-exports"
 import path from "path"
+import Amplify, { Storage } from "aws-amplify"
+import axios from "axios"
+import downloadImage from "../libs/envFsLib"
+import config from "../aws-exports"
+import {
+  listAllProductsQuery,
+  listAllReviewsQuery,
+  listAllServicesQuery,
+} from "../graphql/gatsby-ssr-queries"
 
 Amplify.configure(config)
 const graphql = require("graphql")
@@ -43,7 +47,9 @@ export default async function fetchData(dataType, fs) {
 }
 
 async function cacheImageFromSource(imageFileName, fs) {
-  if (!fs.existsSync(path.join(__dirname, "..", "public", imageFileName))) {
+  if (
+    !fs.existsSync(path.join(__dirname, "..", "..", "public", imageFileName))
+  ) {
     try {
       const imageUrl = await Storage.get(imageFileName)
       await downloadImage(imageUrl, fs)
@@ -68,81 +74,11 @@ async function fetchOffers(query, fs) {
 function cacheAndUpdatePaths(items, fs) {
   items.forEach((item, index) => {
     cacheImageFromSource(item.mainImageFileName, fs)
-    items[index].mainImageFileName = `../../${item.mainImageFileName}`
+    items[index].mainImageFileName = `../../../${item.mainImageFileName}`
     item.otherImageFileNames.forEach((image, index) => {
       cacheImageFromSource(image, fs)
-      item.otherImageFileNames[index] = `../../${image}`
+      item.otherImageFileNames[index] = `../../../${image}`
     })
   })
   return items
 }
-
-export const DENOMINATION = "$"
-
-export const listAllReviewsQuery = tag(`
-  query getAllReviews {
-    listReviews {
-      items {
-        id
-        comment
-        rating
-        title
-        ownerId
-        user {
-          id
-          displayName
-          avatarUrl
-        }
-      }
-    }
-  }
-  `)
-
-export const listAllProductsQuery = tag(`
-  query getAllProducts {
-    byOfferType(offerType: PRODUCT) {
-      items {
-        id
-        title
-        shortDescription
-        longDescription
-        keywords
-        categories
-        price
-        salePrice
-        mainImageUrl
-        mainImageFileName
-        otherImageUrls
-        otherImageFileNames
-        available
-        brand
-      }
-    }
-  }
-  `)
-
-export const listAllServicesQuery = tag(`
-  query getAllServices {
-    byOfferType(offerType: SERVICE) {
-      items {
-        id
-        title
-        shortDescription
-        longDescription
-        keywords
-        categories
-        price
-        salePrice
-        mainImageUrl
-        mainImageFileName
-        otherImageUrls
-        otherImageFileNames
-        available
-        brand
-        numberOfSessions
-        lengthOfSessionInHours
-        frequencyOfSessionsPerWeek
-      }
-    }
-  }
-  `)

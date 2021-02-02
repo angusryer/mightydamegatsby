@@ -1,8 +1,11 @@
 import Amplify from "aws-amplify"
-import fetchData from "./providers/dataProvider.js"
+import fetchData, {
+  PRODUCTS,
+  PROGRAMS,
+  REVIEWS,
+} from "./src/providers/dataProvider.js"
 import fs from "fs"
 import awsmobile from "./src/aws-exports"
-import { PRODUCTS, PROGRAMS, REVIEWS } from "./providers/dataProvider"
 
 Amplify.configure(awsmobile)
 

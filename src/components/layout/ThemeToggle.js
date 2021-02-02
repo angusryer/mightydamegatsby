@@ -14,7 +14,6 @@ export default function Toggle() {
   const handleClick = (e) => {
     setDarkClass(isDark() ? "darkToggle" : "")
     setTheme(e.target.checked ? "dark" : "light")
-    console.log(darkClass)
   }
 
   return (

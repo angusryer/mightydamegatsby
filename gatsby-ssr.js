@@ -1,10 +1,8 @@
 /**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
+ * Implement Gatsby's Browser APIs in this file.
  *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
+ * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
-
-// You can delete this file if you're not using it
 
 import React from "react"
 import Amplify from "aws-amplify"
@@ -12,8 +10,9 @@ import awsmobile from "./src/aws-exports"
 import { ApolloProvider } from "react-apollo"
 import { ContextProvider } from "./src/context/mainContext"
 import { gqlClient } from "./src/context/gqlClient"
-import "./src/layouts/layout.css"
+import "./src/styles/layout.css"
 import "./src/styles/site.css"
+import "./src/styles/fonts.css"
 
 Amplify.configure(awsmobile)
 

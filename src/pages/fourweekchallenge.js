@@ -1,18 +1,18 @@
 import React, { useState, useContext } from "react"
-import { DENOMINATION } from "../../providers/dataProvider"
-import { FaLongArrowAltLeft } from "react-icons/fa"
-import { Link } from "gatsby"
-import { v4 as uuid } from "uuid"
-import mightyDameWithText from "../images/MightDameWithWords.png"
-import { loadStripe } from "@stripe/stripe-js"
 import axios from "axios"
+import { Link } from "gatsby"
+import { FaLongArrowAltLeft } from "react-icons/fa"
+import { v4 as uuid } from "uuid"
+import { loadStripe } from "@stripe/stripe-js"
+import mightyDameWithText from "../images/MightDameWithWords.png"
 import {
   CardElement,
   Elements,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js"
-import { ThemeContext } from '../context/mainContext'
+import { ThemeContext } from "../context/mainContext"
+import { DENOMINATION } from "../libs/constants"
 
 const stripePromise = loadStripe(process.env.GATSBY_PK)
 
@@ -236,9 +236,9 @@ const Checkout = ({ context }) => {
                       style: {
                         base: {
                           fontSize: "14px",
-                          color: theme === 'dark' ? "#eee8df" : "#201d16",
+                          color: theme === "dark" ? "#eee8df" : "#201d16",
                           "::placeholder": {
-                            color: theme === 'dark' ? "#eee8df" : "#201d16",
+                            color: theme === "dark" ? "#eee8df" : "#201d16",
                           },
                         },
                         invalid: {

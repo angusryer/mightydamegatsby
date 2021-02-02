@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react"
 import { CartContext } from "../context/mainContext"
-import { DENOMINATION } from "../../providers/dataProvider"
 import { FaLongArrowAltLeft } from "react-icons/fa"
 import { Link } from "gatsby"
 import { v4 as uuid } from "uuid"
 import Image from "../components/common/Image"
+import { DENOMINATION } from "../libs/constants"
 
 import {
   CardElement,
@@ -43,9 +43,7 @@ const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
 )
 
 const Checkout = () => {
-  const { clearCart, numberOfItemsInCart, cart, total } = useContext(
-    CartContext
-  )
+  const { clearCart, quantityOfItems, items, total } = useContext(CartContext)
   const [errorMessage, setErrorMessage] = useState(null)
   const [orderCompleted, setOrderCompleted] = useState(false)
   const [input, setInput] = useState({
@@ -112,7 +110,7 @@ const Checkout = () => {
     clearCart()
   }
 
-  const cartEmpty = numberOfItemsInCart === Number(0)
+  const cartEmpty = quantityOfItems === Number(0)
 
   if (orderCompleted) {
     return (
@@ -145,7 +143,7 @@ const Checkout = () => {
         ) : (
           <div className="flex flex-col">
             <div className="">
-              {cart.map((item, index) => {
+              {items.map((item, index) => {
                 return (
                   <div className="border-b py-10" key={index}>
                     <div className="flex items-center">

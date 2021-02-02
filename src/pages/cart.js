@@ -1,23 +1,23 @@
 import React, { useContext } from "react"
 import { CartContext } from "../context/mainContext"
-import { DENOMINATION } from "../../providers/dataProvider"
 import { FaTimes, FaLongArrowAltRight } from "react-icons/fa"
 import { Link } from "gatsby"
 import CartLink from "../components/common/CartLink"
 import QuantityPicker from "../components/common/QuantityPicker"
 import { makeSlug } from "../libs/stringLib"
 import Image from "../components/common/Image"
+import { DENOMINATION } from "../libs/constants"
 
 export default function Cart() {
   const {
-    numberOfItemsInCart,
-    cart,
+    quantityOfItems,
+    items,
     RemoveFromCart,
     total,
     setItemQuantity,
   } = useContext(CartContext)
 
-  const cartEmpty = numberOfItemsInCart === Number(0)
+  const cartEmpty = quantityOfItems === Number(0)
 
   function increment(item) {
     item.quantity = item.quantity + 1
@@ -49,7 +49,7 @@ export default function Cart() {
           ) : (
             <div className="flex flex-col">
               <div className="">
-                {cart.map((item) => {
+                {items.map((item) => {
                   return (
                     <div className="border-b py-10" key={item.id}>
                       {/* Responsive - Desktop */}
@@ -130,7 +130,7 @@ export default function Cart() {
                         </div>
                         <div
                           role="button"
-                          tabIndex="-10"
+                          tabIndex="1"
                           onKeyDown={() => RemoveFromCart(item)}
                           onClick={() => RemoveFromCart(item)}
                           className="

@@ -10,8 +10,9 @@ import awsmobile from "./src/aws-exports"
 import { ApolloProvider } from "react-apollo"
 import { ContextProvider } from "./src/context/mainContext"
 import { gqlClient } from "./src/context/gqlClient"
-import "./src/layouts/layout.css"
+import "./src/styles/layout.css"
 import "./src/styles/site.css"
+import "./src/styles/fonts.css"
 
 Amplify.configure(awsmobile)
 

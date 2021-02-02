@@ -53,14 +53,14 @@ export default function Home({ data }) {
         </Hero>
         <div className="flex flex-col self-center max-w-6xl">
           <CallToAction bt bb>
-            <p className="text-xl font-bold px-4 mt-3 text-center text-primary">
+            <p className="text-xl font-extralight px-4 mt-3 text-center text-primary">
               Our QA-style newsletter gives you actions and knowledge in a
               short, consistent format. Unsubscribe any time.
             </p>
             <div className="flex max-w-32 w-1/2 items-center my-3">
               <hr className="bg-secondary w-full h-1px" />
               <span className="font-lemon text-xl text-center mx-2 text-primary">
-                OR
+                or
               </span>
               <hr className="bg-secondary w-full h-1px" />
             </div>
@@ -78,7 +78,7 @@ export default function Home({ data }) {
         </div>
         <div className="flex flex-col self-center items-center max-w-6xl">
           <LeadPointContainer>
-            <h2 className="text-3xl text-center pb-10 font-cardo font-bold">
+            <h2 className="text-3xl text-center pb-10 font-bold text-primary">
               We're real. We're different.
             </h2>
             <LeadPointRight image={point1}>We FOCUS on women.</LeadPointRight>
@@ -90,7 +90,7 @@ export default function Home({ data }) {
             </LeadPointRight>
           </LeadPointContainer>
           <LeadPointContainer>
-            <h2 className="text-3xl text-center pb-10 font-cardo font-bold">
+            <h2 className="text-3xl text-center pb-10 font-bold text-primary">
               We still do what others do
             </h2>
             <LeadPointLeft image={point4}>
@@ -105,7 +105,7 @@ export default function Home({ data }) {
           </LeadPointContainer>
           <div className="flex flex-col self-center items-center max-w-6xl pb-16 border-none">
             <CallToAction bt>
-              <p className="text-xl font-bold px-4 text-center">
+              <p className="text-xl font-extralight px-4 text-center text-primary">
                 We're helping women be the mighty dames that they really are,
                 one by one. Start now.
               </p>

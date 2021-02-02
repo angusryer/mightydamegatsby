@@ -23,11 +23,13 @@ export function ThemeContextProvider({ initialTheme, children }) {
   const [theme, setTheme] = useState(getInitialTheme)
 
   const toggleTheme = (selectedTheme) => {
-    const root = window.document.documentElement
-    const isDark = selectedTheme === "dark"
-    root.classList.remove(isDark ? "light" : "dark")
-    root.classList.add(selectedTheme)
-    localStorage.setItem(THEME_KEY, selectedTheme)
+    if (isBrowser) {
+      const root = window.document.documentElement
+      const isDark = selectedTheme === "dark"
+      root.classList.remove(isDark ? "light" : "dark")
+      root.classList.add(selectedTheme)
+      localStorage.setItem(THEME_KEY, selectedTheme)
+    }
   }
 
   if (initialTheme) {

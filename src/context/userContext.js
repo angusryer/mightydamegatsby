@@ -16,11 +16,13 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState(initialUser)
 
   useEffect(() => {
-    const userLocalStorage = window.localStorage.getItem(USER_KEY)
-    if (userLocalStorage) {
-      setUser(JSON.parse(userLocalStorage))
-    } else {
-      _verifyAndStoreUser()
+    if (isBrowser) {
+      const userLocalStorage = window.localStorage.getItem(USER_KEY)
+      if (userLocalStorage) {
+        setUser(JSON.parse(userLocalStorage))
+      } else {
+        _verifyAndStoreUser()
+      }
     }
   }, [])
 
