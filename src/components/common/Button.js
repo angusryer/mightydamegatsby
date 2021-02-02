@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Button({ title, onClick, full = false }) {
-  let classNames = "text-sm font-bold tracking-wider bg-transparent hover:bg-black text-black font-semibold hover:text-white py-4 px-12 border-2 border-black hover:border-transparent"
+  let classNames = "text-sm font-bold tracking-wider bg-transparent hover:bg-buttonSecondary text-primary font-semibold hover:text-secondary py-4 px-12 border-2 border-accentsSecondary hover:border-transparent"
 
   if (full) {
     classNames = `${classNames} w-full`

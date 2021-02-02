@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useState, createContext } from "react"
 
 // TODO configure styling for each of the below style classNames
-export const WARN = "alert_warn" // orange
-export const SUCCESS = "alert_success" // green
-export const INFO = "alert_info" // blue
-export const ERROR = "alert_error" // red
+const types = {
+  WARN: "alert_warn", // orange
+  SUCCESS: "alert_success", // green
+  INFO: "alert_info", // blue
+  ERROR: "alert_error", // red
+}
 
 const AlertContext = createContext(null)
 
@@ -31,14 +33,19 @@ export function AlertContextProvider({ children }) {
   )
 
   return (
-    <AlertContext.Provider value={newAlert}>
-      <div className="fixed top-2 right-2">
-        {alerts.map((alert, i) => (
-          <div className={alert.type} key={i}>
+    <AlertContext.Provider
+      value={{
+        types: types,
+        newAlert,
+      }}
+    >
+      {alerts.map((alert, i) => (
+        <div key={i} className="fixed flex self-center my-3 items-center justify-start rounded-xl bg-opacity-10 w-1/4 max-w-xs h-auto z-10 overflow-hidden">
+          <div className={`${alert.type} bg-opacity-75 w-full h-full text-xs text-secondary text-center font-extrabold p-3`}>
             {alert.text}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
       {children}
     </AlertContext.Provider>
   )

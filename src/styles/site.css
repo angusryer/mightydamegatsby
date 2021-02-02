@@ -1,34 +1,21 @@
-:root {
-  @apply light;
-}
-
-.dark {
-  --color-bg-primary: #2d3748;
-  --color-bg-secondary: #283141;
-  --color-text-primary: #f7fafc;
-  --color-text-secondary: #e2e8f0;
-  --color-text-accent: #81e6d9;
-}
-
-.light {
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #edf2f7;
-  --color-text-primary: #2d3748;
-  --color-text-secondary: #4a5568;
-  --color-text-accent: #2b6cb0;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /*
+  const RED = "#EE3F46"
+  const LIGHT = "#F9F2E8"
+  const GREEN = "#0D5259"
+  const ORANGE = "#F57C23"
+  const VIOLET = "#BE2C8F"
+  const DARK = "#201D16"
+  const BLACK = "#000"
+  const WHITE = "#FFF"
+  */
+
   svg {
     display: initial;
-  }
-
-  body {
-    background-color: #f9f2e8;
   }
 
   .luminous {
@@ -75,4 +62,70 @@
     text-shadow: 1px 1px 1px #000;
   }
 
+  .alert_warn {
+    background-color: #f57c23;
+    opacity: 40%;
+  }
+
+  .alert_success {
+    background-color: #0d5259;
+    opacity: 40%;
+  }
+
+  .alert_info {
+    background-color: #be2c8f;
+    opacity: 40%;
+  }
+
+  .alert_error {
+    background-color: #ee3f46;
+  }
+
+  .toggle {
+    left: 2px;
+    right: auto;
+    transition: all 0.5s;
+  }
+
+  .darkToggle {
+    left: auto;
+    right: 2px;
+    transition: all 0.5s;
+  }
+
+  .dark path {
+    fill: var(--color-bg-primary);
+  }
+}
+
+:root {
+  @apply light;
+}
+
+.dark {
+  --color-bg-primary: #350d27;
+  --color-bg-secondary: #be2c8f;
+  --color-button-primary: #91256d;
+  --color-button-secondary: #d835a3;
+  --color-accents-primary: #f9f2e8;
+  --color-accents-secondary: #187e8a;
+  --color-text-primary: #eee8df;
+  --color-text-secondary: #f9f2e8;
+  --color-text-accent: #ffa0df;
+  --color-overlay-primary: #f9f2e8;
+  --color-overlay-secondary: #201d16;
+}
+
+.light {
+  --color-bg-primary: #f9f2e8;
+  --color-bg-secondary: #be2c8f;
+  --color-button-primary: #d835a3;
+  --color-button-secondary: #91256d;
+  --color-accents-primary: #0d5259;
+  --color-accents-secondary: #201d16;
+  --color-text-primary: #201d16;
+  --color-text-secondary: #f9f2e8;
+  --color-text-accent: #4a1337;
+  --color-overlay-primary: #201d16;
+  --color-overlay-secondary: #f9f2e8;
 }

@@ -9,7 +9,7 @@ export default function Instructors() {
     <>
       <SEO title="Instructors" desription="Mighty Dame Fitness Instructors" />
       <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5 items-center">
-        <h1 className="font-gagalin text-2xl my-5">Meet the Instructor</h1>
+        <h1 className="font-lemon text-2xl my-5">Meet the Instructor</h1>
         <div className="flex flex-row my-12 self-center">
           <div className=" min-h-32 min-w-32 w-32 h-30 overflow-hidden border-none rounded-full">
             <img
@@ -24,7 +24,7 @@ export default function Instructors() {
         </div>
         <h2 className="text-xl font-bold text-center">
           Who I’m{" "}
-          <span className="font-gagalin text-2xl font-bold text-red">not</span>:
+          <span className="font-lemon text-2xl font-bold text-">not</span>:
         </h2>
         <ol className="my-10 grid nav:grid-rows-none nav:grid-cols-4 grid-rows-4 grid-cols-none">
           <li className="flex items-center p-3">
@@ -48,7 +48,7 @@ export default function Instructors() {
         </ol>
         <h2 className="text-xl font-bold text-center">
           Who I{" "}
-          <span className="font-gagalin text-2xl font-bold text-green">am</span>
+          <span className="font-lemon text-2xl font-bold text-accent">am</span>
           :
         </h2>
         <ol className="my-10 grid nav:grid-rows-none nav:grid-cols-4 grid-rows-4 grid-cols-none">
@@ -131,7 +131,7 @@ export default function Instructors() {
           </blockquote>
           <blockquote className="text-center my-10 text-xl font-bold">
             We’re meant to be{" "}
-            <span className="font-gagalin text-2xl">Mighty Dames!</span>
+            <span className="font-lemon text-2xl">Mighty Dames!</span>
           </blockquote>
           <cite className="block text-right mr-5 font-bold">-Emily</cite>
         </article>

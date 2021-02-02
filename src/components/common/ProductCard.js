@@ -6,17 +6,6 @@ export default function ProductCard(props) {
   const [mainImageState, setMainImageState] = useState(null)
   const [otherImagesState, setOtherImagesState] = useState([])
 
-  const displayMainImage = (selectedImage) => {
-    const otherImagesFiltered = otherImagesState.filter((image) => {
-      return image !== selectedImage
-    })
-
-    otherImagesFiltered.push(mainImageState)
-
-    setMainImageState(selectedImage)
-    setOtherImagesState(otherImagesFiltered)
-  }
-
   useEffect(() => {
     setMainImageState(image)
     setOtherImagesState(otherImages)
@@ -40,13 +29,13 @@ export default function ProductCard(props) {
                 className="h-20 w-24 object-cover object-center"
                 src={imagePath}
                 alt="other product views"
-                onClick={() => displayMainImage(imagePath)}
+                onClick={() => setMainImageState(imagePath)}
               />
             )
           })}
       </div>
       <div className="flex flex-col p-5 items-center">
-        <h3 className="font-gagalin text-lg text-center my-3">{title}</h3>
+        <h3 className="font-lemon text-lg text-center my-3">{title}</h3>
         <p className="my-2 text-center">{description}</p>
 
         <div className="flex flex-col my-3 items-center">

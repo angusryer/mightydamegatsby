@@ -64,7 +64,7 @@ export default function Cart() {
                         <Link to={makeSlug(item.name)}>
                           <p
                             className="
-                              m-0 pl-10 text-gray-600 text-sm w-56
+                              m-0 pl-10 text-primary text-opacity-75 text-sm w-56
                               "
                           >
                             {item.name}
@@ -78,7 +78,7 @@ export default function Cart() {
                           />
                         </div>
                         <div className="flex flex-1 justify-end">
-                          <p className="m-0 pl-10 text-gray-900 tracking-tighter font-semibold">
+                          <p className="m-0 pl-10 text-primary text-opacity-90 tracking-tighter font-semibold">
                             {DENOMINATION + item.price}
                           </p>
                         </div>
@@ -88,7 +88,7 @@ export default function Cart() {
                           onKeyDown={() => RemoveFromCart(item)}
                           onClick={() => RemoveFromCart(item)}
                           className="
-                            m-0 ml-10 text-gray-900 text-s cursor-pointer
+                            m-0 ml-10 text-primary text-opacity-90 text-s cursor-pointer
                             "
                         >
                           <FaTimes />
@@ -108,7 +108,7 @@ export default function Cart() {
                           <Link to={makeSlug(item.name)}>
                             <p
                               className="
-                                m-0 pl-6 text-gray-600 text-base
+                                m-0 pl-6 text-primary text-opacity-75 text-base
                                 "
                             >
                               {item.name}
@@ -123,7 +123,7 @@ export default function Cart() {
                             />
                           </div>
                           <div className="flex flex-1">
-                            <p className="text-lg m-0 pl-6 pt-4 text-gray-900 tracking-tighter font-semibold">
+                            <p className="text-lg m-0 pl-6 pt-4 text-primary text-opacity-90 tracking-tighter font-semibold">
                               {DENOMINATION + item.price}
                             </p>
                           </div>
@@ -134,7 +134,7 @@ export default function Cart() {
                           onKeyDown={() => RemoveFromCart(item)}
                           onClick={() => RemoveFromCart(item)}
                           className="
-                            m-0 ml-10 text-gray-900 text-s cursor-pointer mr-2
+                            m-0 ml-10 text-primary text-opacity-90 text-s cursor-pointer mr-2
                             "
                         >
                           <FaTimes />
@@ -155,10 +155,10 @@ export default function Cart() {
           {!cartEmpty && (
             <Link to="/checkout" className="flex flex-1 justify-end">
               <div className="cursor-pointer flex">
-                <p className="text-gray-600 text-sm mr-2">
+                <p className="text-primary text-opacity-75 text-sm mr-2">
                   Proceed to check out
                 </p>
-                <FaLongArrowAltRight className="text-gray-600 mt-1" />
+                <FaLongArrowAltRight className="text-primary text-opacity-75 mt-1" />
               </div>
             </Link>
           )}

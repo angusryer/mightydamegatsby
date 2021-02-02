@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Mighty Dame Fitness`,
-    description: `Time to be Mighty You.`,
+    description: `Integrated fitness and nutrition for motivated women.`,
     author: `@angusryer`,
   },
   plugins: [
@@ -15,7 +15,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         custom: {
-          families: ["gagalin", "cardo"],
+          families: ["gagalin", "cardo", "poppins", "lemon"],
           urls: ["/fonts/fonts.css"],
         },
       },
@@ -33,8 +33,8 @@ module.exports = {
         name: `Mighty Dame Fitness`,
         short_name: `Mighty Dame`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#be2c8f`,
+        theme_color: `#91256d`,
         display: `minimal-ui`,
         icon: `src/images/logot.png`, // This path is relative to the root of the site.
       },

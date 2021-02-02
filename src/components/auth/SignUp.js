@@ -1,16 +1,21 @@
-import React from "react"
+import React, { useContext } from "react"
+import { AlertContext } from "../../context/mainContext"
 import { signUp } from "../../libs/auth"
 import { useFormFields } from "../../libs/hooksLib"
 import ButtonTwo from "../common/ButtonTwo"
 import FunctionalLink from "./FunctionalLink"
 
-export default function SignUp({ toggleFormState, setError, setUser }) {
+export default function SignUp({ toggleFormState }) {
+  const {
+    newAlert,
+    types: { ERROR },
+  } = useContext(AlertContext)
   const [form, setForm] = useFormFields()
 
-  const handleSubmit = async (formFields) => {
-    const { success, response } = await signUp(formFields)
-    if (success) setUser(response)
-    else setError(response)
+  const handleSignUp = async ({ username, email, password }) => {
+    const { success, response } = await signUp(username, email, password)
+    if (success) toggleFormState("confirmSignUp")
+    else newAlert(ERROR, response)
   }
 
   return (
@@ -72,7 +77,7 @@ export default function SignUp({ toggleFormState, setError, setUser }) {
             <div className="flex items-center justify-between">
               <ButtonTwo
                 innerText="Sign Up"
-                callBack={() => handleSubmit(form)}
+                callBack={() => handleSignUp(form)}
               />
               <FunctionalLink
                 innerText="Already have an account?"

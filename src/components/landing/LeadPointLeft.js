@@ -9,7 +9,7 @@ export default function LeadPointLeft({ image, children }) {
         style={{ backgroundImage: `url(${image})` }}
         className="w-32 h-32 max-h-32 max-w-32 m-0 border-none rounded-full bg-cover bg-no-repeat bg-center"
       ></div>
-      <p className="text-lg text-dark font-bold text-center pt-3 max-w-56 nav:text-left nav:ml-5">
+      <p className="text-lg text-primary font-bold text-center pt-3 max-w-56 nav:text-left nav:ml-5">
         {children}
       </p>
     </div>

@@ -95,14 +95,13 @@ export default function Subscribe({ centered, dark }) {
       method="post"
     >
       <input
-        className={`placeholder-white border-b border-light text-light bg-transparent text-center outline-none text-xs w-full max-w-sm pt-1 pb-2 ${
-          dark && "placeholder-dark border-green text-dark"
+        className={`placeholder-overlaySecondary border-b border-accentsPrimary text-secondary bg-transparent text-center outline-none text-xs w-full max-w-sm pt-1 pb-2 ${
+          dark && "placeholder-textPrimary border-accentsPrimary text-primary"
         }`}
         aria-label="Your email"
         placeholder="Your best email"
         type="email"
         name="email_address"
-        id="email_address"
         onChange={(e) => setEmail(e.target.value)}
         value={email}
         required
@@ -113,7 +112,7 @@ export default function Subscribe({ centered, dark }) {
         }`}
       >
         <button
-          className={`text-light p-1 text-xs w-32 mt-3 bg-violet border-none rounded-full whitespace-nowrap`}
+          className={`text-secondary p-1 text-xs w-32 mt-3 bg-buttonSecondary border-none rounded-full whitespace-nowrap`}
           type="submit"
         >
           Start Building

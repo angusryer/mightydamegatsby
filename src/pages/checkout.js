@@ -34,7 +34,7 @@ const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
   <input
     onChange={onChange}
     value={value}
-    className="mt-2 text-sm shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    className="mt-2 text-sm shadow appearance-none border rounded w-full py-2 px-3 text-primary text-opacity-80 leading-tight focus:outline-none focus:shadow-outline"
     type="text"
     placeholder={placeholder}
     name={name}
@@ -103,7 +103,7 @@ const Checkout = () => {
       amount: total,
       address: state, // should this be {street, city, postal_code, state} ?
       payment_method_id: paymentMethod.id,
-      receipt_email: "customer@example.com",
+      receipt_email: email,
       id: uuid(),
     }
     console.log("order: ", order)
@@ -134,8 +134,8 @@ const Checkout = () => {
           <h1 className="text-5xl font-light">Checkout</h1>
           <Link to="/cart">
             <div className="cursor-pointer flex">
-              <FaLongArrowAltLeft className="mr-2 text-gray-600 mt-1" />
-              <p className="text-gray-600 text-sm">Edit Cart</p>
+              <FaLongArrowAltLeft className="mr-2 text-primary text-opacity-75 mt-1" />
+              <p className="text-primary text-opacity-75 text-sm">Edit Cart</p>
             </div>
           </Link>
         </div>
@@ -154,11 +154,11 @@ const Checkout = () => {
                         src={item.image}
                         alt={item.name}
                       />
-                      <p className="m-0 pl-10 text-gray-600 text-sm">
+                      <p className="m-0 pl-10 text-primary text-opacity-75 text-sm">
                         {item.name}
                       </p>
                       <div className="flex flex-1 justify-end">
-                        <p className="m-0 pl-10 text-gray-900 tracking-tighter font-semibold">
+                        <p className="m-0 pl-10 text-primary text-opacity-90 tracking-tighter font-semibold">
                           {DENOMINATION + item.price}
                         </p>
                       </div>
@@ -179,7 +179,7 @@ const Checkout = () => {
                       placeholder="Cardholder name"
                       tabIndex="0"
                     />
-                    <CardElement className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                    <CardElement className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-primary text-opacity-80 leading-tight focus:outline-none focus:shadow-outline" />
                     <Input
                       onChange={onChange}
                       value={input.email}

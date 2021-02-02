@@ -1,28 +1,36 @@
-import React, { useState } from "react"
-import { signOut } from "../libs/auth"
+import React, { useContext } from "react"
+import { navigate } from "gatsby"
+import { UserContext, AlertContext } from "../context/mainContext"
 
-export default function Profile({ state: { user, setUser } }) {
-  const [error, setError] = useState("")
-
-  console.log("PROFILE ==> ", user)
+export default function Profile() {
+  const { username, userLogout } = useContext(UserContext)
+  const {
+    newAlert,
+    types: { ERROR },
+  } = useContext(AlertContext)
 
   const handleSignOut = async () => {
-    const { success, response } = await signOut()
-    if (success) setUser(null)
-    else setError(response)
+    try {
+      userLogout()
+    } catch (err) {
+      newAlert(ERROR, err.message)
+      return
+    }
+    navigate("/")
   }
 
   return (
     <section className="flex flex-col w-full max-w-5xl px-5 items-center">
-      <span>{error}</span>
-      <div className="flex justify-between mt-5 mb-10">
-        <h2 className="font-vibes text-lg my-7">Hi, {user.username}!</h2>
-        <button type="button" onClick={() => handleSignOut()}>
+      <div className="flex w-full px-5 min-w-68 justify-between mt-5 mb-10">
+        <h2 className="text-lg my-7">Hi, {username}!</h2>
+        <button
+          type="button"
+          className="focus:outline-none"
+          onClick={() => handleSignOut()}
+        >
           Sign Out
         </button>
       </div>
-
-      <pre>{JSON.stringify(user, null, 2)}</pre>
     </section>
   )
 }

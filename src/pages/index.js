@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/common/Seo"
 import Hero from "../components/landing/Hero"
@@ -18,8 +18,19 @@ import LeadPointLeft from "../components/landing/LeadPointLeft"
 import LeadPointRight from "../components/landing/LeadPointRight"
 import CallToAction from "../components/landing/CallToAction"
 import SocialIcon from "../components/common/SocialIcon"
+import { ThemeContext } from "../context/mainContext"
 
 export default function Home({ data }) {
+  const [fillColorClass, setFillColorClass] = useState([
+    "svgOnLight",
+    "svgOnDark",
+  ])
+  const { theme } = useContext(ThemeContext)
+
+  useEffect(() => {
+    if (theme === "dark") setFillColorClass(fillColorClass.reverse())
+  }, [theme])
+
   return (
     <>
       <SEO title="Home" />
@@ -42,18 +53,26 @@ export default function Home({ data }) {
         </Hero>
         <div className="flex flex-col self-center max-w-6xl">
           <CallToAction bt bb>
-            <p className="text-xl font-bold px-4 mt-3 text-center">
+            <p className="text-xl font-bold px-4 mt-3 text-center text-primary">
               Our QA-style newsletter gives you actions and knowledge in a
               short, consistent format. Unsubscribe any time.
             </p>
             <div className="flex max-w-32 w-1/2 items-center my-3">
-              <hr className="bg-violet w-full h-1px" />
-              <span className="font-gagalin text-lg text-center mx-2">OR</span>
-              <hr className="bg-violet w-full h-1px" />
+              <hr className="bg-secondary w-full h-1px" />
+              <span className="font-lemon text-xl text-center mx-2 text-primary">
+                OR
+              </span>
+              <hr className="bg-secondary w-full h-1px" />
             </div>
             <div className="flex mb-3 w-1/2 max-w-24 justify-around items-center">
-              <SocialIcon type="facebook" className="w-6 h-auto" />
-              <SocialIcon type="instagram" className="w-6 h-auto" />
+              <SocialIcon
+                type="facebook"
+                className={`w-6 h-auto ${fillColorClass[0]}`}
+              />
+              <SocialIcon
+                type="instagram"
+                className={`w-6 h-auto ${fillColorClass[0]}`}
+              />
             </div>
           </CallToAction>
         </div>

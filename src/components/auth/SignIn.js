@@ -1,16 +1,20 @@
-import React from "react"
+import React, { useContext } from "react"
+import { UserContext, AlertContext } from "../../context/mainContext"
 import { useFormFields } from "../../libs/hooksLib"
-import { signIn } from "../../libs/auth"
 import ButtonTwo from "../common/ButtonTwo"
 import FunctionalLink from "./FunctionalLink"
 
-export default function SignIn({ toggleFormState, setError, setUser }) {
+export default function SignIn({ toggleFormState }) {
+  const { userLogin } = useContext(UserContext)
+  const {
+    newAlert,
+    types: { WARN },
+  } = useContext(AlertContext)
   const [form, setForm] = useFormFields()
 
-  const handleSubmit = async (formFields) => {
-    const { success, response } = await signIn(formFields)
-    if (success) setUser(response)
-    else setError(response)
+  const handleSignIn = () => {
+    if (form?.username && form?.password) userLogin(form.username, form.password)
+    else newAlert(WARN, "We'll need a bit more information to sign you in...")
   }
 
   return (
@@ -54,10 +58,7 @@ export default function SignIn({ toggleFormState, setError, setUser }) {
               />
             </div>
             <div className="flex flex-col items-center justify-between">
-              <ButtonTwo
-                innerText="Sign In"
-                callBack={() => handleSubmit(form)}
-              />
+              <ButtonTwo innerText="Sign In" callBack={() => handleSignIn()} />
               <ButtonTwo
                 innerText="Sign Up"
                 callBack={() => toggleFormState("signUp")}

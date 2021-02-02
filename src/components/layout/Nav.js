@@ -3,17 +3,15 @@ import { Link } from "gatsby"
 import { FaCircle, FaShoppingCart } from "react-icons/fa"
 import { CartContext, ThemeContext } from "../../context/mainContext"
 import Menu from "./Menu"
+import ThemeToggle from "./ThemeToggle"
 import logo from "../../images/logot.png"
 import menu from "../../images/menu.svg"
 
 export default function Nav() {
   const { focus } = useContext(ThemeContext)
-  const { numberOfItemsInCart } = useContext(CartContext)
+  const { quantityOfItems } = useContext(CartContext)
   const [showMenu, setShowMenu] = useState(false)
   const menuRef = useRef()
-
-  console.log("NAV CONTEXT focus ===> ", focus)
-  console.log("NAV CONTEXT numberOfItemsInCart ===> ", numberOfItemsInCart)
 
   const hideMenu = (e) => {
     if (e.target !== menuRef.current) {
@@ -26,11 +24,11 @@ export default function Nav() {
     return () => document.removeEventListener("click", hideMenu)
   })
 
-  const linkStyle = `text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-light hover:shadow-lg`
+  const linkStyle = `text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-secondary hover:shadow-lg`
 
   return (
-    <nav className="sticky top-0 bg-violet flex flex-shrink-0">
-      <div className="flex w-full h-full bg-opacity-20 bg-dark p-4 justify-center">
+    <nav className="sticky top-0 bg-secondary flex flex-shrink-0">
+      <div className="flex w-full h-full p-4 justify-center">
         <div className="w-full max-w-6xl flex items-center justify-between">
           <Link
             className="flex flex-row ml- sm:flex-nowrap items-center"
@@ -41,8 +39,8 @@ export default function Nav() {
               src={logo}
               alt="Mighty Dame Fitness"
             />
-            <h1 className="font-gagalin tracking-wider text-xl text-white xxs:ml-0 xs:ml-4 xxs:whitespace-nowrap sm:text-2xl">
-              MIGHTY DAME FITNESS
+            <h1 className="font-lemon tracking-wider text-xl text-secondary xxs:ml-0 xs:ml-4 xxs:whitespace-nowrap sm:text-2xl">
+              Mighty Dame Fitness
             </h1>
           </Link>
           <div className="hidden nav:flex justify-around text-xl items-center max-w-6xl ml-auto transform translate-y-px">
@@ -55,20 +53,21 @@ export default function Nav() {
             <Link className={linkStyle} to="/products">
               Products
             </Link>
-            <Link className={linkStyle} to="/login">
+            <Link className={linkStyle} to="/members">
               Members
             </Link>
             <Link
-              className="flex self-center text-light hover:shadow-lg border-none p-3 rounded-full"
+              className="flex self-center text-secondary hover:shadow-lg border-none p-3 rounded-full"
               to="/cart"
             >
               <FaShoppingCart className="h-5" />
             </Link>
-            {numberOfItemsInCart > Number(0) && (
+            {quantityOfItems > Number(0) && (
               <div>
                 <FaCircle color={focus} size={12} />
               </div>
             )}
+            <ThemeToggle />
           </div>
           <div className="flex justify-around items-center w-auto relative">
             {showMenu && <Menu linkStyle={linkStyle} />}

@@ -11,7 +11,7 @@ export default function Menu({ linkStyle }) {
   const linkStylePlus = `${linkStyle} py-2 w-full text-light text-xs hover:shadow-sm`
 
   return (
-    <div className="flex flex-col pt-16 items-center pb-auto fixed top-0 right-0 bg-dark bg-opacity-80 rounded-sm min-w-28 h-screen">
+    <div className="flex flex-col pt-16 items-center pb-auto fixed top-0 right-0 bg-overlayPrimary bg-opacity-80 rounded-sm min-w-28 h-screen">
       <Link className="flex h-12 w-12" to="/">
         <img
           className="h-12 w-12 transform translate-x-0.5"
@@ -29,7 +29,7 @@ export default function Menu({ linkStyle }) {
         <Link className={linkStylePlus} to="/products">
           Products
         </Link>
-        <Link className={linkStylePlus} to="/login">
+        <Link className={linkStylePlus} to="/members">
           Members
         </Link>
         <Link className={linkStylePlus + " pb-5"} to="/cart">

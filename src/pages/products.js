@@ -11,7 +11,7 @@ export default function Products({ data }) {
         desription="Mighty Dame Fitness Products"
       />
       <section className="flex flex-col items-center justify-start w-full max-w-5xl my-5 h-full mx-auto">
-      <h2 className="font-gagalin text-2xl text-center my-10">Our Products</h2>
+      <h2 className="font-lemon text-2xl text-center my-10">Our Products</h2>
         {data.productsInfo.data &&
           data.productsInfo.data.map((product) => {
             return (

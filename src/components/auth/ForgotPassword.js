@@ -1,8 +1,13 @@
-import React, { useState } from "react"
-import { Auth } from "aws-amplify"
+import React, { useState, useContext } from "react"
+import { forgotPassword, forgotPasswordSubmit } from "../../libs/auth"
+import { AlertContext } from "../../context/mainContext"
 import { useFormFields } from "../../libs/hooksLib"
 
-export default function ForgotPassword({ toggleFormState, onError }) {
+export default function ForgotPassword({ toggleFormState }) {
+  const {
+    newAlert,
+    types: { ERROR },
+  } = useContext(AlertContext)
   const [form, setForm] = useFormFields({
     username: "",
     code: "",
@@ -30,10 +35,10 @@ export default function ForgotPassword({ toggleFormState, onError }) {
   const handleCodeSubmit = async (event) => {
     event.preventDefault()
     setIsSendingCode(true)
-    const data = await Auth.forgotPassword(form.email)
-    if (data.success) setCodeSent(true)
+    const { success, response } = await forgotPassword(form.email)
+    if (success) setCodeSent(true)
     else {
-      onError(data.response.message)
+      newAlert(ERROR, response)
       setIsSendingCode(false)
     }
   }
@@ -41,14 +46,14 @@ export default function ForgotPassword({ toggleFormState, onError }) {
   const handleCodeConfirm = async (event) => {
     event.preventDefault()
     setIsConfirming(true)
-    const data = await Auth.forgotPasswordSubmit(
+    const { success, response } = await forgotPasswordSubmit(
       form.email,
-      form.code,
-      form.password
+      form.password,
+      form.code
     )
-    if (data.success) setConfirmed(true)
+    if (success) setConfirmed(true)
     else {
-      onError(data.response.message)
+      newAlert(ERROR, response)
       setIsConfirming(false)
     }
   }

@@ -6,6 +6,14 @@ import { PRODUCTS, PROGRAMS, REVIEWS } from "./providers/dataProvider"
 
 Amplify.configure(awsmobile)
 
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage } = actions
+  if (page.path.match(/^\/members/)) {
+    page.matchPath = "/members/*"
+    createPage(page)
+  }
+}
+
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     node: {
@@ -32,7 +40,6 @@ exports.sourceNodes = async ({
   const products = await fetchData(PRODUCTS, fs)
   const programs = await fetchData(PROGRAMS, fs)
   const reviews = await fetchData(REVIEWS)
-  console.log("PRODUCTS from gatsby-node ==> ", products)
 
   // create products node
   const productsData = {

@@ -1,76 +1,100 @@
-import { createContext, useContext } from "react"
-import { AlertContext } from "../context/mainContext"
+import React, { createContext, useContext, useEffect, useState } from "react"
+import { AlertContext } from "./mainContext"
 import { calculateTotal } from "../libs/orderLib"
-import { INFO, SUCCESS } from "./alertContext"
+import { isBrowser } from "../libs/envFsLib"
 
-export const CART_KEY = "mdf_cart"
-export const initialCart = {
-  cart: [],
-  numberOfItemsInCart: 0,
+const CART_KEY = "mdf_cart"
+const initialCart = {
+  items: [],
+  quantityOfItems: 0,
   total: 0,
 }
-export const CartContext = createContext()
+const CartContext = createContext()
 
-export function setItemQty(item, updateCallback) {
-  const { cart } = JSON.parse(window.localStorage.getItem(CART_KEY))
-  const index = cart.findIndex((cartItem) => cartItem.id === item.id)
-  cart[index].quantity = item.quantity
-  window.localStorage.setItem(
-    CART_KEY,
-    JSON.stringify({
-      cart: cart,
-      numberOfItemsInCart: cart.length,
-      total: calculateTotal(cart),
-    })
-  )
-  updateCallback()
-}
+export default CartContext
+export function CartContextProvider({ children }) {
+  const [cart, setCart] = useState(initialCart)
+  const {
+    newAlert,
+    types: { SUCCESS, INFO },
+  } = useContext(AlertContext)
 
-export function AddToCart(item, updateCallback) {
-  const { newAlert } = useContext(AlertContext)
-  const { cart } = JSON.parse(window.localStorage.getItem(CART_KEY))
-  if (cart.length) {
-    const index = cart.findIndex((cartItem) => cartItem.id === item.id)
-    if (index >= Number(0)) {
-      cart[index].quantity = cart[index].quantity + item.quantity
-    } else {
-      cart.push(item)
+  useEffect(() => {
+    if (isBrowser) {
+      const cartLocalStorage = window.localStorage.getItem(CART_KEY)
+      if (cartLocalStorage) {
+        setCart(JSON.parse(cartLocalStorage))
+      } else {
+        window.localStorage.setItem(CART_KEY, JSON.stringify(initialCart))
+      }
     }
-  } else {
-    cart.push(item)
+  }, [])
+
+  const setItemQty = (item) => {
+    const { items } = JSON.parse(window.localStorage.getItem(CART_KEY))
+    const index = items.findIndex((cartItem) => cartItem.id === item.id)
+    items[index].quantity = item.quantity
+    const newCart = {
+      items: items,
+      quantityOfItems: items.length,
+      total: calculateTotal(items),
+    }
+    window.localStorage.setItem(CART_KEY, JSON.stringify(newCart))
+    setCart(newCart)
   }
 
-  window.localStorage.setItem(
-    CART_KEY,
-    JSON.stringify({
-      cart: cart,
-      numberOfItemsInCart: cart.length,
-      total: calculateTotal(cart),
-    })
+  const addToCart = (item) => {
+    const { items } = JSON.parse(window.localStorage.getItem(CART_KEY))
+    if (items.length) {
+      const index = items.findIndex((cartItem) => cartItem.id === item.id)
+      if (index >= Number(0)) {
+        items[index].quantity = items[index].quantity + item.quantity
+      } else {
+        items.push(item)
+      }
+    } else {
+      items.push(item)
+    }
+    const newCart = {
+      items: items,
+      quantityOfItems: items.length,
+      total: calculateTotal(items),
+    }
+    window.localStorage.setItem(CART_KEY, JSON.stringify(newCart))
+    setCart(newCart)
+    newAlert(SUCCESS, "Successfully added to cart!")
+  }
+
+  const removeFromCart = (item) => {
+    const cartLocalStorage = JSON.parse(window.localStorage.getItem(CART_KEY))
+    let { items } = cartLocalStorage
+    items = items.filter((cartItem) => cartItem.id !== item.id)
+    const newCart = {
+      items: items,
+      quantityOfItems: items.length,
+      total: calculateTotal(items),
+    }
+    window.localStorage.setItem(CART_KEY, JSON.stringify(newCart))
+    setCart(newCart)
+    newAlert(INFO, "Item removed from cart.")
+  }
+
+  const clearCart = () => {
+    window.localStorage.setItem(CART_KEY, JSON.stringify(initialCart))
+    setCart(initialCart)
+  }
+
+  return (
+    <CartContext.Provider
+      value={{
+        ...cart,
+        removeFromCart,
+        setItemQty,
+        addToCart,
+        clearCart,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
   )
-  newAlert(SUCCESS, "Successfully added to cart!")
-  updateCallback()
-}
-
-export function RemoveFromCart(item, updateCallback) {
-  const { newAlert } = useContext(AlertContext)
-  const cartLocalStorage = JSON.parse(window.localStorage.getItem(CART_KEY))
-  let { cart } = cartLocalStorage
-  cart = cart.filter((cartItem) => cartItem.id !== item.id)
-
-  window.localStorage.setItem(
-    CART_KEY,
-    JSON.stringify({
-      cart: cart,
-      numberOfItemsInCart: cart.length,
-      total: calculateTotal(cart),
-    })
-  )
-  newAlert(INFO, "Item removed from cart.")
-  updateCallback()
-}
-
-export function clearCart(updateCallback) {
-  window.localStorage.setItem(CART_KEY, JSON.stringify(initialCart))
-  updateCallback()
 }

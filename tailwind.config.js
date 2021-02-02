@@ -7,17 +7,43 @@ const DARK = "#201D16"
 const BLACK = "#000"
 const WHITE = "#FFF"
 
+module.exports = { RED, LIGHT, GREEN, ORANGE, VIOLET, DARK, BLACK, WHITE }
+
 module.exports = {
   purge: ["./src/**/*.js", "./src/**/**/*.js"],
   theme: {
     backgroundColor: {
       primary: "var(--color-bg-primary)",
       secondary: "var(--color-bg-secondary)",
+      buttonPrimary: "var(--color-button-primary)",
+      buttonSecondary: "var(--color-button-secondary)",
+      accentsPrimary: "var(--color-accents-primary)",
+      accentsSecondary: "var(--color-accents-secondary)",
+      overlayPrimary: "var(--color-overlay-primary)",
+      overlaySecondary: "var(--color-overlay-secondary)",
+      textAccent: "var(--color-text-accent)",
+      textPrimary: "var(--color-text-primary)",
+      textSecondary: "var(--color-text-secondary)",
+      white: "#ffffff",
+      black: "#000000",
+      light: LIGHT,
+      dark: DARK,
+      red: RED,
+      orange: ORANGE,
+      violet: VIOLET,
+      green: GREEN,
+      transparent: "transparent",
     },
     textColor: {
       accent: "var(--color-text-accent)",
       primary: "var(--color-text-primary)",
       secondary: "var(--color-text-secondary)",
+      green: GREEN,
+      violet: VIOLET,
+      orange: ORANGE,
+      red: RED,
+      dark: DARK,
+      light: LIGHT,
     },
     backgroundImage: {
       hero: "url('../images/hero.jpg')",
@@ -29,6 +55,17 @@ module.exports = {
       point6: "url('../images/point6.jpg')",
     },
     colors: {
+      primary: "var(--color-bg-primary)",
+      secondary: "var(--color-bg-secondary)",
+      buttonPrimary: "var(--color-button-primary)",
+      buttonSecondary: "var(--color-button-secondary)",
+      accentsPrimary: "var(--color-accents-primary)",
+      accentsSecondary: "var(--color-accents-secondary)",
+      overlayPrimary: "var(--color-overlay-primary)",
+      overlaySecondary: "var(--color-overlay-secondary)",
+      textAccent: "var(--color-text-accent)",
+      textPrimary: "var(--color-text-primary)",
+      textSecondary: "var(--color-text-secondary)",
       white: "#ffffff",
       black: "#000000",
       light: LIGHT,
@@ -37,13 +74,15 @@ module.exports = {
       orange: ORANGE,
       violet: VIOLET,
       green: GREEN,
-      transparent: "transparent"
+      transparent: "transparent",
     },
     fontFamily: {
       gagalin: ["gagalin"],
       cardo: ["cardo"],
       vibes: ["vibes"],
       scheherazade: ["scheherazade"],
+      poppins: ["poppins"],
+      lemon: ["lemon"],
     },
     extend: {
       screens: {
@@ -145,7 +184,7 @@ module.exports = {
         144: "36rem",
         fw: "1440px",
         nav: "60px",
-        footer: "120px"
+        footer: "120px",
       },
       spacing: {
         72: "18rem",
@@ -307,9 +346,6 @@ module.exports = {
         "-4": "-4",
         "-6": "-6",
         "-12": "-12",
-      },
-      textColor: {
-        primary: DARK,
       },
     },
   },

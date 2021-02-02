@@ -1,14 +1,25 @@
-import React from "react"
+import React, { useContext } from "react"
+import { AlertContext } from "../../context/mainContext"
 import { useFormFields } from "../../libs/hooksLib"
-import { confirmSignUp } from "../../libs/auth"
+import { confirmSignUp, resendConfirmationCode } from "../../libs/auth"
 
-export default function ConfirmSignUp({ setError, setUser }) {
+export default function ConfirmSignUp({ toggleFormState }) {
+  const {
+    newAlert,
+    types: { ERROR, SUCCESS },
+  } = useContext(AlertContext)
   const [form, setForm] = useFormFields()
 
-  const handleSubmit = async (formFields) => {
-    const { success, response } = await confirmSignUp(formFields)
-    if (success) setUser(response)
-    else setError(response)
+  const handleConfirm = async ({ username, authcode }) => {
+    const { success, response } = await confirmSignUp(username, authcode)
+    if (success) toggleFormState("signIn")
+    else newAlert(ERROR, response)
+  }
+
+  const resendCode = async ({ username }) => {
+    const { success, response } = await resendConfirmationCode(username)
+    if (success) newAlert(SUCCESS, response)
+    else newAlert(ERROR, response)
   }
 
   return (
@@ -52,11 +63,18 @@ export default function ConfirmSignUp({ setError, setUser }) {
             </div>
             <div className="flex items-center justify-between">
               <button
-                onClick={() => handleSubmit(form)}
+                onClick={() => handleConfirm(form)}
                 className="bg-secondary hover:bg-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="button"
               >
                 Confirm Sign Up
+              </button>
+              <button
+                onClick={() => resendCode(form)}
+                className="bg-secondary hover:bg-primary text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="button"
+              >
+                Resend Confirmation Code
               </button>
             </div>
           </form>

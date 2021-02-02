@@ -1,5 +1,5 @@
 html {
-  font-family: cardo, sans-serif;
+  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -44,7 +44,7 @@ a {
 }
 h1,
 h2 {
-  font-family: "cardo"
+  font-family: "lemon"
 }
 article,
 aside,
@@ -223,13 +223,13 @@ textarea {
   font: inherit;
 }
 html {
-  font: 112.5%/1.45em georgia, serif;
+  font: 112.5%/1.45em poppins, cardo, serif;
   box-sizing: border-box;
   overflow-y: scroll;
 }
 * {
   box-sizing: inherit;
-  font-family: cardo, "Eina -apple-system", BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family: poppins, cardo, "Eina -apple-system", BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
 }
@@ -241,7 +241,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: cardo, georgia, serif;
+  font-family: poppins, cardo, georgia, serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -271,7 +271,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 0;
   color: inherit;
-  font-family: gagalina, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: lemon, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -288,7 +288,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 0;
   color: inherit;
-  font-family: cardo, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: lemon, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -305,7 +305,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 0;
   color: inherit;
-  font-family: cardo, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: poppins, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -322,7 +322,7 @@ h4 {
   padding-top: 0;
   margin-bottom: 0;
   color: inherit;
-  font-family: cardo, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: poppins, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -339,7 +339,7 @@ h5 {
   padding-top: 0;
   margin-bottom: 0;
   color: inherit;
-  font-family: cardo, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: poppins, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -356,7 +356,7 @@ h6 {
   padding-top: 0;
   margin-bottom: 0;
   color: inherit;
-  font-family: cardo, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: poppins, "Eina -apple-system", BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
