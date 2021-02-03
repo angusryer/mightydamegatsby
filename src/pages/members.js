@@ -1,8 +1,8 @@
 import React from "react"
 import { Router } from "@reach/router"
 import LoginView from "../components/auth/LoginView"
-import Profile from "../protected/Profile"
-import ProtectedRoute from "../protected/ProtectedRoute"
+import Profile from "../components/protected/Profile"
+import ProtectedRoute from "../components/protected/ProtectedRoute"
 import { isBrowser } from "../libs/envFsLib"
 
 export default function AuthRouter() {

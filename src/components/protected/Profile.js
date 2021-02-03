@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { navigate } from "gatsby"
-import { UserContext, AlertContext } from "../context/mainContext"
+import { UserContext, AlertContext } from "../../context/mainContext"
 
 export default function Profile() {
   const { username, userLogout } = useContext(UserContext)
