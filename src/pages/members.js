@@ -15,7 +15,7 @@ export default function AuthRouter() {
   }
   return (
     <Router basepath="/members">
-      <LoginView path="/login" />
+      <LoginView path="/login" component={LoginView} />
       <ProtectedRoute path="/profile" component={Profile} />
     </Router>
   )
