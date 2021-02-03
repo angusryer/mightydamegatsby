@@ -104,7 +104,9 @@
 
 .dark {
   --color-bg-primary: #350d27;
+  --color-bg-shaded-primary: #53143d;
   --color-bg-secondary: #be2c8f;
+  --color-bg-shaded-secondary: #d1319f;
   --color-button-primary: #91256d;
   --color-button-secondary: #d835a3;
   --color-accents-primary: #f9f2e8;
@@ -114,11 +116,15 @@
   --color-text-accent: #ffa0df;
   --color-overlay-primary: #f9f2e8;
   --color-overlay-secondary: #201d16;
+  --color-form-primary: #a8f6ff;
+  --color-form-secondary: #9fbec2;
 }
 
 .light {
   --color-bg-primary: #f9f2e8;
+  --color-bg-shaded-primary: #f5eee4ea;
   --color-bg-secondary: #be2c8f;
+  --color-bg-shaded-secondary: #b12a86;
   --color-button-primary: #d835a3;
   --color-button-secondary: #91256d;
   --color-accents-primary: #0d5259;
@@ -128,4 +134,6 @@
   --color-text-accent: #4a1337;
   --color-overlay-primary: #201d16;
   --color-overlay-secondary: #f9f2e8;
+  --color-form-primary: #d9fbff;
+  --color-form-secondary: #c3eaee;
 }

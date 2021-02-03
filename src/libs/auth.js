@@ -2,6 +2,8 @@ import { Auth } from "aws-amplify"
 
 const responseError =
   "Shape of response object from auth service was unexpected."
+const noResponseProvided =
+  "There's been an error, but no message was provided by the server."
 
 export const getUserObject = (rawData) => {
   if (rawData instanceof Object && rawData.hasOwnProperty("username")) {
@@ -30,12 +32,14 @@ export async function verifySignInStatus() {
       return {
         success: false,
         response: responseError,
+        type: "unexpected_format",
       }
     }
   } catch (err) {
     return {
       success: false,
       response: err.message || "No user is currently signed in.",
+      type: err.type,
     }
   }
 }
@@ -44,7 +48,7 @@ export async function signIn(username, password) {
   try {
     const data = await Auth.signIn(username, password)
     const userData = getUserObject(data)
-    if (userData !== null) {
+    if (userData != null) {
       return {
         success: true,
         response: userData,
@@ -53,51 +57,53 @@ export async function signIn(username, password) {
       return {
         success: false,
         response: responseError,
+        type: "unexpected_format",
       }
     }
   } catch (err) {
     return {
       success: false,
-      response: err.message,
+      response: err.message || noResponseProvided,
+      type: err.type,
     }
   }
 }
 
 export async function signUp(username, email, password) {
-  await Auth.signUp({
-    username,
-    password,
-    attributes: { email },
-  })
-    .then((_res) => {
-      return {
-        success: true,
-        response:
-          "We've sent a super secret code to your email: enter it to confirm your account!",
-      }
+  try {
+    await Auth.signUp({
+      username,
+      password,
+      attributes: { email },
     })
-    .catch((err) => {
-      return {
-        success: false,
-        response: err.message,
-      }
-    })
+    return {
+      success: true,
+      response:
+        "We've sent a super secret code to your email: enter it to confirm your account!",
+    }
+  } catch (err) {
+    return {
+      success: false,
+      response: err.message || noResponseProvided,
+      type: err.type,
+    }
+  }
 }
 
 export async function confirmSignUp(username, authCode) {
-  await Auth.confirmSignUp(username, authCode)
-    .then((_res) => {
-      return {
-        success: true,
-        response: "Great! Your account has been successfully confirmed.",
-      }
-    })
-    .catch((err) => {
-      return {
-        success: false,
-        response: err.message,
-      }
-    })
+  try {
+    await Auth.confirmSignUp(username, authCode)
+    return {
+      success: true,
+      response: "Great! Your account has been successfully confirmed.",
+    }
+  } catch (err) {
+    return {
+      success: false,
+      response: err.message || noResponseProvided,
+      type: err.type,
+    }
+  }
 }
 
 export async function signOut() {
@@ -116,57 +122,58 @@ export async function signOut() {
   } catch (err) {
     return {
       success: false,
-      response: err.message,
+      response: err.message || noResponseProvided,
+      type: err.type,
     }
   }
 }
 
 export async function resendConfirmationCode(username) {
-  await Auth.resendSignUp(username)
-    .then((_res) => {
-      return {
-        success: true,
-        response: "A new account confirmation code has been successfully sent.",
-      }
-    })
-    .catch((err) => {
-      return {
-        success: false,
-        response: err.message,
-      }
-    })
+  try {
+    await Auth.resendSignUp(username)
+    return {
+      success: true,
+      response: "A new account confirmation code has been successfully sent.",
+    }
+  } catch (err) {
+    return {
+      success: false,
+      response: err.message || noResponseProvided,
+      type: err.type,
+    }
+  }
 }
 
 export async function forgotPassword(email) {
-  await Auth.forgotPassword(email)
-    .then((_res) => {
-      return {
-        success: true,
-        response:
-          "If the email you provided is registered, a secret code has been sent to it.",
-      }
-    })
-    .catch((err) => {
-      return {
-        success: false,
-        response: err.message,
-      }
-    })
+  try {
+    await Auth.forgotPassword(email)
+    return {
+      success: true,
+      response:
+        "If the email you provided is registered, a secret code has been sent to it.",
+    }
+  } catch (err) {
+    return {
+      success: false,
+      response: err.message || noResponseProvided,
+      type: err.type,
+    }
+  }
 }
 
 export async function forgotPasswordSubmit(email, password, authCode) {
-  await Auth.forgotPasswordSubmit(email, password, authCode)
-    .then((_res) => {
-      return {
-        success: true,
-        response:
-          "Your password has been successfully reset! Please login with your new password.",
-      }
-    })
-    .catch((err) => {
-      return {
-        success: false,
-        response: err.message,
-      }
-    })
+  try {
+    await Auth.forgotPasswordSubmit(email, password, authCode)
+    return {
+      success: true,
+      response:
+        "Your password has been successfully reset! Please login with your new password.",
+    }
+  } catch (err) {
+    return {
+      success: false,
+      response: err.message || noResponseProvided,
+      type: err.type,
+    }
+  }
 }

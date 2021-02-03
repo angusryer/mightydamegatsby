@@ -8,24 +8,33 @@ export default function SignIn({ toggleFormState }) {
   const { userLogin } = useContext(UserContext)
   const {
     newAlert,
-    types: { WARN },
+    types: { WARN, ERROR },
   } = useContext(AlertContext)
   const [form, setForm] = useFormFields()
 
-  const handleSignIn = () => {
-    if (form?.username && form?.password) userLogin(form.username, form.password)
-    else newAlert(WARN, "We'll need a bit more information to sign you in...")
+  const handleSignIn = async () => {
+    if (form?.username && form?.password) {
+      const { success, response } = await userLogin(
+        form.username,
+        form.password
+      )
+      if (!success) {
+        newAlert(ERROR, response)
+      }
+    } else {
+      newAlert(WARN, "We'll need a bit more information to sign you in...")
+    }
   }
 
   return (
-    <div>
-      <h3>Sign In</h3>
+    <>
+      <h3 className="mb-4 text-primary">Sign In</h3>
       <div className="flex flex-1 justify-center">
         <div className="w-full max-w-144">
-          <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <form className="bg-shadedPrimary shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div className="mb-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-primary text-sm font-light mb-2"
                 htmlFor="username"
               >
                 Username
@@ -34,7 +43,7 @@ export default function SignIn({ toggleFormState }) {
                 onChange={setForm}
                 name="username"
                 autoComplete="on"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="text-sm shadow appearance-none border rounded w-full py-2 px-3 text-primary font-light leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
                 placeholder="Username"
@@ -42,7 +51,7 @@ export default function SignIn({ toggleFormState }) {
             </div>
             <div className="mb-6">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-primary text-sm font-light mb-2"
                 htmlFor="password"
               >
                 Password
@@ -51,7 +60,7 @@ export default function SignIn({ toggleFormState }) {
                 onChange={setForm}
                 name="password"
                 autoComplete="on"
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="text-sm shadow appearance-none border rounded w-full py-2 px-3 text-primary font-light mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
                 placeholder="******************"
@@ -64,6 +73,7 @@ export default function SignIn({ toggleFormState }) {
                 callBack={() => toggleFormState("signUp")}
               />
               <FunctionalLink
+                classes="p-2 mt-6 content-center text-primary hover:text-buttonSecondary cursor-pointer block font-light text-sm"
                 innerText="Forgot your password?"
                 callBack={() => toggleFormState("forgotPassword")}
               />
@@ -71,6 +81,6 @@ export default function SignIn({ toggleFormState }) {
           </form>
         </div>
       </div>
-    </div>
+    </>
   )
 }

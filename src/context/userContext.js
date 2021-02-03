@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState, useContext } from "react"
 import { verifySignInStatus, signIn, signOut } from "../libs/auth"
-import { AlertContext } from "./mainContext"
 import { isBrowser } from "../libs/envFsLib"
 
 const USER_KEY = "mdf_user"
@@ -9,10 +8,6 @@ const UserContext = createContext()
 
 export default UserContext
 export function UserContextProvider({ children }) {
-  const {
-    newAlert,
-    types: { ERROR, SUCCESS },
-  } = useContext(AlertContext)
   const [user, setUser] = useState(initialUser)
 
   useEffect(() => {
@@ -64,9 +59,22 @@ export function UserContextProvider({ children }) {
   }
 
   const userLogin = async (username, password) => {
-    const { success, response } = await signIn(username, password)
-    if (success) _storeUser(response)
-    else newAlert(ERROR, `Huhn? We couldn't sign you in! Error: ${response}`)
+    try {
+      const data = await signIn(username, password)
+      if (data.success) {
+        _storeUser(data.response)
+        return {
+          success: true,
+          response: "You've successfully signed in!",
+        }
+      } else return data
+    } catch (err) {
+      return {
+        success: false,
+        response: err.message,
+        type: err.type,
+      }
+    }
   }
 
   const userLogout = async () => {
@@ -74,7 +82,7 @@ export function UserContextProvider({ children }) {
       await signOut()
       _removeUser()
     } catch (err) {
-      throw err.message
+      return err.message
     }
   }
 
