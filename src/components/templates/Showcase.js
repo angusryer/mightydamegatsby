@@ -12,15 +12,38 @@ import {
   useElements,
 } from "@stripe/react-stripe-js"
 import { ThemeContext } from "../context/mainContext"
-import { CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
 
 const stripePromise = loadStripe(process.env.GATSBY_PK)
 
-export default function CheckoutWithContext() {
+// Static purchase items
+//
+const item1 = {
+  id: uuid(),
+  image: "",
+  name: "Mighty Dame Fitness - Four Week Virtual Fitness Challenge",
+  quantity: 1,
+  price: 25,
+}
+
+const cartItems = [item1]
+
+const completedCart = {
+  cart: cartItems,
+  numberOfItemsInCart: 1,
+  total: item1.price * item1.quantity,
+}
+//
+//
+
+export default function SixWeekChallenge() {
+  return <CheckoutWithContext completedCart={completedCart} />
+}
+
+function CheckoutWithContext({ completedCart }) {
   return (
     <Elements stripe={stripePromise}>
-      <Checkout />
+      <Checkout context={completedCart} />
     </Elements>
   )
 }
@@ -37,7 +60,7 @@ const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
   />
 )
 
-const Checkout = () => {
+const Checkout = ({ context }) => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [orderCompleted, setOrderCompleted] = useState(false)
   const [receipts, setReceipts] = useState([])
@@ -50,7 +73,6 @@ const Checkout = () => {
     province: "",
   })
   const { theme } = useContext(ThemeContext)
-  const { items, total, quantityOfItems } = useContext(CartContext)
 
   const stripe = useStripe()
   const elements = useElements()
@@ -63,6 +85,7 @@ const Checkout = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const { name, email, street, city, postal_code, province } = input
+    const { total, cart } = context
 
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -104,7 +127,7 @@ const Checkout = () => {
     const order = {
       id: uuid(),
       email: email,
-      items: items,
+      items: cart,
       amount: total,
       currency: "cad",
       address: address,
@@ -124,6 +147,8 @@ const Checkout = () => {
       throw err.message
     }
   }
+
+  const { total } = context
 
   const calculateTax = () => {
     // TODO implement different regional tax rates if needed
@@ -147,19 +172,18 @@ const Checkout = () => {
         </Link>
         <div className="mt-5 flex items-center justify-center">
           <p className="mb-3 text-primary">View your receipt here:</p>
-          {receipts &&
-            receipts.map((receipt) => {
-              return (
-                <a
-                  className="text-primary text-sm"
-                  href={receipt}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {receipt}
-                </a>
-              )
-            })}
+          {receipts.map((receipt) => {
+            return (
+              <a
+                className="text-primary text-sm"
+                href={receipt}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {receipt}
+              </a>
+            )
+          })}
         </div>
       </div>
     )
@@ -178,28 +202,23 @@ const Checkout = () => {
           </Link>
         </div>
         <div className="flex flex-col">
-          {items &&
-            items.map((item) => (
-              <div className="">
-                <div className="border-b border-accentsPrimary py-10">
-                  <div className="flex items-center">
-                    <img
-                      className="w-32 m-0"
-                      src={mightyDameWithText}
-                      alt={item.name}
-                    />
-                    <p className="m-0 pl-10 text-primary text-xl">
-                      {item.name}
-                    </p>
-                    <div className="flex flex-1 justify-end">
-                      <p className="m-0 pl-10 text-primary tracking-tighter font-semibold">
-                        {DENOMINATION + item.price}
-                      </p>
-                    </div>
-                  </div>
+          <div className="">
+            <div className="border-b border-accentsPrimary py-10">
+              <div className="flex items-center">
+                <img
+                  className="w-32 m-0"
+                  src={mightyDameWithText}
+                  alt={item1.name}
+                />
+                <p className="m-0 pl-10 text-primary text-xl">{item1.name}</p>
+                <div className="flex flex-1 justify-end">
+                  <p className="m-0 pl-10 text-primary tracking-tighter font-semibold">
+                    {DENOMINATION + item1.price}
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+          </div>
           <div className="flex flex-1 flex-col md:flex-row">
             <div className="flex flex-1 pt-8 flex-col">
               <div className="mt-4 border-t border-accentsPrimary pt-10">

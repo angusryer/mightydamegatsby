@@ -7,7 +7,7 @@ import check from "../images/greencheck.png"
 export default function Instructors() {
   return (
     <>
-      <SEO title="Instructors" desription="Mighty Dame Fitness Instructors" />
+      <SEO title="Trainers" desription="Mighty Dame Fitness Trainers" />
       <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5 items-center">
         <h1 className="font-lemon text-2xl my-5">Meet the Instructor</h1>
         <div className="flex flex-row my-12 self-center">

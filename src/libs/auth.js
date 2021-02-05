@@ -161,9 +161,9 @@ export async function forgotPassword(email) {
   }
 }
 
-export async function forgotPasswordSubmit(email, password, authCode) {
+export async function forgotPasswordSubmit(username, authCode, password) {
   try {
-    await Auth.forgotPasswordSubmit(email, password, authCode)
+    await Auth.forgotPasswordSubmit(username, authCode, password)
     return {
       success: true,
       response:

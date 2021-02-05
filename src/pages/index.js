@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import SEO from "../components/common/Seo"
 import Hero from "../components/landing/Hero"
@@ -18,19 +18,8 @@ import LeadPointLeft from "../components/landing/LeadPointLeft"
 import LeadPointRight from "../components/landing/LeadPointRight"
 import CallToAction from "../components/landing/CallToAction"
 import SocialIcon from "../components/common/SocialIcon"
-import { ThemeContext } from "../context/mainContext"
 
 export default function Home({ data }) {
-  const [fillColorClass, setFillColorClass] = useState([
-    "svgOnLight",
-    "svgOnDark",
-  ])
-  const { theme } = useContext(ThemeContext)
-
-  useEffect(() => {
-    if (theme === "dark") setFillColorClass(fillColorClass.reverse())
-  }, [theme])
-
   return (
     <>
       <SEO title="Home" />
@@ -67,11 +56,11 @@ export default function Home({ data }) {
             <div className="flex mb-3 w-1/2 max-w-24 justify-around items-center">
               <SocialIcon
                 type="facebook"
-                className={`w-6 h-auto ${fillColorClass[0]}`}
+                className={`w-6 h-auto svg_primary`}
               />
               <SocialIcon
                 type="instagram"
-                className={`w-6 h-auto ${fillColorClass[0]}`}
+                className={`w-6 h-auto svg_primary`}
               />
             </div>
           </CallToAction>

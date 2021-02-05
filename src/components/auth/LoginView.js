@@ -6,6 +6,8 @@ import SignIn from "./SignIn"
 import ForgotPassword from "./ForgotPassword"
 import { navigate } from "gatsby"
 
+// TODO Factor out the business logic from this component
+
 export default function LoginView() {
   const { isLoggedIn } = useContext(UserContext)
   const [formState, setFormState] = useState("signIn")

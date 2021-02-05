@@ -5,6 +5,8 @@ import { useFormFields } from "../../libs/hooksLib"
 import ButtonTwo from "../common/ButtonTwo"
 import FunctionalLink from "./FunctionalLink"
 
+// TODO Make reusable form components
+
 export default function SignUp({ toggleFormState }) {
   const {
     newAlert,

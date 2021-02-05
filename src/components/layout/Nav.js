@@ -24,10 +24,10 @@ export default function Nav() {
     return () => document.removeEventListener("click", hideMenu)
   })
 
-  const linkStyle = `font-extralight text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-secondary hover:shadow-lg`
+  const linkStyle = `font-extralight text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-secondary hover:text-darkButton`
 
   return (
-    <nav className="sticky top-0 bg-secondary flex flex-shrink-0">
+    <nav className="sticky top-0 bg-secondary flex flex-shrink-0 z-20">
       <div className="flex w-full h-full p-4 justify-center">
         <div className="w-full max-w-6xl flex items-center justify-between">
           <Link
@@ -43,21 +43,21 @@ export default function Nav() {
               Mighty Dame Fitness
             </h1>
           </Link>
-          <div className="hidden nav:flex justify-around text-xl items-center max-w-6xl ml-auto transform translate-y-px">
-            <Link className={linkStyle} to="/instructors">
-              Instructors
+          <div className="hidden nav:flex justify-around text-xl items-center max-w-5xl ml-auto transform translate-y-px">
+            <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/trainers">
+              Trainers
             </Link>
-            <Link className={linkStyle} to="/programs">
+            {/* <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/programs">
               Programs
             </Link>
-            <Link className={linkStyle} to="/products">
+            <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/products">
               Products
-            </Link>
-            <Link className={linkStyle} to="/members">
+            </Link> */}
+            <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/members">
               Members
             </Link>
             <Link
-              className="flex self-center text-secondary hover:shadow-lg border-none p-3 rounded-full"
+              className="flex self-center text-secondary cart_icon_hover border-none p-3 rounded-full"
               to="/cart"
             >
               <FaShoppingCart className="h-5" />

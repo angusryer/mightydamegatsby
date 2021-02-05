@@ -5,6 +5,8 @@ import { useFormFields } from "../../libs/hooksLib"
 import ButtonTwo from "../common/ButtonTwo"
 import SignInSuccess from "./SignInSuccess"
 
+// TODO This is a monolith. REFACTOR!
+
 export default function ForgotPassword({ toggleFormState }) {
   const {
     newAlert,
@@ -45,9 +47,9 @@ export default function ForgotPassword({ toggleFormState }) {
     event.preventDefault()
     setIsConfirming(true)
     const { success, response } = await forgotPasswordSubmit(
-      form.email,
-      form.password,
-      form.code
+      form.username,
+      form.code,
+      form.password
     )
     if (success) setConfirmed(true)
     else {
@@ -64,7 +66,7 @@ export default function ForgotPassword({ toggleFormState }) {
           your <span className="font-bold">user name</span> below:
         </h3>
         <form
-          onSubmit={confirmAuthCode}
+          onSubmit={sendAuthCode}
           className="bg-shadedPrimary shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
           <div id="username" className="mb-4">
@@ -75,6 +77,7 @@ export default function ForgotPassword({ toggleFormState }) {
               Username
             </label>
             <input
+              tabIndex="0"
               id="username"
               name="username"
               type="username"
@@ -85,7 +88,6 @@ export default function ForgotPassword({ toggleFormState }) {
           </div>
           <ButtonTwo
             type="submit"
-            callBack={sendAuthCode}
             innerText={
               isSendingCode ? "Sending confirmation..." : "Send Confirmation"
             }
@@ -101,20 +103,31 @@ export default function ForgotPassword({ toggleFormState }) {
         onSubmit={confirmAuthCode}
         className="bg-overlaySecondary shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
+        <p className="font-light my-4">
+          Please check the email you signed up with for the reset confirmation
+          code.
+        </p>
+        <div id="username">
+          <label htmlFor="username">Username</label>
+          <input
+            className="text-sm shadow appearance-none border rounded w-full py-2 px-3 text-primary font-light bg-formPrimary leading-tight focus:outline-none focus:shadow-outline"
+            id="username"
+            type="text"
+            value={form.username}
+            onChange={setForm}
+            tabIndex="0"
+          />
+        </div>
         <div id="code">
           <label htmlFor="code">Confirmation Code</label>
           <input
             className="text-sm shadow appearance-none border rounded w-full py-2 px-3 text-primary font-light bg-formPrimary leading-tight focus:outline-none focus:shadow-outline"
             id="code"
-            type="tel"
+            type="text"
             value={form.code}
             onChange={setForm}
-            tabIndex="-1"
+            tabIndex="0"
           />
-          <p className="font-light my-4">
-            Please check the email you signed up with for the reset confirmation
-            code.
-          </p>
         </div>
         <hr />
         <div id="password">
@@ -125,7 +138,7 @@ export default function ForgotPassword({ toggleFormState }) {
             type="password"
             value={form.password}
             onChange={setForm}
-            tabIndex="-2"
+            tabIndex="0"
           />
         </div>
         <div id="confirmPassword">
@@ -136,7 +149,7 @@ export default function ForgotPassword({ toggleFormState }) {
             type="password"
             value={form.confirmPassword}
             onChange={setForm}
-            tabIndex="-3"
+            tabIndex="0"
           />
         </div>
         <button

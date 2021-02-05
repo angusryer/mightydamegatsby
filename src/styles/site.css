@@ -48,13 +48,13 @@
 
   .cardgrid-narrow {
     grid-template-columns: none;
-    grid-template-rows: 0.5fr 0.17fr auto;
+    grid-template-rows: 0.5fr fit-content(5rem) auto;
   }
 
   @media (min-width: 850px) {
     .cardgrid-wide {
       grid-template-rows: none;
-      grid-template-columns: 0.5fr 0.17fr 0.33fr;
+      grid-template-columns: 0.5fr fit-content(5rem) auto;
     }
   }
 
@@ -81,20 +81,44 @@
     background-color: #ee3f46;
   }
 
-  .toggle {
+  .light_enabled {
     left: 2px;
     right: auto;
     transition: all 0.5s;
   }
 
-  .darkToggle {
+  .dark_enabled {
     left: auto;
     right: 2px;
     transition: all 0.5s;
   }
 
-  .dark path {
-    fill: var(--color-bg-primary);
+  .svg_static_primary path {
+    fill: var(--color-bg-icon-primary);
+  }
+
+  .svg_static_secondary path {
+    fill: var(--color-bg-icon-secondary);
+  }
+
+  .svg_primary path {
+    fill: var(--color-bg-icon-primary);
+  }
+
+  .svg_primary:hover path {
+    fill: var(--color-button-secondary);
+  }
+
+  .svg_secondary path {
+    fill: var(--color-bg-icon-secondary);
+  }
+
+  .svg_secondary:hover path {
+    fill: var(--color-text-accent);
+  }
+
+  .cart_icon_hover:hover {
+    color: #53143d;
   }
 }
 
@@ -109,11 +133,14 @@
   --color-bg-shaded-secondary: #d1319f;
   --color-button-primary: #91256d;
   --color-button-secondary: #d835a3;
+  --color-bg-icon-primary: #f5eee4ea;
+  --color-bg-icon-secondary: #f5eee4ea;
   --color-accents-primary: #f9f2e8;
   --color-accents-secondary: #187e8a;
   --color-text-primary: #eee8df;
   --color-text-secondary: #f9f2e8;
   --color-text-accent: #ffa0df;
+  --color-text-accent-secondary: #201d16;
   --color-overlay-primary: #f9f2e8;
   --color-overlay-secondary: #201d16;
   --color-form-primary: #a8f6ff;
@@ -127,11 +154,14 @@
   --color-bg-shaded-secondary: #b12a86;
   --color-button-primary: #d835a3;
   --color-button-secondary: #91256d;
+  --color-bg-icon-primary: #53143d;
+  --color-bg-icon-secondary: #f5eee4ea;
   --color-accents-primary: #0d5259;
   --color-accents-secondary: #201d16;
   --color-text-primary: #201d16;
   --color-text-secondary: #f9f2e8;
   --color-text-accent: #4a1337;
+  --color-text-accent-secondary: #201d16;
   --color-overlay-primary: #201d16;
   --color-overlay-secondary: #f9f2e8;
   --color-form-primary: #d9fbff;

@@ -13,6 +13,7 @@ import {
 } from "@stripe/react-stripe-js"
 import { ThemeContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
+import { sendEmail } from '../libs/commLib'
 
 const stripePromise = loadStripe(process.env.GATSBY_PK)
 
@@ -162,16 +163,26 @@ const Checkout = ({ context }) => {
   }
 
   if (orderCompleted) {
+    
+    sendEmail({
+      recipient: input.email,
+      payload: "https://www.facebook.com/groups/469722650865702"
+    })
+
     return (
       <div className="flex flex-col h-full items-center justify-center">
         <h3 className="font-poppins font-light text-primary">
-          Thanks! Your order has been successfully processed.
+          This is exciting: your order was successful!
         </h3>
+        <span className="font-poppins font-normal text-primary">
+          ---- Please check your email for an exclusive link to your virtual
+          challenge community ----
+        </span>
         <Link className="font-lemon text-primary text-xl my-3" to="/">
-          You are a Mighty Dame.
+          You <span className="font-bold">are</span> a Mighty Dame.
         </Link>
         <div className="mt-5 flex items-center justify-center">
-          <p className="mb-3 text-primary">View your receipt here:</p>
+          <p className="mb-3 text-primary">View your purchase receipt here:</p>
           {receipts.map((receipt) => {
             return (
               <a
@@ -229,7 +240,7 @@ const Checkout = ({ context }) => {
                     value={input.name}
                     name="name"
                     placeholder="Cardholder name"
-                    tabIndex="1"
+                    tabIndex="0"
                   />
                   <CardElement
                     options={{
@@ -253,41 +264,41 @@ const Checkout = ({ context }) => {
                     value={input.email}
                     name="email"
                     placeholder="Email"
-                    tabIndex="1"
+                    tabIndex="0"
                   />
                   <Input
                     onChange={onChange}
                     value={input.street}
                     name="street"
                     placeholder="Street"
-                    tabIndex="1"
+                    tabIndex="0"
                   />
                   <Input
                     onChange={onChange}
                     value={input.city}
                     name="city"
                     placeholder="City"
-                    tabIndex="1"
+                    tabIndex="0"
                   />
                   <Input
                     onChange={onChange}
                     value={input.province}
                     name="province"
                     placeholder="Province"
-                    tabIndex="1"
+                    tabIndex="0"
                   />
                   <Input
                     onChange={onChange}
                     value={input.postal_code}
                     name="postal_code"
                     placeholder="Postal Code"
-                    tabIndex="1"
+                    tabIndex="0"
                   />
                   <button
                     type="submit"
                     disabled={!stripe}
                     className="md:block bg-secondary hover:bg-buttonSecondary text-primary font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
-                    tabIndex="1"
+                    tabIndex="0"
                   >
                     Confirm order
                   </button>
@@ -317,7 +328,7 @@ const Checkout = ({ context }) => {
                 type="submit"
                 disabled={!stripe}
                 className="nav:hidden bg-secondary hover:bg-buttonSecondary text-primary font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
-                tabIndex="1"
+                tabIndex="0"
                 onClick={handleSubmit}
               >
                 Confirm order

@@ -95,8 +95,8 @@ export default function Subscribe({ centered, dark }) {
       method="post"
     >
       <input
-        className={`placeholder-overlaySecondary border-b border-accentsPrimary text-secondary bg-transparent text-center outline-none text-xs w-full max-w-sm pt-1 pb-2 ${
-          dark && "placeholder-textPrimary border-accentsPrimary text-primary"
+        className={` border-b bg-transparent text-center outline-none text-xs w-full max-w-sm pt-1 pb-2 ${
+          dark ? "placeholder-textPrimary border-accentsPrimary text-primary" : "placeholder-textSecondary border-textSecondary text-secondary"
         }`}
         aria-label="Your email"
         placeholder="Your best email"
@@ -106,13 +106,9 @@ export default function Subscribe({ centered, dark }) {
         value={email}
         required
       />
-      <div
-        className={`${
-          centered && "flex flex-col items-center"
-        }`}
-      >
+      <div className={`${centered && "flex flex-col items-center"}`}>
         <button
-          className={`text-secondary p-1 text-xs w-32 mt-3 bg-buttonSecondary border-none rounded-full whitespace-nowrap`}
+          className={`text-secondary p-1 text-xs w-32 mt-3 bg-lighterButton  border-none rounded-full whitespace-nowrap hover:bg-opacity-80`}
           type="submit"
         >
           Start Building
