@@ -43,41 +43,55 @@ export default function Nav() {
               Mighty Dame Fitness
             </h1>
           </Link>
-          <div className="hidden nav:flex justify-around text-xl items-center max-w-5xl ml-auto transform translate-y-px">
-            <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/trainers">
-              Trainers
-            </Link>
-            {/* <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/programs">
-              Programs
-            </Link>
-            <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/products">
-              Products
-            </Link> */}
-            <Link className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`} to="/members">
-              Members
-            </Link>
-            <Link
-              className="flex self-center text-secondary cart_icon_hover border-none p-3 rounded-full"
-              to="/cart"
-            >
-              <FaShoppingCart className="h-5" />
-            </Link>
-            {quantityOfItems > Number(0) && (
-              <div>
-                <FaCircle color={focus} size={12} />
-              </div>
-            )}
-            <ThemeToggle />
-          </div>
-          <div className="flex justify-around items-center w-auto relative">
-            {showMenu && <Menu linkStyle={linkStyle} />}
-            <img
-              className="flex h-6 w-auto mb-0 nav:hidden transform translate-y-px"
-              src={menu}
-              alt="menu"
-              onClick={() => setShowMenu(!showMenu)}
-              ref={menuRef}
-            />
+          <div className="flex justify-center items-center xsnav:justify-end xsnav:items-center">
+            <div className="hidden nav:flex justify-around text-xl items-center max-w-5xl ml-auto transform translate-y-px">
+              <Link
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                to="/trainers"
+              >
+                Trainers
+              </Link>
+              <Link
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                to="/programs"
+              >
+                Programs
+              </Link>
+              <Link
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                to="/products"
+              >
+                Products
+              </Link>
+              <Link
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                to="/members"
+              >
+                Members
+              </Link>
+              <Link
+                className="flex self-center text-secondary icon_hover_dark border-none p-3 rounded-full"
+                to="/cart"
+              >
+                <FaShoppingCart className="h-5" />
+              </Link>
+              {quantityOfItems > Number(0) && (
+                <div>
+                  <FaCircle color={focus} size={12} />
+                </div>
+              )}
+            </div>
+            <ThemeToggle className="hidden xsnav:flex items-center transform translate-y-0.5 mr-0 xsnav:mr-3 " />
+            <div className="flex justify-around items-center w-auto relative">
+              {showMenu && <Menu linkStyle={linkStyle} />}
+              <img
+                className="flex h-6 w-auto mb-0 nav:hidden transform translate-y-px"
+                src={menu}
+                alt="menu"
+                onClick={() => setShowMenu(!showMenu)}
+                ref={menuRef}
+              />
+            </div>
           </div>
         </div>
       </div>

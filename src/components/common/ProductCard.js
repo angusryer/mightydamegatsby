@@ -31,6 +31,7 @@ export default function ProductCard(props) {
       </div>
       <div className="rounded-md w-auto flex flex-nowrap nav:flex-col nav:max-h-104 nav:w-full justify-center nav:justify-start nav:pt-2 items-center">
         {otherImagesState &&
+        otherImagesState[0] !== "unset" && // TODO This is a dirty hack to deal with graphql schema not building when field returns null. Change in DynamoDB as well.
           otherImagesState.map((imagePath, index) => {
             return (
               <div key={index} className={`h-20 w-auto`}>

@@ -10,7 +10,7 @@ const WHITE = "#FFF"
 module.exports = { RED, LIGHT, GREEN, ORANGE, VIOLET, DARK, BLACK, WHITE }
 
 module.exports = {
-  purge: ["./src/**/*.js", "./src/**/**/*.js"],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     backgroundColor: {
       primary: "var(--color-bg-primary)",
@@ -117,7 +117,8 @@ module.exports = {
       screens: {
         xxs: "280px",
         xs: "320px",
-        snav: "347px",
+        xsnav: "350px",
+        snav: "400px",
         nav: "850px",
         sm: "640px",
         md: "768px",

@@ -47,6 +47,7 @@ export default async function fetchData(dataType, fs) {
 }
 
 async function cacheImageFromSource(imageFileName, fs) {
+  if (imageFileName !== "unset") { // TODO This is a dirty hack to deal with graphql schema not building when field returns null. Change in DynamoDB as well.
   if (
     !fs.existsSync(path.join(__dirname, "..", "..", "public", imageFileName))
   ) {
@@ -57,6 +58,7 @@ async function cacheImageFromSource(imageFileName, fs) {
       throw new Error({ success: false, response: err.message })
     }
   }
+}
 }
 
 async function fetchReviews(query) {

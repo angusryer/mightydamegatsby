@@ -1,13 +1,21 @@
 import React from "react"
 
-export default function SocialIcon({ type, className, textIsOn }) {
+export default function SocialIcon({
+  type,
+  className,
+  containerClasses,
+  textIsOn,
+  height,
+  width
+}) {
   let platformType
 
   switch (type) {
     case "facebook":
       platformType = (
-        <div>
+        <div className={containerClasses}>
           <a
+            className="block w-full h-full"
             href="https://www.facebook.com/mightydame"
             rel="noreferrer"
             target="_blank"
@@ -28,8 +36,9 @@ export default function SocialIcon({ type, className, textIsOn }) {
       break
     case "instagram":
       platformType = (
-        <div>
+        <div className={containerClasses}>
           <a
+            className="block w-full h-full"
             href="https://www.instagram.com/mightydamefit/"
             rel="noreferrer"
             target="_blank"
@@ -50,8 +59,9 @@ export default function SocialIcon({ type, className, textIsOn }) {
       break
     case "twitter":
       platformType = (
-        <div>
+        <div className={`${containerClasses}`}>
           <a
+            className="block w-full h-full"
             href="https://www.twitter.com/mightydamefitness"
             rel="noreferrer"
             target="_blank"

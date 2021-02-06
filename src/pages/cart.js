@@ -12,7 +12,7 @@ export default function Cart() {
   const {
     quantityOfItems,
     items,
-    RemoveFromCart,
+    removeFromCart,
     total,
     setItemQuantity,
   } = useContext(CartContext)
@@ -86,8 +86,8 @@ export default function Cart() {
                           <div
                             role="button"
                             tabIndex="0"
-                            onKeyDown={() => RemoveFromCart(item)}
-                            onClick={() => RemoveFromCart(item)}
+                            onKeyDown={() => removeFromCart(item)}
+                            onClick={() => removeFromCart(item)}
                             className="
                             m-0 ml-10 text-primary text-opacity-90 text-s cursor-pointer
                             "
@@ -132,8 +132,8 @@ export default function Cart() {
                           <div
                             role="button"
                             tabIndex="0"
-                            onKeyDown={() => RemoveFromCart(item)}
-                            onClick={() => RemoveFromCart(item)}
+                            onKeyDown={() => removeFromCart(item)}
+                            onClick={() => removeFromCart(item)}
                             className="
                             m-0 ml-10 text-primary text-opacity-90 text-s cursor-pointer mr-2
                             "

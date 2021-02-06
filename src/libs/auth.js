@@ -48,7 +48,7 @@ export async function signIn(username, password) {
   try {
     const data = await Auth.signIn(username, password)
     const userData = getUserObject(data)
-    if (userData != null) {
+    if (userData !== null) {
       return {
         success: true,
         response: userData,

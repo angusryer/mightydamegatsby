@@ -11,15 +11,6 @@ module.exports = {
         component: require.resolve(`./src/layouts/layout.js`),
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-web-font-loader",
-    //   options: {
-    //     custom: {
-    //       families: ["poppins", "lemon", "gagalin", "cardo"],
-    //       urls: ["/fonts/fonts.css"],
-    //     },
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

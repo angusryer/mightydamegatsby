@@ -117,9 +117,38 @@
     fill: var(--color-text-accent);
   }
 
-  .cart_icon_hover:hover {
+  .icon_hover_light:hover {
+    color: #91256d;
+  }
+
+  .icon_hover_dark:hover {
     color: #53143d;
   }
+
+  .svg_static_menu path {
+    fill: #f5eee4ea
+  }
+
+  .svg_static_menu:hover path {
+    fill: #91256d
+  }
+
+  .svg_static_light:hover path {
+    fill: #91256d;
+  }
+
+  .svg_static_dark:hover path {
+    fill: #53143d;
+  }
+
+  .svg_static_footer {
+    fill: #f5eee4ea;
+  }
+
+  .svg_static_footer:hover {
+    fill: #91256d;
+  }
+
 }
 
 :root {

@@ -12,11 +12,11 @@ export default function Footer() {
         <div className="nav:mr-4 flex w-full max-w-20 mb-5 nav:mb-0 justify-center items-center">
           <SocialIcon
             type="facebook"
-            className={`w-auto h-5 mx-2 svg_secondary`}
+            className={`w-auto h-5 mx-2 svg_static_footer`}
           />
           <SocialIcon
             type="instagram"
-            className={`w-auto h-5 mx-2 svg_secondary`}
+            className={`w-auto h-5 mx-2 svg_static_footer`}
           />
         </div>
       </div>
