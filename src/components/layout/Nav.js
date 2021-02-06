@@ -8,7 +8,6 @@ import logo from "../../images/logot.png"
 import menu from "../../images/menu.svg"
 
 export default function Nav() {
-  const { focus } = useContext(ThemeContext)
   const { quantityOfItems } = useContext(CartContext)
   const [showMenu, setShowMenu] = useState(false)
   const menuRef = useRef()
@@ -70,16 +69,21 @@ export default function Nav() {
                 Members
               </Link>
               <Link
-                className="flex self-center text-secondary icon_hover_dark border-none p-3 rounded-full"
+                className="flex self-center text-secondary icon_hover_dark border-none m-3 rounded-full"
                 to="/cart"
               >
                 <FaShoppingCart className="h-5" />
+                {quantityOfItems > Number(0) && (
+                <>
+                    <div className="transform -translate-x-1 -translate-y-px">
+                      <FaCircle color="#F57C23" size={12} />
+                    </div>
+                    <span className="transform -translate-x-1 -translate-y-px text-xxs text-secondary">
+                      {quantityOfItems}
+                    </span>
+                  </>
+                )}
               </Link>
-              {quantityOfItems > Number(0) && (
-                <div>
-                  <FaCircle color={focus} size={12} />
-                </div>
-              )}
             </div>
             <ThemeToggle className="hidden xsnav:flex items-center transform translate-y-0.5 mr-0 xsnav:mr-3 " />
             <div className="flex justify-around items-center w-auto relative">
