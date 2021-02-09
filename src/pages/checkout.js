@@ -14,7 +14,7 @@ import {
 import { ThemeContext, AlertContext, CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
 
-const stripePromise = loadStripe(process.env.GATSBY_PK)
+const stripePromise = loadStripe(`${process.env.GATSBY_PK}`)
 
 export default function CheckoutWithContext() {
   return (
