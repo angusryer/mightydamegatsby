@@ -69,20 +69,24 @@ export default function Nav() {
                 Members
               </Link>
               <Link
-                className="flex self-center text-secondary icon_hover_dark border-none m-3 rounded-full"
+                className="flex h-5 w-5 self-center justify-center items-center text-secondary icon_hover_dark border-none m-3 mr-3.5 rounded-full"
                 to="/cart"
               >
-                <FaShoppingCart className="h-5" />
-                {quantityOfItems > Number(0) && (
-                <>
-                    <div className="transform -translate-x-1 -translate-y-px">
-                      <FaCircle color="#F57C23" size={12} />
+                <div className="flex justify-center items-center w-5 h-5">
+                  <FaShoppingCart className="absolute h-5 w-5" />
+                  {quantityOfItems > Number(0) && (
+                    <div className="absolute w-14px h-14px flex justify-center items-center transform translate-x-2.5 -translate-y-2">
+                      <FaCircle
+                        color="#F57C23"
+                        size={14}
+                        className="flex absolute"
+                      />
+                      <div className="flex absolute text-xxs text-secondary">
+                        {quantityOfItems}
+                      </div>
                     </div>
-                    <span className="transform -translate-x-1 -translate-y-px text-xxs text-secondary">
-                      {quantityOfItems}
-                    </span>
-                  </>
-                )}
+                  )}
+                </div>
               </Link>
             </div>
             <ThemeToggle className="hidden xsnav:flex items-center transform translate-y-0.5 mr-0 xsnav:mr-3 " />

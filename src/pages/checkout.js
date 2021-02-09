@@ -11,8 +11,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js"
-import { ThemeContext } from "../context/mainContext"
-import { CartContext } from "../context/mainContext"
+import { ThemeContext, AlertContext, CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
 
 const stripePromise = loadStripe(process.env.GATSBY_PK)
@@ -38,7 +37,6 @@ const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
 )
 
 const Checkout = () => {
-  const [errorMessage, setErrorMessage] = useState(null)
   const [orderCompleted, setOrderCompleted] = useState(false)
   const [receipts, setReceipts] = useState([])
   const [input, setInput] = useState({
@@ -50,13 +48,15 @@ const Checkout = () => {
     province: "",
   })
   const { theme } = useContext(ThemeContext)
-  const { items, total, quantityOfItems } = useContext(CartContext)
-
+  const {
+    newAlert,
+    types: { ERROR, INFO },
+  } = useContext(AlertContext)
+  const { items, total, clearCart } = useContext(CartContext)
   const stripe = useStripe()
   const elements = useElements()
 
   const onChange = (e) => {
-    setErrorMessage(null)
     setInput({ ...input, [e.target.name]: e.target.value })
   }
 
@@ -72,7 +72,7 @@ const Checkout = () => {
 
     // Validate input
     if (!name || !email | !street || !city || !postal_code || !province) {
-      setErrorMessage("Please fill in the form!")
+      newAlert(INFO, "Please fill in the form!")
       return
     }
 
@@ -97,7 +97,7 @@ const Checkout = () => {
     })
 
     if (error) {
-      setErrorMessage(error.message)
+      newAlert(ERROR, error.message)
       return
     }
 
@@ -119,8 +119,10 @@ const Checkout = () => {
         data: order,
       })
       setOrderCompleted(true)
-      setReceipts(data.chargeReceipts)
+      setReceipts(data.data.receipts)
+      clearCart()
     } catch (err) {
+      newAlert(ERROR, err.message)
       throw err.message
     }
   }
@@ -138,28 +140,32 @@ const Checkout = () => {
 
   if (orderCompleted) {
     return (
-      <div className="flex flex-col h-full items-center justify-center">
-        <h3 className="font-poppins font-light text-primary">
-          Thanks! Your order has been successfully processed.
+      <div className="flex flex-col h-full items-center justify-center p-5">
+        <h3 className="font-poppins font-light text-primary text-center">
+          Thanks! Your order has been successfully processed. Check your email!
         </h3>
-        <Link className="font-lemon text-primary text-xl my-3" to="/">
+        <Link className="font-lemon text-primary text-2xl my-4 text-center" to="/">
           You are a Mighty Dame.
         </Link>
-        <div className="mt-5 flex items-center justify-center">
-          <p className="mb-3 text-primary">View your receipt here:</p>
-          {receipts &&
-            receipts.map((receipt) => {
-              return (
-                <a
-                  className="text-primary text-sm"
-                  href={receipt}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {receipt}
-                </a>
-              )
-            })}
+        <div className="mt-5 flex flex-col items-center justify-center">
+          <p className="mb-3 text-primary text-xs font-light text-center">
+            View your receipt here (or in your email):
+          </p>
+          <div className="flex flex-col items-center">
+            {receipts &&
+              receipts.map((receipt, i) => {
+                return (
+                  <a
+                    className="text-primary text-xxs font-extralight text-center break-all"
+                    href={receipt}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {receipt}
+                  </a>
+                )
+              })}
+          </div>
         </div>
       </div>
     )
@@ -171,140 +177,135 @@ const Checkout = () => {
         <div className="pt-10 pb-8">
           <h1 className="text-5xl font-light text-primary">Checkout</h1>
           <Link to="/cart">
-            <div className="cursor-pointer flex">
-              <FaLongArrowAltLeft className="mr-2 text-primary mt-1" />
-              <p className="text-primary text-sm">Edit Cart</p>
+            <div className="cursor-pointer flex items-center">
+              <FaLongArrowAltLeft className="mr-2 text-primary" />
+              <p className="text-primary font-light text-sm">
+                Back to your cart
+              </p>
             </div>
           </Link>
         </div>
+
         <div className="flex flex-col">
           {items &&
             items.map((item) => (
-              <div className="">
-                <div className="border-b border-accentsPrimary py-10">
+              <div key={item.id} className="">
+                <div className="border-b border-accentsPrimary py-2">
                   <div className="flex items-center">
                     <img
-                      className="w-32 m-0"
+                      className="snav:w-16 nav:w-20 m-0 hidden snav:block"
                       src={mightyDameWithText}
                       alt={item.name}
                     />
-                    <p className="m-0 pl-10 text-primary text-xl">
-                      {item.name}
+                    <p className="m-0 pl-0 text-xs snav:text-sm sm:text-md snav:pl-2 sm:pl-10 text-primary">
+                      {`${item.name} (${item.quantity} at ${DENOMINATION + item.price} each)`}
                     </p>
                     <div className="flex flex-1 justify-end">
-                      <p className="m-0 pl-10 text-primary tracking-tighter font-semibold">
-                        {DENOMINATION + item.price}
+                      <p className="m-0 pl-10 text-primary tracking-tighter font-normal">
+                        {DENOMINATION + item.price * item.quantity}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             ))}
-          <div className="flex flex-1 flex-col md:flex-row">
+
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-1 flex-col nav:flex-row"
+          >
             <div className="flex flex-1 pt-8 flex-col">
-              <div className="mt-4 border-t border-accentsPrimary pt-10">
-                <form onSubmit={handleSubmit}>
-                  <span className="text-primary">{errorMessage}</span>
-                  <Input
-                    onChange={onChange}
-                    value={input.name}
-                    name="name"
-                    placeholder="Cardholder name"
-                    tabIndex="0"
-                  />
-                  <CardElement
-                    options={{
-                      style: {
-                        base: {
-                          fontSize: "14px",
+              <div className="mt-4">
+                <Input
+                  onChange={onChange}
+                  value={input.name}
+                  name="name"
+                  placeholder="Cardholder name"
+                  tabIndex="0"
+                />
+                <CardElement
+                  options={{
+                    style: {
+                      base: {
+                        fontSize: "14px",
+                        color: theme === "dark" ? "#eee8df" : "#201d16",
+                        "::placeholder": {
                           color: theme === "dark" ? "#eee8df" : "#201d16",
-                          "::placeholder": {
-                            color: theme === "dark" ? "#eee8df" : "#201d16",
-                          },
-                        },
-                        invalid: {
-                          color: "#9e2146",
                         },
                       },
-                    }}
-                    className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-primary leading-tight focus:outline-none focus:shadow-outline"
-                  />
-                  <Input
-                    onChange={onChange}
-                    value={input.email}
-                    name="email"
-                    placeholder="Email"
-                    tabIndex="0"
-                  />
-                  <Input
-                    onChange={onChange}
-                    value={input.street}
-                    name="street"
-                    placeholder="Street"
-                    tabIndex="0"
-                  />
-                  <Input
-                    onChange={onChange}
-                    value={input.city}
-                    name="city"
-                    placeholder="City"
-                    tabIndex="0"
-                  />
-                  <Input
-                    onChange={onChange}
-                    value={input.province}
-                    name="province"
-                    placeholder="Province"
-                    tabIndex="0"
-                  />
-                  <Input
-                    onChange={onChange}
-                    value={input.postal_code}
-                    name="postal_code"
-                    placeholder="Postal Code"
-                    tabIndex="0"
-                  />
-                  <button
-                    type="submit"
-                    disabled={!stripe}
-                    className="md:block bg-secondary hover:bg-buttonSecondary text-primary font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
-                    tabIndex="0"
-                  >
-                    Confirm order
-                  </button>
-                </form>
+                      invalid: {
+                        color: "#9e2146",
+                      },
+                    },
+                  }}
+                  className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-primary leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <Input
+                  onChange={onChange}
+                  value={input.email}
+                  name="email"
+                  placeholder="Email"
+                  tabIndex="0"
+                />
+                <Input
+                  onChange={onChange}
+                  value={input.street}
+                  name="street"
+                  placeholder="Street"
+                  tabIndex="0"
+                />
+                <Input
+                  onChange={onChange}
+                  value={input.city}
+                  name="city"
+                  placeholder="City"
+                  tabIndex="0"
+                />
+                <Input
+                  onChange={onChange}
+                  value={input.province}
+                  name="province"
+                  placeholder="Province"
+                  tabIndex="0"
+                />
+                <Input
+                  onChange={onChange}
+                  value={input.postal_code}
+                  name="postal_code"
+                  placeholder="Postal Code"
+                  tabIndex="0"
+                />
               </div>
             </div>
-            <div className="md:pt-20">
-              <div className="ml-4 pl-2 flex flex-1 justify-end pt-2 md:pt-8 pr-4">
-                <p className="text-sm pr-10 text-primary">Subtotal</p>
-                <p className="tracking-tighter w-38 flex justify-end text-primary">
-                  {DENOMINATION + total}
-                </p>
-              </div>
-              <div className="ml-4 pl-2 flex flex-1 justify-end pr-4">
-                <p className="text-sm pr-10 text-primary">HST</p>
-                <p className="tracking-tighter w-38 flex justify-end text-primary">
-                  {DENOMINATION + calculateTax()}
-                </p>
-              </div>
-              <div className="md:ml-4 pl-2 flex flex-1 justify-end bg-gray-200 pr-4 pt-6">
-                <p className="text-sm pr-10 text-primary">Total</p>
-                <p className="font-semibold tracking-tighter w-38 flex justify-end text-primary">
-                  {DENOMINATION + (total + calculateTax())}
-                </p>
+            <div className="flex flex-col item-center self-end nav:self-start nav:ml-4 w-full max-w-72 nav:mt-8">
+              <div className="flex flex-col w-full mt-5">
+                <div className="flex justify-between">
+                  <p className="text-sm text-primary">Subtotal</p>
+                  <p className="text-primary">{DENOMINATION + total}</p>
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-sm text-primary">HST</p>
+                  <p className="text-primary">
+                    {DENOMINATION + calculateTax()}
+                  </p>
+                </div>
+                <div className="flex justify-between my-5">
+                  <p className="text-sm text-primary">Total</p>
+                  <p className="font-semibold tracking-tighter text-primary">
+                    {DENOMINATION + (total + calculateTax())}
+                  </p>
+                </div>
               </div>
               <button
                 type="submit"
                 disabled={!stripe}
-                className="nav:hidden bg-secondary hover:bg-buttonSecondary text-primary font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
+                className="text-center bg-secondary hover:bg-buttonSecondary text-primary font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline"
                 tabIndex="0"
-                onClick={handleSubmit}
               >
-                Confirm order
+                Confirm Order
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

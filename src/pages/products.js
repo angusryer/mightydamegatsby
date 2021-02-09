@@ -17,11 +17,13 @@ export default function Products({ data }) {
               <ProductCard
                 key={product.id}
                 id={product.id}
+                brand={product.brand}
                 image={product.mainImageFileName}
-                otherImages={product.otherImageFileNames}
                 title={product.title}
-                description={product.shortDescription}
+                shortDescription={product.shortDescription}
+                longDescription={product.longDescription}
                 price={product.price}
+                salePrice={product.salePrice}
                 inStock={product.available}
               />
             )

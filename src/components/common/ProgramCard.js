@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useContext } from "react"
 import { CartContext } from "../../context/mainContext"
-import ButtonTwo from '../common/ButtonTwo'
+import ButtonTwo from "../common/ButtonTwo"
 
 export default function ProgramCard(props) {
   const { addToCart, setItemQty } = useContext(CartContext)
@@ -8,93 +8,59 @@ export default function ProgramCard(props) {
     id,
     title,
     image,
-    otherImages,
     description,
+    brand,
     numberOfSessions,
     lengthOfSessionInHours,
     frequencyOfSessionsPerWeek,
     price,
+    salePrice,
     available,
   } = props
-
-  const [mainImageState, setMainImageState] = useState(null)
-  const [otherImagesState, setOtherImagesState] = useState([])
-
-  useEffect(() => {
-    // console.log(props)
-    setMainImageState(image)
-    setOtherImagesState([image, ...otherImages])
-  }, [])
 
   const addItemToCart = () => {
     const newItem = {
       id: id,
+      offerType: "SERVICE",
       name: title,
       quantity: 1,
-      price: price,
+      price: salePrice || price,
       image: image
     }
     addToCart(newItem)
   }
 
-  const zoomIn = (e) => {
-    // console.log(e)
-    // TODO Implement zoom on mouse hover
-  }
-
   return (
-    <div className="grid cardgrid-wide cardgrid-narrow mb-20">
-      <div className="min-w-88 w-auto max-w-5xl h-auto my-2 nav:ml-5 nav:mr-1 rounded-md">
-        <img
-          className="w-full h-full object-contain rounded-md"
-          src={mainImageState}
-          alt={title}
-          onMouseOver={zoomIn} // ? Not sure if this is the right event to handle the zoom-on-hover
-        />
+    <div className="flex flex-col items-center max-w-80 nav:max-w-4xl w-full p-4 nav:flex-row border-t border-b border-accentsPrimary">
+      <div className="max-w-80 rounded-lg overflow-hidden">
+        <img className="object-cover w-full h-full" src={image} alt={title} />
       </div>
-      <div className="rounded-md w-auto flex flex-nowrap nav:flex-col nav:max-h-104 nav:w-full justify-center nav:justify-start nav:pt-2 items-center">
-        {otherImagesState &&
-        otherImagesState[0] !== "unset" && // TODO This is a dirty hack to deal with graphql schema not building when field returns null. Change in DynamoDB as well.
-          otherImagesState.map((imagePath, index) => {
-            return (
-              <div key={index} className={`h-20 w-auto`}>
-                <img
-                  className={`h-full w-auto object-contain hover:opacity-75`}
-                  src={imagePath}
-                  alt="other product views"
-                  onClick={() => setMainImageState(imagePath)}
-                />
-              </div>
-            )
-          })}
-      </div>
-      <div className="flex flex-col p-5 items-center">
-        <h3 className="font-lemon text-2xl text-center text-primary my-3">
-          {title}
-        </h3>
-        <p className="my-2 text-center text-primary text-base font-light">
+      <div className="flex flex-col justify-between pt-2 nav:ml-4">
+        <div className="flex flex-row nav:flex-col items-center nav:items-start">
+          <span className="text-primary text-3xl tracking-wide font-lemon">
+            {title}
+          </span>
+          <span className="text-primary text-xs pl-4 nav:pl-0">
+            {brand && `by ${brand}`}
+          </span>
+        </div>
+        <span className="text-primary font-light my-2 text-xs">
           {description}
-        </p>
-
-        <div className="my-2 flex flex-col items-center">
-          <span className="my-1 text-primary">
-            Number of Sessions: {numberOfSessions}
-          </span>
-          <span className="my-1 text-primary">
-            Hours per Session: {lengthOfSessionInHours}
-          </span>
-          <span className="my-1 text-primary">
-            Sessions per Week: {frequencyOfSessionsPerWeek}
-          </span>
+        </span>
+        <div className="flex flex-col my-2">
+          <span className="text-xs text-primary font-light">{`Total number of sessions: ${numberOfSessions}`}</span>
+          <span className="text-xs text-primary font-light">{`Hours per session: ${lengthOfSessionInHours}`}</span>
+          <span className="text-xs text-primary font-light">{`Sessions per week: ${frequencyOfSessionsPerWeek}`}</span>
         </div>
-
-        <div className="flex flex-col my-3 items-center">
-          <span className="my-1 text-primary">{"$" + price}</span>
-          <span className="my-1 text-primary">
-            {available ? "" : "Coming SOON"}
-          </span>
-        </div>
-        <ButtonTwo callBack={addItemToCart} type="button" innerText="Purchase a Spot"  />
+        <span className="text-primary my-2 text-xs">
+          {available ? "Available Now." : "Coming Soon!"}
+        </span>
+        <span className="text-primary">{`$${salePrice}`}</span>
+        <ButtonTwo
+          className="nav:text-sm"
+          callBack={addItemToCart}
+          innerText="Enroll in this Program"
+        />
       </div>
     </div>
   )

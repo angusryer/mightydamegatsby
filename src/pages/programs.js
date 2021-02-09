@@ -19,13 +19,14 @@ export default function Programs({ data }) {
                 key={program.id}
                 id={program.id}
                 image={program.mainImageFileName}
-                otherImages={program.otherImageFileNames}
                 title={program.title}
+                brand={program.brand}
                 description={program.longDescription}
                 numberOfSessions={program.numberOfSessions}
                 lengthOfSessionInHours={program.lengthOfSessionInHours}
                 frequencyOfSessionsPerWeek={program.frequencyOfSessionsPerWeek}
                 price={program.price}
+                salePrice={program.salePrice}
                 available={program.available}
               />
             )

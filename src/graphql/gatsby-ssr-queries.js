@@ -26,6 +26,7 @@ export const listAllProductsQuery = tag(`
     byOfferType(offerType: PRODUCT) {
       items {
         id
+        offerType
         title
         shortDescription
         longDescription
@@ -49,6 +50,7 @@ export const listAllServicesQuery = tag(`
     byOfferType(offerType: SERVICE) {
       items {
         id
+        offerType
         title
         shortDescription
         longDescription

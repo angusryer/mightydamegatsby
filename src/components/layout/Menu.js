@@ -1,14 +1,12 @@
 import { Link } from "gatsby"
 import React, { useContext } from "react"
 import { FaCircle, FaShoppingCart } from "react-icons/fa"
-import { ThemeContext, CartContext } from "../../context/mainContext"
+import { CartContext } from "../../context/mainContext"
 import logo from "../../images/logot.png"
 import SocialIcon from "../common/SocialIcon"
-import ThemeToggle from "../layout/ThemeToggle"
 
 export default function Menu({ linkStyle }) {
-  const { focus } = useContext(ThemeContext)
-  const { numberOfItemsInCart } = useContext(CartContext)
+  const { quantityOfItems } = useContext(CartContext)
   const linkStylePlus = `${linkStyle} py-2 w-full text-secondary text-xs hover:text-lighterButton`
 
   return (
@@ -33,14 +31,22 @@ export default function Menu({ linkStyle }) {
         <Link className={linkStylePlus} to="/members">
           Members
         </Link>
-        <Link className={linkStylePlus + " p-2 icon_hover_light"} to="/cart">
-          <FaShoppingCart className="h-5 w-auto transform -translate-x-px" />
-        </Link>
-        {numberOfItemsInCart > Number(0) && (
-          <div>
-            <FaCircle color={focus} size={12} />
+        <Link
+          className="flex h-5 w-5 self-center justify-center items-center text-secondary icon_hover_light border-none m-3 mr-3.5 p-2 rounded-full transform translate-x-1"
+          to="/cart"
+        >
+          <div className="flex justify-center items-center w-5 h-5">
+            <FaShoppingCart className="absolute h-5 w-5" />
+            {quantityOfItems > Number(0) && (
+              <div className="absolute w-14px h-14px flex justify-center items-center transform translate-x-2.5 -translate-y-2">
+                <FaCircle color="#F57C23" size={14} className="flex absolute" />
+                <div className="flex absolute text-xxs text-secondary">
+                  {quantityOfItems}
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </Link>
       </div>
       <div className="flex flex-col items-center transform translate-x-1">
         <SocialIcon

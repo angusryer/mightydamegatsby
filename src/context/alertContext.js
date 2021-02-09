@@ -40,7 +40,7 @@ export function AlertContextProvider({ children }) {
       }}
     >
       {alerts.map((alert, i) => (
-        <div key={i} className="fixed flex self-center my-3 items-center justify-start rounded-xl bg-opacity-10 w-1/4 max-w-xs h-auto z-10 overflow-hidden">
+        <div key={i} className="fixed flex self-center my-3 items-center justify-start rounded-xl bg-opacity-10 max-w-3xl z-20 overflow-hidden">
           <div className={`${alert.type} bg-opacity-75 w-full h-full text-xs text-secondary text-center font-normal p-3`}>
             {alert.text}
           </div>

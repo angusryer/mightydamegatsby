@@ -1,38 +1,53 @@
-import React from 'react'
+import React from "react"
 
 export default function QuantityPicker({
-  increment, decrement, numberOfitems, hideQuantityLabel
+  increment,
+  decrement,
+  numberOfitems,
+  hideQuantityLabel,
 }) {
   return (
     <div className={`flex items-center`}>
-      {
-        !hideQuantityLabel && (
-          <div className="px-2 text-xs">QUANTITY</div>
-        )
-      }
+      {!hideQuantityLabel && <div className="px-2 text-xs text-primary">Quantity</div>}
       <button
         className="
-        w-10 h-10 text-xl
+        w-6 h-6 text-xs
         md:w-8 md:h-8 md:text-sm 
-        cursor-pointer text-center border pb-.5
-        hover:bg-gray-900 hover:text-white
-        focus:outline-none
+        nav:w-10 nav:h-10 nav:text-base 
+        cursor-pointer text-center border-t border-b
+        border-accentsPrimary
+        hover:bg-shadedSecondary hover:text-secondary
+        focus:outline-none text-primary
         "
         onClick={increment}
-      >+</button>
-      <p className="
-        w-10 h-10 pt-2 text-base
-        md:w-8 md:h-8 md:pt-1 md:text-xs
-        m-0 border-t border-b text-center">{numberOfitems}</p>
+      >
+        +
+      </button>
+      <p
+        className="
+        flex justify-center items-center
+        w-6 h-6 text-xs border-t border-b
+        border-accentsPrimary
+        md:w-8 md:h-8 md:text-sm 
+        nav:w-10 nav:h-10 nav:text-base
+        m-0 text-center text-primary"
+      >
+        {numberOfitems}
+      </p>
       <button
         className="
-        w-10 h-10 text-2xl
-        md:w-8 md:h-8 md:text-sm
-        cursor-pointer text-center border pb-.5
-        hover:bg-gray-900 hover:text-white
-        focus:outline-none
+        w-6 h-6 text-xs
+        md:w-8 md:h-8 md:text-sm 
+        nav:w-10 nav:h-10 nav:text-base 
+        cursor-pointer text-center border-t border-b
+        border-accentsPrimary
+        hover:bg-shadedSecondary hover:text-secondary
+        focus:outline-none text-primary
         "
-        onClick={decrement}>-</button>
+        onClick={decrement}
+      >
+        -
+      </button>
     </div>
   )
 }
