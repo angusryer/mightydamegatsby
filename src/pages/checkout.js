@@ -14,8 +14,8 @@ import {
 import { ThemeContext, AlertContext, CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
 
-const stripePromise = loadStripe(`${process.env.GATSBY_PK}`)
-// const stripePromise = loadStripe(`pk_live_51IDyuEFdSoxpYycdoAPFkFxkLBa2QorgVOj0BrUyngwpndS8kCxt79CYaKmuNNDdk6pE1EyKY3LI6sxwFqMk9Jc600BRrXQ0bv`)
+// const stripePromise = loadStripe(`${process.env.GATSBY_PK}`)
+const stripePromise = loadStripe(`pk_live_51IDyuEFdSoxpYycdoAPFkFxkLBa2QorgVOj0BrUyngwpndS8kCxt79CYaKmuNNDdk6pE1EyKY3LI6sxwFqMk9Jc600BRrXQ0bv`)
 
 export default function CheckoutWithContext() {
   return (
@@ -118,7 +118,7 @@ const Checkout = () => {
     try {
       const data = await axios({
         method: "post",
-        url: `${process.env.GATSBY_PAYMENT_ENDPOINT}`,
+        url: "https://oatann8h4d.execute-api.ca-central-1.amazonaws.com/dev/payments", //`${process.env.GATSBY_PAYMENT_ENDPOINT}`,
         data: order,
       })
       console.log("CHECKOUT POST TO API GATEWAY success ==> ", data)
