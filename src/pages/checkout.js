@@ -18,9 +18,6 @@ const PK_KEY = process.env.GATSBY_PK
 const PAY_ENDPOINT = process.env.GATSBY_PAYMENT_ENDPOINT
 
 const stripePromise = loadStripe(PK_KEY)
-// const stripePromise = loadStripe(
-// `pk_live_51IDyuEFdSoxpYycdoAPFkFxkLBa2QorgVOj0BrUyngwpndS8kCxt79CYaKmuNNDdk6pE1EyKY3LI6sxwFqMk9Jc600BRrXQ0bv`
-// )
 
 export default function CheckoutWithContext() {
   return (
