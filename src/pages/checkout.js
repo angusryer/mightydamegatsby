@@ -14,7 +14,8 @@ import {
 import { ThemeContext, AlertContext, CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
 
-const stripePromise = loadStripe(`pk_live_51IDyuEFdSoxpYycd8Ui59kEHQLo0we1vhEmQQ9eZhzsXA8l2iCqQ5FnTDRhnBAda5wLbTM8rTOBfAsXDk7W8gvWh00KvGaPPVE`)
+const stripePromise = loadStripe(`${process.env.GATSBY_PK}`)
+// const stripePromise = loadStripe(`pk_live_51IDyuEFdSoxpYycd8Ui59kEHQLo0we1vhEmQQ9eZhzsXA8l2iCqQ5FnTDRhnBAda5wLbTM8rTOBfAsXDk7W8gvWh00KvGaPPVE`)
 
 export default function CheckoutWithContext() {
   return (
@@ -101,6 +102,8 @@ const Checkout = () => {
       return
     }
 
+    console.log("CHECKOUT CREATE PAYMENT METHOD ==> ", paymentMethod)
+
     const order = {
       id: uuid(),
       email: email,
@@ -115,13 +118,15 @@ const Checkout = () => {
     try {
       const data = await axios({
         method: "post",
-        url: `https://oatann8h4d.execute-api.ca-central-1.amazonaws.com/dev/payments`,
+        url: `${process.env.GATSBY_PAYMENT_ENDPOINT}`,
         data: order,
       })
+      console.log("CHECKOUT POST TO API GATEWAY success ==> ", data)
       setOrderCompleted(true)
       setReceipts(data.data.receipts)
       clearCart()
     } catch (err) {
+      console.log("CHECKOUT POST TO API GATEWAY error ==> ", err)
       newAlert(ERROR, err.message)
       throw err.message
     }
@@ -144,7 +149,10 @@ const Checkout = () => {
         <h3 className="font-poppins font-light text-primary text-center">
           Thanks! Your order has been successfully processed. Check your email!
         </h3>
-        <Link className="font-lemon text-primary text-2xl my-4 text-center" to="/">
+        <Link
+          className="font-lemon text-primary text-2xl my-4 text-center"
+          to="/"
+        >
           You are a Mighty Dame.
         </Link>
         <div className="mt-5 flex flex-col items-center justify-center">
@@ -198,7 +206,9 @@ const Checkout = () => {
                       alt={item.name}
                     />
                     <p className="m-0 pl-0 text-xs snav:text-sm sm:text-md snav:pl-2 sm:pl-10 text-primary">
-                      {`${item.name} (${item.quantity} at ${DENOMINATION + item.price} each)`}
+                      {`${item.name} (${item.quantity} at ${
+                        DENOMINATION + item.price
+                      } each)`}
                     </p>
                     <div className="flex flex-1 justify-end">
                       <p className="m-0 pl-10 text-primary tracking-tighter font-normal">
