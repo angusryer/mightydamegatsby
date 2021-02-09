@@ -14,8 +14,7 @@ import {
 import { ThemeContext, AlertContext, CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
 
-// const stripePromise = loadStripe(`${process.env.GATSBY_PK}`)
-const stripePromise = loadStripe(`pk_live_51IDyuEFdSoxpYycd8Ui59kEHQLo0we1vhEmQQ9eZhzsXA8l2iCqQ5FnTDRhnBAda5wLbTM8rTOBfAsXDk7W8gvWh00KvGaPPVE`)
+const stripePromise = loadStripe(`${process.env.GATSBY_PK}`)
 
 export default function CheckoutWithContext() {
   return (
@@ -116,7 +115,7 @@ const Checkout = () => {
     try {
       const data = await axios({
         method: "post",
-        url: process.env.GATSBY_PAYMENT_ENDPOINT,
+        url: `${process.env.GATSBY_PAYMENT_ENDPOINT}`,
         data: order,
       })
       setOrderCompleted(true)
