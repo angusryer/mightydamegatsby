@@ -15,7 +15,7 @@ import { ThemeContext, AlertContext, CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
 
 const stripePromise = loadStripe(`${process.env.GATSBY_PK}`)
-// const stripePromise = loadStripe(`pk_live_51IDyuEFdSoxpYycd8Ui59kEHQLo0we1vhEmQQ9eZhzsXA8l2iCqQ5FnTDRhnBAda5wLbTM8rTOBfAsXDk7W8gvWh00KvGaPPVE`)
+// const stripePromise = loadStripe(`pk_live_51IDyuEFdSoxpYycdoAPFkFxkLBa2QorgVOj0BrUyngwpndS8kCxt79CYaKmuNNDdk6pE1EyKY3LI6sxwFqMk9Jc600BRrXQ0bv`)
 
 export default function CheckoutWithContext() {
   return (
