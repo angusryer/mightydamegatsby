@@ -13,6 +13,7 @@ import {
 } from "@stripe/react-stripe-js"
 import { ThemeContext, AlertContext, CartContext } from "../context/mainContext"
 import { DENOMINATION } from "../libs/constants"
+import Input from "../components/common/Input"
 
 const PK_KEY = process.env.GATSBY_PK
 const PAY_ENDPOINT = process.env.GATSBY_PAYMENT_ENDPOINT
@@ -26,18 +27,6 @@ export default function CheckoutWithContext() {
     </Elements>
   )
 }
-
-const Input = ({ onChange, value, name, placeholder, tabIndex }) => (
-  <input
-    onChange={onChange}
-    value={value}
-    className="mt-2 text-sm shadow appearance-none border text-primary bg-primary placeholder-textPrimary rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
-    type="text"
-    placeholder={placeholder}
-    name={name}
-    tabIndex={tabIndex}
-  />
-)
 
 const Checkout = () => {
   const [orderCompleted, setOrderCompleted] = useState(false)
@@ -68,8 +57,6 @@ const Checkout = () => {
     const { name, email, street, city, postal_code, province } = input
 
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
       return
     }
 
@@ -91,8 +78,6 @@ const Checkout = () => {
     // to find your CardElement because there can only ever be one of
     // each type of element.
     const cardElement = elements.getElement(CardElement)
-
-    // Use your card Element with other Stripe.js APIs
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
@@ -292,7 +277,7 @@ const Checkout = () => {
                   <p className="text-primary">{DENOMINATION + total}</p>
                 </div>
                 <div className="flex justify-between">
-                  <p className="text-sm text-primary">HST</p>
+                  <p className="text-sm text-primary">Tax</p>
                   <p className="text-primary">
                     {DENOMINATION + calculateTax()}
                   </p>
