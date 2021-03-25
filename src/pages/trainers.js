@@ -1,6 +1,6 @@
 import React from "react"
 import SEO from "../components/common/Seo"
-import instructorImage from "../images/emily.png"
+import instructorImage from "../images/EmilyMightyDameHat.jpg"
 import redx from "../images/redx.png"
 import check from "../images/greencheck.png"
 
@@ -18,7 +18,7 @@ export default function Trainers() {
               alt="Emily Engel"
             />
           </div>
-          <h2 className="text-primary text-3xl font-light transform -translate-x-4 translate-y-8">
+          <h2 className="text-primary text-3xl font-light transform translate-y-8">
             Hi. I'm Emily.
           </h2>
         </div>

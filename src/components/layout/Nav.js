@@ -23,14 +23,14 @@ export default function Nav() {
     return () => document.removeEventListener("click", hideMenu)
   })
 
-  const linkStyle = `font-extralight text-center m-0 text-sm w-22 ml-1 mr-1 border-none rounded-full text-secondary hover:text-darkButton`
+  const linkStyle = `font-extralight text-center m-0 text-sm w-18 ml-1 mr-1 border-none rounded-full text-secondary hover:text-darkButton`
 
   return (
     <nav className="sticky top-0 bg-secondary flex flex-shrink-0 z-20">
       <div className="flex w-full h-full p-4 justify-center">
         <div className="w-full max-w-6xl flex items-center justify-between">
           <Link
-            className="flex flex-row ml- sm:flex-nowrap items-center"
+            className="flex flex-row sm:flex-nowrap items-center"
             to="/"
           >
             <img
@@ -45,31 +45,31 @@ export default function Nav() {
           <div className="flex justify-center items-center xsnav:justify-end xsnav:items-center">
             <div className="hidden nav:flex justify-around text-xl items-center max-w-5xl ml-auto transform translate-y-px">
               <Link
-                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-32`}
                 to="/trainers"
               >
                 Meet Your Trainer
               </Link>
               <Link
-                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-22`}
                 to="/programs"
               >
                 Programs
               </Link>
               <Link
-                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-22`}
                 to="/products"
               >
                 Products
               </Link>
               <Link
-                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-22`}
                 to="/members"
               >
                 Members
               </Link>
               <Link
-                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-16`}
                 to="/faq"
               >
                 FAQ
