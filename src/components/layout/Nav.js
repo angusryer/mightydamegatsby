@@ -48,7 +48,7 @@ export default function Nav() {
                 className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
                 to="/trainers"
               >
-                Trainers
+                Meet Your Trainer
               </Link>
               <Link
                 className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}

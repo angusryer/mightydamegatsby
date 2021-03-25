@@ -20,7 +20,7 @@ export default function Menu({ linkStyle }) {
       </Link>
       <div className="mt-3 flex flex-col justify-start">
         <Link className={linkStylePlus} to="/trainers">
-          Trainers
+          Meet Your Trainer
         </Link>
         <Link className={linkStylePlus} to="/programs">
           Programs

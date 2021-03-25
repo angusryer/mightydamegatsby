@@ -44,7 +44,7 @@ export default function ProductCard(props) {
         <ButtonTwo
           className="nav:text-sm"
           callBack={addItemToCart}
-          innerText="Drop this in your cart"
+          innerText="Drop this in the Cart"
         />
       </div>
     </div>

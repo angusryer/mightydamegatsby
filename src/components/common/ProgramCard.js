@@ -1,13 +1,15 @@
-import React, { useContext } from "react"
-import { CartContext } from "../../context/mainContext"
+import React from "react"
+import { PopupWidget } from "react-calendly"
+import { addToSchedule } from "../../libs/commLib"
 import ButtonTwo from "../common/ButtonTwo"
 
 export default function ProgramCard(props) {
-  const { addToCart, setItemQty } = useContext(CartContext)
+  const [togglePopup, setTogglePopup] = useState(false)
   const {
     id,
     title,
     image,
+    shortDescription,
     description,
     brand,
     numberOfSessions,
@@ -18,16 +20,17 @@ export default function ProgramCard(props) {
     available,
   } = props
 
-  const addItemToCart = () => {
+  const scheduleItem = () => {
     const newItem = {
       id: id,
-      offerType: "SERVICE",
+      offerType: "PROGRAM",
       name: title,
-      quantity: 1,
+      shortDescription: shortDescription,
       price: salePrice || price,
-      image: image
+      image: image,
     }
-    addToCart(newItem)
+
+    sendToScheduler(newItem)
   }
 
   return (
@@ -58,9 +61,20 @@ export default function ProgramCard(props) {
         <span className="text-primary">{`$${salePrice}`}</span>
         <ButtonTwo
           className="nav:text-sm"
-          callBack={addItemToCart}
-          innerText="Enroll in this Program"
+          callBack={() => setTogglePopup(true)}
+          innerText="Book a free consultation now!"
         />
+        {togglePopup && (
+          <>
+            <div
+              style={{ position: "absolute", top: "10px", right: "10px" }}
+              onClick={() => setTogglePopup(false)}
+            >
+              X
+            </div>
+            <PopupWidget url="https://calendly.com/mightydame" />
+          </>
+        )}
       </div>
     </div>
   )
