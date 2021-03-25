@@ -14,7 +14,9 @@
     "categories": {
       "function": {
         "mightydamegatsbyd8ed1464PostConfirmation": {
-          "GROUP": "Admin"
+          "GROUP": "Admin",
+          "deploymentBucketName": "amplify-mightydamegatsby-dev-143702-deployment",
+          "s3Key": "amplify-builds/mightydamegatsbyd8ed1464PostConfirmation-2b7158734e546f745a79-build.zip"
         }
       },
       "auth": {

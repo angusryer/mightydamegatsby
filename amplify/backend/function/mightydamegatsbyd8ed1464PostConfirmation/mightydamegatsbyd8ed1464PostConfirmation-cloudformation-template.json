@@ -37,6 +37,12 @@
     },
     "env": {
       "Type": "String"
+    },
+    "deploymentBucketName": {
+      "Type": "String"
+    },
+    "s3Key": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -98,11 +104,15 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs10.x",
+        "Runtime": "nodejs12.x",
         "Timeout": "25",
         "Code": {
-          "S3Bucket": "amplify-mightydamegatsby-dev-143702-deployment",
-          "S3Key": "amplify-builds/mightydamegatsbyd8ed1464PostConfirmation-2b7158734e546f745a79-build.zip"
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
         }
       }
     },
