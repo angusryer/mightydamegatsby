@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react"
 import { Link } from "gatsby"
 import { FaCircle, FaShoppingCart } from "react-icons/fa"
-import { CartContext, ThemeContext } from "../../context/mainContext"
+import { CartContext } from "../../context/mainContext"
 import Menu from "./Menu"
 import ThemeToggle from "./ThemeToggle"
 import logo from "../../images/logot.png"
@@ -67,6 +67,12 @@ export default function Nav() {
                 to="/members"
               >
                 Members
+              </Link>
+              <Link
+                className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-20`}
+                to="/faq"
+              >
+                FAQ
               </Link>
               <Link
                 className="flex h-5 w-5 self-center justify-center items-center text-secondary icon_hover_dark border-none m-3 mr-3.5 rounded-full"

@@ -31,6 +31,9 @@ export default function Menu({ linkStyle }) {
         <Link className={linkStylePlus} to="/members">
           Members
         </Link>
+        <Link className={linkStylePlus} to="/faq">
+          FAQ
+        </Link>
         <Link
           className="flex h-5 w-5 self-center justify-center items-center text-secondary icon_hover_light border-none m-3 mr-3.5 p-2 rounded-full transform translate-x-1"
           to="/cart"
