@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/common/Seo"
+import Seo from "../components/common/Seo"
 import instructorImage from "../images/EmilyMightyDameHat.jpg"
 import redx from "../images/redx.png"
 import check from "../images/greencheck.png"
@@ -7,7 +7,7 @@ import check from "../images/greencheck.png"
 export default function Trainers() {
   return (
     <>
-      <SEO title="Trainers" desription="Mighty Dame Fitness Trainers" />
+      <Seo title="Trainers" desription="Mighty Dame Fitness Trainers" />
       <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5 items-center">
         <h1 className="font-lemon text-4xl my-5 text-primary">Meet the Trainer</h1>
         <div className="flex flex-row my-12 self-center">

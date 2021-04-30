@@ -99,6 +99,7 @@ export default function Nav() {
             <div className="flex justify-around items-center w-auto relative">
               {showMenu && <Menu linkStyle={linkStyle} />}
               <img
+                
                 className="flex h-6 w-auto mb-0 nav:hidden transform translate-y-px"
                 src={menu}
                 alt="menu"

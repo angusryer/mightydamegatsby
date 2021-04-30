@@ -1,10 +1,10 @@
 import React from "react"
-import SEO from "../components/common/Seo"
+import Seo from "../components/common/Seo"
 
 export default function Faq() {
   return (
     <>
-      <SEO title="FAQ" desription="Mighty Dame Fitness FAQ" />
+      <Seo title="FAQ" desription="Mighty Dame Fitness FAQ" />
       <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5 items-center">
         <h1 className="font-lemon text-4xl my-5 text-primary">FAQ</h1>
         <article className="">

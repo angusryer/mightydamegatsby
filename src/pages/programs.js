@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/common/Seo"
+import Seo from "../components/common/Seo"
 import ProgramCard from "../components/common/ProgramCard"
 
 export default function Programs({ data }) {
   return (
     <>
-      <SEO
+      <Seo
         title="Programs"
         desription="Mighty Dame Fitness Programs"
       />

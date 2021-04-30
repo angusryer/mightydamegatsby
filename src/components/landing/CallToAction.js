@@ -2,7 +2,9 @@ import React from "react"
 
 export default function CallToAction({ children, bb, bt }) {
   if (typeof children === "string")
-    throw "Expected an HTML or React element as a child. Please wrap any bare text in element tags."
+    throw new Error(
+      "Expected an HTML or React element as a child. Please wrap any bare text in element tags."
+    )
 
   return (
     <div className="flex flex-col items-center w-full my-12 max-w-xl bg-primary">

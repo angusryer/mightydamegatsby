@@ -34,6 +34,60 @@ exports.onCreateNode = ({ node, actions }) => {
   }
 }
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type ProductsInfo implements Node {
+      available: Boolean
+      brand: String
+      categories: [String]
+      id: ID
+      keywords: [String]
+      longDescription: String
+      mainImageFileName: String
+      otherImageFileNames: [String]
+      price: Float
+      salePrice: Float
+      shortDescription: String
+      title: String
+    }
+
+    type ProgramsInfo implements Node {
+      available: Boolean
+      brand: String
+      categories: [String]
+      id: ID
+      keywords: [String]
+      longDescription: String
+      mainImageFileName: String
+      otherImageFileNames: [String]
+      price: Float
+      salePrice: Float
+      shortDescription: String
+      title: String
+      numberOfSessions: Float
+      lengthOfSessionInHours: Float
+      frequencyOfSessionsPerWeek: Float
+    }
+
+    type ReviewsInfo implements Node {
+      id: ID
+      rating: Int
+      title: String
+      comment: String
+      ownerId: ID
+      user: User
+    }
+
+    type User implements Node {
+      id: ID
+      displayName: String
+      avatarUrl: String
+    }
+  `
+  createTypes(typeDefs)
+}
+
 exports.sourceNodes = async ({
   actions,
   createNodeId,

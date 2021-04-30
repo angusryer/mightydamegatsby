@@ -1,6 +1,5 @@
 import React from "react"
 import DumbbellSvg from "./DumbbellSvg"
-import star from "../../images/dumbbell.svg"
 
 export default function Rating({ value, height }) {
   let starElements = []

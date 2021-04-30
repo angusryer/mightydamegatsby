@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/common/Seo"
+import Seo from "../components/common/Seo"
 import ProductCard from "../components/common/ProductCard"
 
 export default function Products({ data }) {
   return (
     <>
-      <SEO title="Products" desription="Mighty Dame Fitness Products" />
+      <Seo title="Products" desription="Mighty Dame Fitness Products" />
       <section className="flex flex-col items-center justify-start w-full max-w-5xl my-5 h-full mx-auto">
         <h2 className="font-lemon text-4xl text-center my-10 text-primary">
           Our Products
@@ -36,20 +36,18 @@ export default function Products({ data }) {
 export const productsQuery = graphql`
   query getAllProducts {
     productsInfo {
-      data {
-        available
-        brand
-        categories
-        id
-        keywords
-        longDescription
-        mainImageFileName
-        otherImageFileNames
-        price
-        salePrice
-        shortDescription
-        title
-      }
+      available
+      brand
+      categories
+      id
+      keywords
+      longDescription
+      mainImageFileName
+      otherImageFileNames
+      price
+      salePrice
+      shortDescription
+      title
     }
   }
 `

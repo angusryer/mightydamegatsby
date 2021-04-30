@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import SEO from "../components/common/Seo"
+import Seo from "../components/common/Seo"
 import Hero from "../components/landing/Hero"
 import Headline from "../components/landing/Headline"
 import SubHeadline from "../components/landing/SubHeadline"
@@ -22,7 +22,7 @@ import SocialIcon from "../components/common/SocialIcon"
 export default function Home({ data }) {
   return (
     <>
-      <SEO title="Home" />
+      <Seo title="Home" />
       <div className="flex flex-col">
         <Hero>
           <div className="flex flex-col nav:flex-row nav:items-center">

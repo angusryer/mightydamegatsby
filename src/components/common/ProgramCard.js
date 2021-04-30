@@ -7,7 +7,6 @@ import ButtonTwo from "../common/ButtonTwo"
 export default function ProgramCard(props) {
   const user = useContext(UserContext)
   const {
-    id,
     title,
     image,
     shortDescription,
