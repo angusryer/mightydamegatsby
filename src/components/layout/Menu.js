@@ -1,12 +1,12 @@
 import { Link } from "gatsby"
-import React, { useContext } from "react"
-import { FaCircle, FaShoppingCart } from "react-icons/fa"
-import { CartContext } from "../../context/mainContext"
+import React from "react"
+// import { FaCircle, FaShoppingCart } from "react-icons/fa"
+// import { CartContext } from "../../context/mainContext"
 import logo from "../../images/logot.png"
 import SocialIcon from "../common/SocialIcon"
 
 export default function Menu({ linkStyle }) {
-  const { quantityOfItems } = useContext(CartContext)
+  // const { quantityOfItems } = useContext(CartContext)
   const linkStylePlus = `${linkStyle} py-2 w-full text-secondary text-xs hover:text-lighterButton`
 
   return (
@@ -25,16 +25,16 @@ export default function Menu({ linkStyle }) {
         <Link className={linkStylePlus} to="/programs">
           Programs
         </Link>
-        <Link className={linkStylePlus} to="/products">
+        {/* <Link className={linkStylePlus} to="/products">
           Products
-        </Link>
-        <Link className={linkStylePlus} to="/members">
+        </Link> */}
+        {/* <Link className={linkStylePlus} to="/members">
           Members
-        </Link>
+        </Link> */}
         <Link className={linkStylePlus} to="/faq">
           FAQ
         </Link>
-        <Link
+        {/* <Link
           className="flex h-5 w-5 self-center justify-center items-center text-secondary icon_hover_light border-none m-3 mr-3.5 p-2 rounded-full transform translate-x-1"
           to="/cart"
         >
@@ -49,7 +49,7 @@ export default function Menu({ linkStyle }) {
               </div>
             )}
           </div>
-        </Link>
+        </Link> */}
       </div>
       <div className="flex flex-col items-center transform translate-x-1">
         <SocialIcon

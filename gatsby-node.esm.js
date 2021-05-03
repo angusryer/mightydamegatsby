@@ -22,6 +22,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     node: {
       fs: "empty",
     },
+    resolve: {
+      fallback: { path: require.resolve("path-browserify") },
+    },
   })
 }
 

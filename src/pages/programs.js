@@ -6,12 +6,11 @@ import ProgramCard from "../components/common/ProgramCard"
 export default function Programs({ data }) {
   return (
     <>
-      <Seo
-        title="Programs"
-        desription="Mighty Dame Fitness Programs"
-      />
+      <Seo title="Programs" desription="Mighty Dame Fitness Programs" />
       <section className="flex flex-col items-center justify-start w-full max-w-5xl my-5 h-full mx-auto">
-      <h2 className="font-lemon text-3xl text-center my-10 text-primary">Our Fitness &amp; Nutrition Programs</h2>
+        <h2 className="font-lemon text-3xl text-center my-10 text-primary">
+          Our Fitness &amp; Nutrition Programs
+        </h2>
         {data.programsInfo.data &&
           data.programsInfo.data.map((program) => {
             return (

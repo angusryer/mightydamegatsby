@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect, useContext } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import { Link } from "gatsby"
-import { FaCircle, FaShoppingCart } from "react-icons/fa"
-import { CartContext } from "../../context/mainContext"
+// import { FaCircle, FaShoppingCart } from "react-icons/fa"
+// import { CartContext } from "../../context/mainContext"
 import Menu from "./Menu"
 import ThemeToggle from "./ThemeToggle"
 import logo from "../../images/logot.png"
 import menu from "../../images/menu.svg"
 
 export default function Nav() {
-  const { quantityOfItems } = useContext(CartContext)
+  // const { quantityOfItems } = useContext(CartContext)
   const [showMenu, setShowMenu] = useState(false)
   const menuRef = useRef()
 
@@ -21,7 +21,7 @@ export default function Nav() {
   useEffect(() => {
     document.addEventListener("click", hideMenu)
     return () => document.removeEventListener("click", hideMenu)
-  })
+  }, [])
 
   const linkStyle = `font-extralight text-center m-0 text-sm w-18 ml-1 mr-1 border-none rounded-full text-secondary hover:text-darkButton`
 
@@ -29,10 +29,7 @@ export default function Nav() {
     <nav className="sticky top-0 bg-secondary flex flex-shrink-0 z-20">
       <div className="flex w-full h-full p-4 justify-center">
         <div className="w-full max-w-6xl flex items-center justify-between">
-          <Link
-            className="flex flex-row sm:flex-nowrap items-center"
-            to="/"
-          >
+          <Link className="flex flex-row sm:flex-nowrap items-center" to="/">
             <img
               className="hidden snav:flex m-0 xxs:w-12 xxs:h-12"
               src={logo}
@@ -56,25 +53,25 @@ export default function Nav() {
               >
                 Programs
               </Link>
-              <Link
+              {/* <Link
                 className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-22`}
                 to="/products"
               >
                 Products
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-22`}
                 to="/members"
               >
                 Members
-              </Link>
+              </Link> */}
               <Link
                 className={`${linkStyle} nav:text-xs whitespace-nowrap nav:w-16`}
                 to="/faq"
               >
                 FAQ
               </Link>
-              <Link
+              {/* <Link
                 className="flex h-5 w-5 self-center justify-center items-center text-secondary icon_hover_dark border-none m-3 mr-3.5 rounded-full"
                 to="/cart"
               >
@@ -93,17 +90,18 @@ export default function Nav() {
                     </div>
                   )}
                 </div>
-              </Link>
+              </Link> */}
             </div>
             <ThemeToggle className="hidden xsnav:flex items-center transform translate-y-0.5 mr-0 xsnav:mr-3 " />
             <div className="flex justify-around items-center w-auto relative">
               {showMenu && <Menu linkStyle={linkStyle} />}
               <img
-                
-                className="flex h-6 w-auto mb-0 nav:hidden transform translate-y-px"
+                className="flex h-6 w-auto mb-0 nav:hidden transform translate-y-px cursor-pointer"
                 src={menu}
                 alt="menu"
-                onClick={() => setShowMenu(!showMenu)}
+                onClick={() => {
+                  setShowMenu(!showMenu)
+                }}
                 ref={menuRef}
               />
             </div>

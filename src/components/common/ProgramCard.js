@@ -60,7 +60,7 @@ export default function ProgramCard(props) {
         <span className="text-primary">{`$${salePrice || price}`}</span>
         <ButtonTwo
           innerText="Book a Free Consultation"
-          callBack={() =>
+          callBack={() => {
             openPopupWidget({
               url: "https://calendly.com/mightydame/consultation",
               prefill: {
@@ -71,7 +71,7 @@ export default function ProgramCard(props) {
                 },
               },
             })
-          }
+          }}
         />
       </div>
     </div>

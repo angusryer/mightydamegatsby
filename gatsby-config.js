@@ -1,4 +1,7 @@
 module.exports = {
+  flags: {
+    DEV_SSR: true,
+  },
   siteMetadata: {
     title: `Mighty Dame Fitness`,
     description: `Integrated fitness and nutrition for motivated women.`,
@@ -33,7 +36,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-offline`,
-    `gatsby-plugin-stripe`,
+    // `gatsby-plugin-stripe`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
   ],

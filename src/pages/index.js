@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Seo from "../components/common/Seo"
 import Hero from "../components/landing/Hero"
 import Headline from "../components/landing/Headline"
 import SubHeadline from "../components/landing/SubHeadline"
@@ -18,6 +17,7 @@ import LeadPointLeft from "../components/landing/LeadPointLeft"
 import LeadPointRight from "../components/landing/LeadPointRight"
 import CallToAction from "../components/landing/CallToAction"
 import SocialIcon from "../components/common/SocialIcon"
+import Seo from "../components/common/Seo"
 
 export default function Home({ data }) {
   return (

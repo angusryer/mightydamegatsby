@@ -9,7 +9,9 @@ export default function Trainers() {
     <>
       <Seo title="Trainers" desription="Mighty Dame Fitness Trainers" />
       <section className="flex flex-col justify-evenly max-w-2xl my-0 mx-auto p-5 items-center">
-        <h1 className="font-lemon text-4xl my-5 text-primary">Meet the Trainer</h1>
+        <h1 className="font-lemon text-4xl my-5 text-primary">
+          Meet the Trainer
+        </h1>
         <div className="flex flex-row my-12 self-center">
           <div className="min-h-32 min-w-32 w-32 h-30 overflow-hidden border-none rounded-full">
             <img
@@ -24,7 +26,10 @@ export default function Trainers() {
         </div>
         <h2 className="text-primary text-xl font-bold text-center">
           Who I’m{" "}
-          <span className="font-lemon text-3xl font-bold text-red border-b">not</span>:
+          <span className="font-lemon text-3xl font-bold text-red border-b">
+            not
+          </span>
+          :
         </h2>
         <ol className="my-6 grid nav:grid-rows-none nav:grid-cols-4 grid-rows-4 grid-cols-none">
           <li className="text-primary flex items-center p-3 flex-nowrap font-light text-sm">
@@ -48,7 +53,9 @@ export default function Trainers() {
         </ol>
         <h2 className="text-primary text-xl font-bold text-center">
           Who I{" "}
-          <span className="font-lemon text-3xl font-bold text-green border-b">am</span>
+          <span className="font-lemon text-3xl font-bold text-green border-b">
+            am
+          </span>
           :
         </h2>
         <ol className="my-6 grid nav:grid-rows-none nav:grid-cols-4 grid-rows-4 grid-cols-none">
@@ -72,7 +79,9 @@ export default function Trainers() {
         </ol>
 
         <article className="">
-          <h2 className="text-primary font-light tracking-wide text-2xl my-5 mt-6">Where I've come from:</h2>
+          <h2 className="text-primary font-light tracking-wide text-2xl my-5 mt-6">
+            Where I've come from:
+          </h2>
           <p className="text-primary my-3 font-extralight">
             I didn’t grow up playing sports. I avoided gym-class like the plague
             in high school and dove into the arts. I also dove into terrible
@@ -106,7 +115,9 @@ export default function Trainers() {
             I wanted to get the guy.
           </blockquote>
 
-          <h2 className="text-primary font-light tracking-wide text-2xl my-5 mt-6">Flash forward a year:</h2>
+          <h2 className="text-primary font-light tracking-wide text-2xl my-5 mt-6">
+            Flash forward a year:
+          </h2>
           <p className="text-primary my-3 font-extralight">
             I got the guy, I got the fitness, and I was just beginning. Today, I
             am a certified Nutrition Coach from Precision Nutrition (2019) and a
@@ -131,9 +142,13 @@ export default function Trainers() {
           </blockquote>
           <blockquote className="text-primary text-center my-10 text-xl font-light">
             We’re meant to be{" "}
-            <span className="text-primary font-lemon text-3xl">Mighty Dames!</span>
+            <span className="text-primary font-lemon text-3xl">
+              Mighty Dames!
+            </span>
           </blockquote>
-          <cite className="text-primary block text-right mr-5 font-light">- Emily</cite>
+          <cite className="text-primary block text-right mr-5 font-light">
+            - Emily
+          </cite>
         </article>
       </section>
     </>

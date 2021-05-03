@@ -1,20 +1,8 @@
-import { navigate } from "gatsby-link"
-import React, { useContext } from "react"
-import { CartContext } from "../../context/mainContext"
+import React from "react"
 import { ButtonLink } from "../common/ButtonTwo"
 
 export default function ProductCard(props) {
-  const { addToCart } = useContext(CartContext)
-  const {
-    id,
-    title,
-    image,
-    longDescription,
-    price,
-    salePrice,
-    inStock,
-    brand,
-  } = props
+  const { title, image, longDescription, salePrice, inStock, brand } = props
 
   // const addItemToCart = () => {
   //   const newItem = {
@@ -50,7 +38,7 @@ export default function ProductCard(props) {
         </span>
         <span className="text-primary">{`$${salePrice}`}</span>
         <ButtonLink
-          className="nav:text-sm"
+          className="nav:text-sm flex justify-center align-center pt-2"
           loc="https://www.crampkit.ca/"
           innerText={`Check out ${brand}'s site!`}
         />

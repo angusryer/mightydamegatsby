@@ -3,7 +3,7 @@ import SocialIcon from "../common/SocialIcon"
 
 export default function Footer() {
   return (
-    <footer className="flex justify-center bg-secondary flex-shrink-1 w-full pt-5">
+    <footer className="flex justify-center bg-secondary flex-shrink-1 w-full pt-0">
       <div className="flex flex-col w-full h-full nav:flex-row bg-secondary px-8 xl:px-0 justify-between items-center max-w-6xl">
         <span className="block font-light text-secondary pt-4 pb-8 nav:py-5 mt-2 text-xs ml-4">
           {" "}
